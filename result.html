@@ -53,27 +53,60 @@
   <h3>વિદ્યાર્થી પરિણામ</h3>
 
   <table>
-    <tr>
-      <th>રોલ નંબર</th>
-      <th>વિદ્યાર્થી નામ</th>
-      <th>ધોરણ</th>
-      <th>ગુજરાતી</th>
-      <th>ગણિત</th>
-      <th>વિજ્ઞાન</th>
-      <th>કુલ</th>
-      <th>પરિણામ</th>
-    </tr>
+   <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Result</title>
 
-    <tr>
-      <td>01</td>
-      <td>રવિ પટેલ</td>
-      <td>8</td>
-      <td>65</td>
-      <td>70</td>
-      <td>68</td>
-      <td>203</td>
-      <td>PASS</td>
-    </tr>
+<style>
+body { font-family: Arial; background:#f5f5f5; }
+header { background:#003366; color:white; text-align:center; padding:10px; }
+table { width:100%; border-collapse:collapse; background:white; }
+th, td { border:1px solid #000; padding:6px; text-align:center; }
+th { background:#e6e6e6; }
+button { padding:8px 15px; margin:10px; }
+</style>
+</head>
+
+<body>
+
+<header>
+  <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી</h3>
+  <img src="saraswati.png" width="80">
+</header>
+
+<button onclick="window.print()">🖨️ Print Result</button>
+
+<table id="resultTable"></table>
+
+<script>
+const sheetURL =
+"https://docs.google.com/spreadsheets/d/e/2PACX-1vSnrtokUhLr4qGVXwoQZV2IxfzU3hyCL-sQf-rwuNODmeDvzOO_NIvUwkc2jA0A0dMxFR10DM7RC6P0/pub?output=csv";
+
+fetch(sheetURL)
+.then(res => res.text())
+.then(data => {
+  let rows = data.split("\n");
+  let table = document.getElementById("resultTable");
+
+  rows.forEach((row, index) => {
+    let tr = document.createElement("tr");
+    row.split(",").forEach(col => {
+      let cell = document.createElement(index === 0 ? "th" : "td");
+      cell.innerText = col;
+      tr.appendChild(cell);
+    });
+    table.appendChild(tr);
+  });
+});
+</script>
+
+<a href="index.html">← Home</a>
+
+</body>
+</html>
+
 
   </table>
 </div>
