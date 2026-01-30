@@ -36,6 +36,9 @@
     @media print {
       button { display:none; }
     }
+    <input type="text" id="searchRoll" placeholder="Roll Number દાખલ કરો">
+<button onclick="searchResult()">Search</button>
+
   </style>
 </head>
 
@@ -80,6 +83,21 @@ button { padding:8px 15px; margin:10px; }
 
 <table id="resultTable"></table>
 
+function searchResult() {
+  let input = document.getElementById("searchRoll").value;
+  let table = document.getElementById("resultTable");
+  let rows = table.getElementsByTagName("tr");
+
+  for (let i = 1; i < rows.length; i++) {
+    let roll = rows[i].getElementsByTagName("td")[0];
+    if (roll) {
+      let txt = roll.textContent || roll.innerText;
+      rows[i].style.display = txt.includes(input) ? "" : "none";
+    }
+  }
+}
+
+  
 <script>
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnrtokUhLr4qGVXwoQZV2IxfzU3hyCL-sQf-rwuNODmeDvzOO_NIvUwkc2jA0A0dMxFR10DM7RC6P0/pub?output=csv";
