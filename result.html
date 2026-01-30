@@ -1,1 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Student Result</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <style>
+    body { font-family: Arial; background:#f2f2f2; margin:0; }
+    header { background:#003366; color:white; padding:15px; text-align:center; }
+    header img { width:80px; }
+
+    .box { background:white; margin:15px; padding:15px; }
+
+    table {
+      width:100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border:1px solid black;
+    }
+    th, td {
+      padding:8px;
+      text-align:center;
+    }
+    th { background:#e6e6e6; }
+
+    button {
+      padding:8px 15px;
+      background:#0066cc;
+      color:white;
+      border:none;
+      cursor:pointer;
+      margin-bottom:10px;
+    }
+
+    @media print {
+      button { display:none; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <img src="saraswati.png" alt="Saraswati Maa">
+  <h2>સર્વ સેવા ટ્રસ્ટ સંચાલિત</h2>
+  <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલ</h3>
+</header>
+
+<div class="box">
+  <button onclick="window.print()">🖨️ Print Result</button>
+
+  <h3>વિદ્યાર્થી પરિણામ</h3>
+
+  <table>
+    <tr>
+      <th>રોલ નંબર</th>
+      <th>વિદ્યાર્થી નામ</th>
+      <th>ધોરણ</th>
+      <th>ગુજરાતી</th>
+      <th>ગણિત</th>
+      <th>વિજ્ઞાન</th>
+      <th>કુલ</th>
+      <th>પરિણામ</th>
+    </tr>
+
+    <tr>
+      <td>01</td>
+      <td>રવિ પટેલ</td>
+      <td>8</td>
+      <td>65</td>
+      <td>70</td>
+      <td>68</td>
+      <td>203</td>
+      <td>PASS</td>
+    </tr>
+
+  </table>
+</div>
+
+</body>
+</html>
 
