@@ -11,17 +11,8 @@
 
     .box { background:white; margin:15px; padding:15px; }
 
-    table {
-      width:100%;
-      border-collapse: collapse;
-    }
-    table, th, td {
-      border:1px solid black;
-    }
-    th, td {
-      padding:8px;
-      text-align:center;
-    }
+    table { width:100%; border-collapse: collapse; }
+    th, td { border:1px solid black; padding:8px; text-align:center; }
     th { background:#e6e6e6; }
 
     button {
@@ -30,80 +21,38 @@
       color:white;
       border:none;
       cursor:pointer;
-      margin-bottom:10px;
+      margin:5px;
     }
+
+    input { padding:6px; width:160px; }
 
     @media print {
-      button { display:none; }
+      button, input { display:none; }
     }
-    <input type="text" id="searchRoll" placeholder="Roll Number દાખલ કરો">
-<button onclick="searchResult()">Search</button>
-
   </style>
-</head>
-
-<body>
-
-
-
-<div class="box">
-  <button onclick="window.print()">🖨️ Print Result</button>
-
-  <br><br>
-
-<input type="text" id="searchRoll" placeholder="Roll Number નાખો"
-style="padding:6px; width:160px;">
-
-<button onclick="searchResult()">🔍 Search</button>
-
-<br><br>
-
-
-  <h3>વિદ્યાર્થી પરિણામ</h3>
-
-  <table>
-   <!DOCTYPE html>
-<html>
-<head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Result</title>
-
-<style>
-body { font-family: Arial; background:#f5f5f5; }
-header { background:#003366; color:white; text-align:center; padding:10px; }
-table { width:100%; border-collapse:collapse; background:white; }
-th, td { border:1px solid #000; padding:6px; text-align:center; }
-th { background:#e6e6e6; }
-button { padding:8px 15px; margin:10px; }
-</style>
 </head>
 
 <body>
 
 <header>
   <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી</h3>
-  <img src="saraswati.png" width="80">
+  <img src="saraswati.png">
 </header>
 
-<button onclick="window.print()">🖨️ Print Result</button>
+<div class="box">
 
-<table id="resultTable"></table>
+  <button onclick="window.print()">🖨️ Print Result</button>
+  <br><br>
 
-function searchResult() {
-  let input = document.getElementById("searchRoll").value;
-  let table = document.getElementById("resultTable");
-  let rows = table.getElementsByTagName("tr");
+  <input type="text" id="searchRoll" placeholder="Roll Number નાખો">
+  <button onclick="searchResult()">🔍 Search</button>
 
-  for (let i = 1; i < rows.length; i++) {
-    let roll = rows[i].getElementsByTagName("td")[0];
-    if (roll) {
-      let txt = roll.textContent || roll.innerText;
-      rows[i].style.display = txt.includes(input) ? "" : "none";
-    }
-  }
-}
+  <br><br>
 
-  
+  <table id="resultTable"></table>
+
+</div>
+
 <script>
 const sheetURL =
 "https://docs.google.com/spreadsheets/d/e/2PACX-1vSnrtokUhLr4qGVXwoQZV2IxfzU3hyCL-sQf-rwuNODmeDvzOO_NIvUwkc2jA0A0dMxFR10DM7RC6P0/pub?output=csv";
@@ -124,18 +73,19 @@ fetch(sheetURL)
     table.appendChild(tr);
   });
 });
+
+function searchResult() {
+  let input = document.getElementById("searchRoll").value;
+  let rows = document.getElementById("resultTable").rows;
+
+  for (let i = 1; i < rows.length; i++) {
+    let roll = rows[i].cells[0].innerText;
+    rows[i].style.display = roll.includes(input) ? "" : "none";
+  }
+}
 </script>
 
 <a href="index.html">← Home</a>
 
 </body>
 </html>
-
-
-  </table>
-</div>
-
-</body>
-</html>
-
-https://docs.google.com/spreadsheets/d/e/2PACX-1vSnrtokUhLr4qGVXwoQZV2IxfzU3hyCL-sQf-rwuNODmeDvzOO_NIvUwkc2jA0A0dMxFR10DM7RC6P0/pub?output=csv
