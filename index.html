@@ -3,319 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી </title>
-
-    /* ======= નારોલી શાળા વેબસાઇટ CSS ======= */
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-    --primary-color: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary-color: #7c3aed;
-    --accent-color: #10b981;
-    --dark-color: #1e293b;
-    --light-color: #f8fafc;
-    --text-color: #334155;
-    --white: #ffffff;
-    --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-    --shadow: 0 4px 20px rgba(0,0,0,0.1);
-    --radius: 12px;
-}
-
-body {
-    font-family: 'Segoe UI', 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background: var(--light-color);
-}
-
-/* નેવિગેશન બાર */
-.navbar {
-    background: var(--white);
-    box-shadow: var(--shadow);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-img {
-    height: 50px;
-    width: auto;
-}
-
-.logo-text h1 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    line-height: 1.2;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--dark-color);
-    font-weight: 500;
-    transition: color 0.3s;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-}
-
-.nav-links a:hover {
-    color: var(--primary-color);
-    background: rgba(37, 99, 235, 0.1);
-}
-
-/* હેરો સેક્શન */
-.hero {
-    background: var(--gradient);
-    color: var(--white);
-    padding: 5rem 2rem;
-    text-align: center;
-    border-radius: 0 0 40px 40px;
-}
-
-.hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    opacity: 0.9;
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--white);
-    color: var(--primary-color);
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-}
-
-/* ફીચર્સ સેક્શન */
-.features {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.features h2 {
-    text-align: center;
-    color: var(--dark-color);
-    margin-bottom: 3rem;
-    font-size: 2.2rem;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.feature-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-}
-
-.feature-card h3 {
-    color: var(--primary-color);
-    margin: 1rem 0;
-    font-size: 1.5rem;
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-/* ફૂટર */
-.footer {
-    background: var(--dark-color);
-    color: var(--white);
-    padding: 3rem 2rem;
-    text-align: center;
-    margin-top: 4rem;
-}
-
-    
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
+    <title>ઉત્તર બુનિયાદી શાળા નારોલી</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Navigation -->
     <nav class="navbar">
         <div class="logo">
-            <img src="logo.png" alt="School Logo" height="50">
-            <div class="logo-text">
-                <h2>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી  </h2>
-                <p>ગુણવત્તાપૂર્ણ શિક્ષણ</p>
-            </div>
+            <h1>ઉત્તર બુનિયાદી શાળા નારોલી</h1>
+            <p>ગુણવત્તાપૂર્ણ શિક્ષણ</p>
         </div>
-        
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">હોમ</a></li>
-            <li><a href="about.html">અમારી વિશે</a></li>
-            <li><a href="staff.html">સ્ટાફ</a></li>
-            <li><a href="result.html">પરિણામ</a></li>
-            <li><a href="#" class="contact-btn">સંપર્ક</a></li>
-        </ul>
-        
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
+        <div class="nav-links">
+            <a href="#">હોમ</a>
+            <a href="#">અમારી વિશે</a>
+            <a href="#">સ્ટાફ</a>
+            <a href="#">પરિણામ</a>
+            <a href="#">સંપર્ક</a>
         </div>
     </nav>
 
-    <!-- Hero Section -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>સ્વાગત છે ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી  </h1>
-            <p>જ્યાં પ્રત્યેક બાળકની પ્રતિભા વિકસિત થાય છે. ગુણવત્તાપૂર્ણ શિક્ષણ, આધુનિક સુવિધાઓ અને સમર્પિત શિક્ષકો સાથે.</p>
-            <a href="about.html" class="btn-primary">વધુ જાણો</a>
-        </div>
+        <h1>સ્વાગત છે ઉત્તર બુનિયાદી શાળા</h1>
+        <p>જ્યાં પ્રત્યેક બાળકની પ્રતિભા વિકસિત થાય છે.</p>
+        <button class="cta-button">વધુ જાણો</button>
     </section>
 
-    <!-- Features -->
     <section class="features">
-        <div class="container">
-            <h2 class="section-title"> વિશેષતાઓ </h2>
-            
-            <div class="features-grid">
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-graduation-cap"></i>
-                    </div>
-                    <h3>અનુભવી શિક્ષકો</h3>
-                    <p>અનુભવી અને સમર્પિત શિક્ષકો જે વિદ્યાર્થીઓના સર્વાંગી વિકાસ માટે પ્રયત્નશીલ છે.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-flask"></i>
-                    </div>
-                    <h3>આધુનિક લેબોરેટરી</h3>
-                    <p>વિજ્ઞાન અને કોમ્પ્યુટરની આધુનિક લેબોરેટરી વ્યવહારિક શિક્ષણ માટે.</p>
-                </div>
-                
-                <div class="feature-card">
-                    <div class="feature-icon">
-                        <i class="fas fa-futbol"></i>
-                    </div>
-                    <h3>રમત-ગમત સુવિધાઓ</h3>
-                    <p>વિવિધ રમત-ગમતની સુવિધાઓ શારીરિક વિકાસ માટે.</p>
-                </div>
-            </div>
+        <div class="feature-card">
+            <h3>અનુભવી શિક્ષકો</h3>
+            <p>સમર્પિત શિક્ષકો વિદ્યાર્થીઓના વિકાસ માટે.</p>
+        </div>
+        <div class="feature-card">
+            <h3>આધુનિક લેબોરેટરી</h3>
+            <p>વિજ્ઞાન અને કોમ્પ્યુટર લેબ વ્યવહારિક શિક્ષણ માટે.</p>
+        </div>
+        <div class="feature-card">
+            <h3>રમત-ગમત સુવિધાઓ</h3>
+            <p>શારીરિક વિકાસ માટે રમતની સુવિધાઓ.</p>
         </div>
     </section>
 
-    <!-- Announcements -->
-    <section class="announcements">
-        <div class="container">
-            <h2 class="section-title">મહત્વપૂર્ણ સૂચનાઓ</h2>
-            
-            <div class="announcement-list">
-                <div class="announcement">
-                    <div class="announcement-date">
-                        <span class="day">25</span>
-                        <span class="month">ડિસે</span>
-                    </div>
-                    <div class="announcement-content">
-                        <h3>વાર્ષિક પરીક્ષા તારીખ જાહેર</h3>
-                        <p>ક્લાસ 9 થી 12 ની વાર્ષિક પરીક્ષાની તારીખ જાહેર કરવામાં આવી છે.</p>
-                    </div>
-                </div>
-                
-                <div class="announcement">
-                    <div class="announcement-date">
-                        <span class="day">15</span>
-                        <span class="month">જાને</span>
-                    </div>
-                    <div class="announcement-content">
-                        <h3>નવા વિદ્યાર્થી પ્રવેશ</h3>
-                        <p>સત્ર 2026-27 માટે નવા વિદ્યાર્થીઓનો પ્રવેશ શરૂ થયો છે.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>   ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી  </h3>
-                    <p>ગુણવત્તાપૂર્ણ શિક્ષણ અને સંપૂર્ણ વ્યક્તિત્વ વિકાસ માટે પ્રતિબદ્ધ.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>ઝડપી લિંક્સ</h3>
-                    <ul>
-                        <li><a href="index.html">હોમ</a></li>
-                        <li><a href="about.html">અમારી વિશે</a></li>
-                        <li><a href="staff.html">સ્ટાફ</a></li>
-                        <li><a href="result.html">પરિણામ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>સંપર્ક કરો</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> મુ.પો.નારોલી તા.થરાદ જિ.વાવ-થરાદ  </p>
-                    <p><i class="fas fa-phone"></i> +91 6353644164 </p>
-                    <p><i class="fas fa-envelope"></i> ubvnaroli@yahoo.com </p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; જય જગત .</p>
-            </div>
-        </div>
+        <p>© 2026 શાળા નારોલી. જય જગત</p>
     </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
 </body>
 </html>
