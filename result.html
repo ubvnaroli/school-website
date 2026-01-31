@@ -1,9 +1,12 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
+  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>પરિણામ જોવા - ઉત્તર બુનિયાદી શાળા</title>
+ <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
         
@@ -265,7 +268,63 @@
         });
     }
 </script>
+         // JSON ફાઈલની લિંક
+    const JSON_URL = "https://ubvnaroli.github.io/school-website/students.json";
+    
+    document.getElementById("resultForm").onsubmit = async function(event) {
+        event.preventDefault();
         
+        let grNo = document.getElementById("grNo").value.trim();
+        let dob = document.getElementById("dob").value;
+        
+        try {
+            // JSON ડેટા લોડ કરો
+            const response = await fetch(JSON_URL);
+            const students = await response.json();
+            
+            // વિદ્યાર્થી શોધો
+            const student = students.find(s => 
+                s.GR_No === grNo && s.જન્મતારીખ === dob
+            );
+            
+            if (student) {
+                // ભૂલ છુપાવો
+                document.getElementById("errorMessage").style.display = "none";
+                
+                // પરિણામ દર્શાવો
+                document.getElementById("resultDisplay").style.display = "block";
+                
+                // મૂલ્યો ભરો
+                document.getElementById("displayGrNo").textContent = student.GR_No;
+                document.getElementById("studentName").textContent = student.વિદ્યાર્થીનું_નામ;
+                document.getElementById("studentClass").textContent = student.વર્ગ;
+                
+                // વિષયો ભરો
+                document.querySelectorAll('.result-item')[3].innerHTML = 
+                    `<span>ગણિત</span><strong>A (${student.ગણિત}/100)</strong>`;
+                document.querySelectorAll('.result-item')[4].innerHTML = 
+                    `<span>અંગ્રેજી</span><strong>A (${student.અંગ્રેજી}/100)</strong>`;
+                document.querySelectorAll('.result-item')[5].innerHTML = 
+                    `<span>વિજ્ઞાન</span><strong>A (${student.વિજ્ઞાન}/100)</strong>`;
+                document.querySelectorAll('.result-item')[6].innerHTML = 
+                    `<span>સામાજિક વિજ્ઞાન</span><strong>B+ (${student.સામાજિક_વિજ્ઞાન}/100)</strong>`;
+                document.querySelectorAll('.result-item')[7].innerHTML = 
+                    `<span>ગુજરાતી</span><strong>A (${student.ગુજરાતી}/100)</strong>`;
+                
+                document.getElementById("totalPercentage").textContent = student.કુલ_ટકા + "%";
+                document.getElementById("overallGrade").textContent = student.ગ્રેડ;
+            } else {
+                // ભૂલ
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("resultDisplay").style.display = "none";
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("errorMessage").innerHTML = 
+                "સર્વર ભૂલ. કૃપા કરી પછી પ્રયત્ન કરો.";
+            document.getElementById("errorMessage").style.display = "block";
+        }
+    };
         
         document.getElementById("resultForm").onsubmit = function(event) {
             event.preventDefault();
