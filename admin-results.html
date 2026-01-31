@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <title>પરિણામ એડમિન પેનલ</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; text-align: center; margin-bottom: 30px; }
+        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+        .tab { padding: 10px 20px; background: #ddd; border: none; border-radius: 5px; cursor: pointer; }
+        .tab.active { background: #3498db; color: white; }
+        .form-section { display: none; }
+        .form-section.active { display: block; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
+        .row { display: flex; gap: 15px; }
+        .row > div { flex: 1; }
+        .subject-row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px; }
+        .btn { background: #2ecc71; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        .btn-print { background: #3498db; }
+        .btn-delete { background: #e74c3c; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
+        th { background: #34495e; color: white; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📊 પરિણામ એડમિન પેનલ</h2>
+        
+        <!-- Tabs -->
+        <div class="tabs">
+            <button class="tab active" onclick="showTab('single')">એક વિદ્યાર્થી</button>
+            <button class="tab" onclick="showTab('bulk')">બલ્ક અપલોડ</button>
+            <button class="tab" onclick="showTab('view')">જોવા/એડિટ</button>
+        </div>
+        
+        <!-- Single Student Form -->
+        <div id="single" class="form-section active">
+            <h3>એક વિદ્યાર્થીનું પરિણામ એન્ટર કરો</h3>
+            <form id="singleForm">
+                <div class="row">
+                    <div class="form-group">
+                        <label>GR નંબર *</label>
+                        <input type="text" id="grNumber" required placeholder="GR2024001">
+                    </div>
+                    <div class="form-group">
+                        <label>વિદ્યાર્થીનું નામ *</label>
+                        <input type="text" id="studentName" required placeholder="રાજ પટેલ">
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="form-group">
+                        <label>વર્ગ *</label>
+                        <select id="studentClass" required>
+                            <option value="">પસંદ કરો</option>
+                            <option value="9">ક્લાસ 9</option>
+                            <option value="10">ક્લાસ 10</option>
+                            <option value="11">ક્લાસ 11</option>
+                            <option value="12">ક્લાસ 12</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>રોલ નંબર *</label>
+                        <input type="number" id="rollNo" required>
+                    </div>
+                    <div class="form-group">
+                        <label>જન્મતારીખ *</label>
+                        <input type="date" id="dob" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>પરીક્ષા પસંદ કરો *</label>
+                    <select id="examType" required>
+                        <option value="unit1">યુનિટ ટેસ્ટ 1</option>
+                        <option value="unit2">યુનિટ ટેસ્ટ 2 (વાર્ષિક)</option>
+                    </select>
+                </div>
+                
+                <!-- Subjects -->
+                <h4>વિષયવાર માર્ક્સ</h4>
+                <div id="subjectsContainer">
+                    <!-- Subjects will be added dynamically -->
+                </div>
+                
+                <button type="button" class="btn" onclick="addSubject()">+ વિષય ઉમેરો</button>
+                
+                <div style="margin-top: 30px;">
+                    <button type="submit" class="btn">💾 સેવ કરો</button>
+                    <button type="button" class="btn btn-print" onclick="printForm()">🖨️ પ્રિન્ટ</button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Bulk Upload -->
+        <div id="bulk" class="form-section">
+            <h3>CSV ફાઇલથી બલ્ક અપલોડ</h3>
+            <div class="form-group">
+                <label>CSV ફાઇલ સિલેક્ટ કરો</label>
+                <input type="file" id="csvFile" accept=".csv">
+                <p style="font-size: 12px; color: #666;">CSV ફોર્મેટ: GR_Number,Name,Class,Roll,DOB,Gujarati,English,Maths,...</p>
+            </div>
+            
+            <div class="form-group">
+                <label>અથવા Excel ડેટા કૉપી-પેસ્ટ કરો</label>
+                <textarea id="excelData" rows="10" placeholder="અહીં Excel ડેટા પેસ્ટ કરો..."></textarea>
+            </div>
+            
+            <button class="btn" onclick="uploadBulk()">📤 અપલોડ કરો</button>
+            
+            <div id="previewTable" style="margin-top: 20px;"></div>
+        </div>
+        
+        <!-- View/Edit Results -->
+        <div id="view" class="form-section">
+            <h3>સેવ થયેલ પરિણામો</h3>
+            
+            <div class="row">
+                <div class="form-group">
+                    <label>વર્ગ ફિલ્ટર કરો</label>
+                    <select id="filterClass" onchange="filterResults()">
+                        <option value="all">બધા વર્ગ</option>
+                        <option value="9">ક્લાસ 9</option>
+                        <option value="10">ક્લાસ 10</option>
+                        <option value="11">ક્લાસ 11</option>
+                        <option value="12">ક્લાસ 12</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>પરીક્ષા ફિલ્ટર કરો</label>
+                    <select id="filterExam" onchange="filterResults()">
+                        <option value="all">બધી પરીક્ષા</option>
+                        <option value="unit1">યુનિટ 1</option>
+                        <option value="unit2">યુનિટ 2</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div id="resultsTable"></div>
+        </div>
+    </div>
+
+    <script>
+        // Initialize subjects
+        let subjects = [
+            { name: 'ગુજરાતી', maxMarks: 100 },
+            { name: 'અંગ્રેજી', maxMarks: 100 },
+            { name: 'ગણિત', maxMarks: 100 },
+            { name: 'વિજ્ઞાન', maxMarks: 100 },
+            { name: 'સામાજિક વિજ્ઞાન', maxMarks: 100 }
+        ];
+        
+        // Render subjects
+        function renderSubjects() {
+            const container = document.getElementById('subjectsContainer');
+            container.innerHTML = '';
+            
+            subjects.forEach((subject, index) => {
+                const div = document.createElement('div');
+                div.className = 'subject-row';
+                div.innerHTML = `
+                    <input type="text" value="${subject.name}" style="flex: 2;" onchange="updateSubject(${index}, 'name', this.value)">
+                    <input type="number" value="${subject.maxMarks}" style="flex: 1;" placeholder="મહત્તમ" onchange="updateSubject(${index}, 'maxMarks', this.value)">
+                    <input type="number" style="flex: 1;" placeholder="પ્રાપ્ત" id="marks_${index}">
+                    <button type="button" onclick="removeSubject(${index})" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 3px;">×</button>
+                `;
+                container.appendChild(div);
+            });
+        }
+        
+        // Add new subject
+        function addSubject() {
+            subjects.push({ name: 'નવો વિષય', maxMarks: 100 });
+            renderSubjects();
+        }
+        
+        // Update subject
+        function updateSubject(index, field, value) {
+            subjects[index][field] = value;
+        }
+        
+        // Remove subject
+        function removeSubject(index) {
+            if (subjects.length > 1) {
+                subjects.splice(index, 1);
+                renderSubjects();
+            }
+        }
+        
+        // Tab switching
+        function showTab(tabName) {
+            // Update tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Update sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(tabName).classList.add('active');
+        }
+        
+        // Save single student result
+        document.getElementById('singleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Collect data
+            const result = {
+                grNumber: document.getElementById('grNumber').value,
+                name: document.getElementById('studentName').value,
+                class: document.getElementById('studentClass').value,
+                rollNo: document.getElementById('rollNo').value,
+                dob: document.getElementById('dob').value,
+                examType: document.getElementById('examType').value,
+                subjects: [],
+                total: 0,
+                maxTotal: 0
+            };
+            
+            // Collect marks
+            subjects.forEach((subject, index) => {
+                const marks = parseFloat(document.getElementById(`marks_${index}`).value) || 0;
+                result.subjects.push({
+                    name: subject.name,
+                    maxMarks: subject.maxMarks,
+                    obtained: marks
+                });
+                result.total += marks;
+                result.maxTotal += subject.maxMarks;
+            });
+            
+            // Calculate percentage and grade
+            result.percentage = ((result.total / result.maxTotal) * 100).toFixed(2);
+            result.grade = calculateGrade(result.percentage);
+            
+            // Save to localStorage (or send to server)
+            saveResult(result);
+            
+            alert('પરિણામ સેવ થયું!');
+            this.reset();
+            renderSubjects();
+        });
+        
+        // Calculate grade
+        function calculateGrade(percentage) {
+            if (percentage >= 90) return 'A+';
+            if (percentage >= 80) return 'A';
+            if (percentage >= 70) return 'B+';
+            if (percentage >= 60) return 'B';
+            if (percentage >= 50) return 'C';
+            if (percentage >= 40) return 'D';
+            return 'F';
+        }
+        
+        // Save result to localStorage
+        function saveResult(result) {
+            let allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
+            
+            // Remove existing entry for same GR + Exam
+            allResults = allResults.filter(r => 
+                !(r.grNumber === result.grNumber && r.examType === result.examType)
+            );
+            
+            allResults.push(result);
+            localStorage.setItem('schoolResults', JSON.stringify(allResults));
+            
+            // Update view table
+            if (document.getElementById('view').classList.contains('active')) {
+                filterResults();
+            }
+        }
+        
+        // Bulk upload from CSV
+        function uploadBulk() {
+            const fileInput = document.getElementById('csvFile');
+            const textArea = document.getElementById('excelData');
+            
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    processCSVData(e.target.result);
+                };
+                
+                reader.readAsText(file);
+            } else if (textArea.value.trim()) {
+                processCSVData(textArea.value);
+            } else {
+                alert('કૃપા કરીને CSV ફાઇલ અપલોડ કરો અથવા ડેટા પેસ્ટ કરો');
+            }
+        }
+        
+        // Process CSV data
+        function processCSVData(csvText) {
+            const lines = csvText.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            
+            let tableHTML = '<table border="1"><tr>';
+            headers.forEach(header => {
+                tableHTML += `<th>${header}</th>`;
+            });
+            tableHTML += '</tr>';
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (lines[i].trim()) {
+                    const data = lines[i].split(',');
+                    tableHTML += '<tr>';
+                    data.forEach(cell => {
+                        tableHTML += `<td>${cell}</td>`;
+                    });
+                    tableHTML += '</tr>';
+                }
+            }
+            
+            tableHTML += '</table>';
+            document.getElementById('previewTable').innerHTML = tableHTML;
+            
+            alert(`${lines.length - 1} રેકોર્ડ્સ લોડ થયા. પ્રિવ્યુ જુઓ.`);
+        }
+        
+        // Filter and display results
+        function filterResults() {
+            const allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
+            const filterClass = document.getElementById('filterClass').value;
+            const filterExam = document.getElementById('filterExam').value;
+            
+            let filteredResults = allResults;
+            
+            if (filterClass !== 'all') {
+                filteredResults = filteredResults.filter(r => r.class === filterClass);
+            }
+            
+            if (filterExam !== 'all') {
+                filteredResults = filteredResults.filter(r => r.examType === filterExam);
+            }
+            
+            displayResultsTable(filteredResults);
+        }
+        
+        // Display results in table
+        function displayResultsTable(results) {
+            if (results.length === 0) {
+                document.getElementById('resultsTable').innerHTML = '<p>કોઈ પરિણામ નથી મળ્યું.</p>';
+                return;
+            }
+            
+            let tableHTML = `
+                <table>
+                    <tr>
+                        <th>GR નંબર</th>
+                        <th>નામ</th>
+                        <th>વર્ગ</th>
+                        <th>પરીક્ષા</th>
+                        <th>કુલ</th>
+                        <th>ટકા</th>
+                        <th>ગ્રેડ</th>
+                        <th>ક્રિયા</th>
+                    </tr>
+            `;
+            
+            results.forEach(result => {
+                tableHTML += `
+                    <tr>
+                        <td>${result.grNumber}</td>
+                        <td>${result.name}</td>
+                        <td>${result.class}</td>
+                        <td>${result.examType === 'unit1' ? 'યુનિટ 1' : 'યુનિટ 2'}</td>
+                        <td>${result.total}/${result.maxTotal}</td>
+                        <td>${result.percentage}%</td>
+                        <td>${result.grade}</td>
+                        <td>
+                            <button onclick="editResult('${result.grNumber}', '${result.examType}')" style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin-right: 5px;">✏️</button>
+                            <button onclick="deleteResult('${result.grNumber}', '${result.examType}')" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 3px;">🗑️</button>
+                        </td>
+                    </tr>
+                `;
+            });
+            
+            tableHTML += '</table>';
+            document.getElementById('resultsTable').innerHTML = tableHTML;
+        }
+        
+        // Edit result
+        function editResult(grNumber, examType) {
+            const allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
+            const result = allResults.find(r => r.grNumber === grNumber && r.examType === examType);
+            
+            if (result) {
+                // Populate form
+                document.getElementById('grNumber').value = result.grNumber;
+                document.getElementById('studentName').value = result.name;
+                document.getElementById('studentClass').value = result.class;
+                document.getElementById('rollNo').value = result.rollNo;
+                document.getElementById('dob').value = result.dob;
+                document.getElementById('examType').value = result.examType;
+                
+                // Update subjects
+                subjects = result.subjects.map(s => ({
+                    name: s.name,
+                    maxMarks: s.maxMarks
+                }));
+                
+                renderSubjects();
+                
+                // Set marks
+                result.subjects.forEach((subject, index) => {
+                    document.getElementById(`marks_${index}`).value = subject.obtained;
+                });
+                
+                // Switch to single tab
+                showTab('single');
+                
+                alert('એડિટ મોડમાં છો. ફેરફાર કરી સેવ બટન દબાવો.');
+            }
+        }
+        
+        // Delete result
+        function deleteResult(grNumber, examType) {
+            if (confirm('ખરેખર ડિલીટ કરવું છે?')) {
+                let allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
+                allResults = allResults.filter(r => 
+                    !(r.grNumber === grNumber && r.examType === examType)
+                );
+                localStorage.setItem('schoolResults', JSON.stringify(allResults));
+                filterResults();
+                alert('પરિણામ ડિલીટ થયું.');
+            }
+        }
+        
+        // Print form
+        function printForm() {
+            window.print();
+        }
+        
+        // Initialize
+        renderSubjects();
+        filterResults();
+        
+        // Set today's date
+        document.getElementById('dob').valueAsDate = new Date();
+    </script>
+</body>
+</html>
