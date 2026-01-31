@@ -1,40 +1,137 @@
 <!DOCTYPE html>
-<html>
+<html lang="gu">
 <head>
-  <title>About School</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: Arial; background:#f5f5f5; margin:0; }
-    header { background:#003366; color:white; padding:15px; text-align:center; }
-    .box { background:white; margin:15px; padding:15px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>અમારી વિશે - તમારી શાળાનું નામ</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="logo">
+            <img src="logo.png" alt="School Logo" height="50">
+            <div class="logo-text">
+                <h2>તમારી શાળા</h2>
+                <p>ગુણવત્તાપૂર્ણ શિક્ષણ</p>
+            </div>
+        </div>
+        
+        <ul class="nav-links">
+            <li><a href="index.html">હોમ</a></li>
+            <li><a href="about.html" class="active">અમારી વિશે</a></li>
+            <li><a href="staff.html">સ્ટાફ</a></li>
+            <li><a href="result.html">પરિણામ</a></li>
+            <li><a href="#" class="contact-btn">સંપર્ક</a></li>
+        </ul>
+        
+        <div class="menu-toggle">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
 
-<header>
-  <h2>સર્વ સેવા ટ્રસ્ટ સંચાલિત</h2>
-  <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી</h3>
-</header>
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1>અમારી વિશે</h1>
+            <p>શાળાનો ઇતિહાસ, સુવિધાઓ અને ઉદ્દેશ્ય</p>
+        </div>
+    </section>
 
-<div class="box">
-  <h3>શાળા વિશે</h3>
+    <!-- About Content -->
+    <section class="about-content">
+        <div class="container">
+            <div class="about-section">
+                <h2>શાળાનો ઇતિહાસ</h2>
+                <p>તમારી શાળાની સ્થાપના 1990માં થઈ હતી. શરૂઆતમાં માત્ર 50 વિદ્યાર્થીઓ અને 5 શિક્ષકો સાથે શરૂ થયેલી આ શાળા આજે 1000+ વિદ્યાર્થીઓ અને 50+ શિક્ષકો સાથે ક્ષેત્રની શ્રેષ્ઠ શાળા બની છે.</p>
+                
+                <p>આપણી શાળા શિક્ષણના ક્ષેત્રે સતત નવીનતા અને ગુણવત્તા માટે પ્રયત્નશીલ છે. વિદ્યાર્થીઓનો સર્વાંગી વિકાસ અમારું મુખ્ય ધ્યેય છે.</p>
+            </div>
+            
+            <div class="about-section">
+                <h2>અમારું ધ્યેય</h2>
+                <ul class="vision-list">
+                    <li><i class="fas fa-check"></i> ગુણવત્તાપૂર્ણ શિક્ષણ પ્રદાન કરવું</li>
+                    <li><i class="fas fa-check"></i> વિદ્યાર્થીઓનો સર્વાંગી વિકાસ</li>
+                    <li><i class="fas fa-check"></i> નૈતિક મૂલ્યોનું શિક્ષણ</li>
+                    <li><i class="fas fa-check"></i> તકનીકી શિક્ષણનું સંવર્ધન</li>
+                    <li><i class="fas fa-check"></i> રમત-ગમત અને સાંસ્કૃતિક પ્રવૃત્તિઓ</li>
+                </ul>
+            </div>
+            
+            <div class="about-section">
+                <h2>સુવિધાઓ</h2>
+                <div class="facilities">
+                    <div class="facility">
+                        <i class="fas fa-book"></i>
+                        <h3>આધુનિક ગ્રંથાલય</h3>
+                        <p>10,000+ પુસ્તકો, ડિજિટલ લાઈબ્રેરી</p>
+                    </div>
+                    
+                    <div class="facility">
+                        <i class="fas fa-desktop"></i>
+                        <h3>કોમ્પ્યુટર લેબ</h3>
+                        <p>50+ કોમ્પ્યુટર, ઈન્ટરનેટ સુવિધા</p>
+                    </div>
+                    
+                    <div class="facility">
+                        <i class="fas fa-flask"></i>
+                        <h3>વિજ્ઞાન લેબ</h3>
+                        <p>ફિઝિક્સ, કેમિસ્ટ્રી, બાયોલોજી લેબ</p>
+                    </div>
+                    
+                    <div class="facility">
+                        <i class="fas fa-football-ball"></i>
+                        <h3>રમત મેદાન</h3>
+                        <p>ક્રિકેટ, ફૂટબોલ, વૉલિબોલ મેદાન</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <p>
-  સર્વ સેવા ટ્રસ્ટ સંચાલિત ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી
-  વિદ્યાર્થીઓના સર્વાંગી વિકાસ, શિસ્ત, અને ગુણવત્તાસભર શિક્ષણ માટે
-  સતત પ્રયત્નશીલ છે.
-  </p>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>તમારી શાળા</h3>
+                    <p>ગુણવત્તાપૂર્ણ શિક્ષણ અને સંપૂર્ણ વ્યક્તિત્વ વિકાસ માટે પ્રતિબદ્ધ.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>ઝડપી લિંક્સ</h3>
+                    <ul>
+                        <li><a href="index.html">હોમ</a></li>
+                        <li><a href="about.html">અમારી વિશે</a></li>
+                        <li><a href="staff.html">સ્ટાફ</a></li>
+                        <li><a href="result.html">પરિણામ</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>સંપર્ક કરો</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> શાળાનું સરનામું</p>
+                    <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> info@yourschool.com</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 તમારી શાળાનું નામ. બધા હક્ક સ્વરક્ષિત.</p>
+            </div>
+        </div>
+    </footer>
 
-  <p>
-  <b>સ્થાપના વર્ષ:</b> ______ <br>
-  <b>ધોરણ:</b> 1 થી 12 <br>
-  <b>માધ્યમ:</b> ગુજરાતી <br>
-  <b>વિદ્યાર્થી સંખ્યા:</b> ______
-  </p>
-
-  <a href="index.html">← Home પર જાઓ</a>
-</div>
-
+    <!-- JavaScript -->
+    <script src="script.js"></script>
 </body>
 </html>
