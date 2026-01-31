@@ -1,30 +1,41 @@
 <!DOCTYPE html>
-<html>
+<html lang="gu">
 <head>
+  <meta charset="UTF-8">
   <title>School Website</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
     body {
-
-      <nav class="menu">
-  <a href="index.html">Home</a>
-  <a href="about.html">શાળા માહિતી</a>
-  <a href="staff.html">Staff</a>
-  <a href="result.html">Result</a>
-  <a href="gallery.html">Photo Gallery</a>
-  <a href="utsav.html">ઉત્સવ ઉજવણી</a>
-  <a href="programs.html">કાર્યક્રમો</a>
-  <a href="guests.html">અતિથિ વિશેષ</a>
-</nav>
-
       margin: 0;
       font-family: "Segoe UI", Arial;
       background: #f4f6fa;
       text-align: center;
     }
 
-    /* ROYAL HEADER */
+    /* ===== MENU BAR ===== */
+    .menu {
+      background: #0b2d5c;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      border-bottom: 4px solid gold;
+    }
+
+    .menu a {
+      color: gold;
+      padding: 12px 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .menu a:hover {
+      background: gold;
+      color: #0b2d5c;
+    }
+
+    /* ===== HEADER ===== */
     .school-header {
       background: linear-gradient(180deg, #0b2d5c, #123c7a);
       color: #fff;
@@ -38,19 +49,19 @@
       padding: 6px;
       border-radius: 50%;
       box-shadow: 0 0 15px rgba(255,215,0,0.8);
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .school-header h1 {
       font-size: 22px;
-      margin: 6px 0;
+      margin: 5px 0;
       color: gold;
       letter-spacing: 1px;
     }
 
     .school-header h2 {
       font-size: 18px;
-      margin: 4px 0;
+      margin: 3px 0;
     }
 
     .school-header h3 {
@@ -60,13 +71,14 @@
       opacity: 0.9;
     }
 
-    /* CONTENT */
+    /* ===== CONTENT ===== */
     .box {
       background: white;
-      margin: 25px;
+      margin: 25px auto;
       padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.15);
     }
 
     .box p {
@@ -74,10 +86,11 @@
       margin-bottom: 20px;
     }
 
-    a {
+    .btn {
       display: block;
-      margin: 12px 0;
+      margin: 12px auto;
       padding: 12px;
+      max-width: 300px;
       background: linear-gradient(90deg, #123c7a, #0b2d5c);
       color: gold;
       text-decoration: none;
@@ -87,16 +100,38 @@
       transition: 0.3s;
     }
 
-    a:hover {
+    .btn:hover {
       background: gold;
       color: #0b2d5c;
       font-weight: bold;
+    }
+
+    /* ===== FOOTER ===== */
+    footer {
+      background: #0b2d5c;
+      color: #ddd;
+      padding: 12px;
+      font-size: 14px;
+      margin-top: 30px;
     }
   </style>
 </head>
 
 <body>
 
+<!-- ===== MENU ===== -->
+<nav class="menu">
+  <a href="index.html">Home</a>
+  <a href="about.html">શાળા માહિતી</a>
+  <a href="staff.html">Staff</a>
+  <a href="result.html">Result</a>
+  <a href="gallery.html">Photo Gallery</a>
+  <a href="utsav.html">ઉત્સવ ઉજવણી</a>
+  <a href="programs.html">કાર્યક્રમો</a>
+  <a href="guests.html">અતિથિ વિશેષ</a>
+</nav>
+
+<!-- ===== HEADER ===== -->
 <div class="school-header">
   <img src="saraswati.png" alt="Saraswati Maa">
   <h1>સર્વ સેવા ટ્રસ્ટ સંચાલિત</h1>
@@ -104,13 +139,20 @@
   <h3>નારોલી</h3>
 </div>
 
+<!-- ===== CONTENT ===== -->
 <div class="box">
-  <p>શિક્ષણ એ સંસ્કારની ઓળખ છે</p>
+  <p>📚 શિક્ષણ એ સંસ્કારની ઓળખ છે</p>
 
-  <a href="about.html">🏫 About School</a>
-  <a href="staff.html">👩‍🏫 Staff</a>
-  <a href="result.html">📊 Result જુઓ</a>
+  <a href="about.html" class="btn">🏫 About School</a>
+  <a href="staff.html" class="btn">👩‍🏫 Staff</a>
+  <a href="result.html" class="btn">📊 Result જુઓ</a>
+  <a href="gallery.html" class="btn">📸 Photo Gallery</a>
 </div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  © 2026 | ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી
+</footer>
 
 </body>
 </html>
