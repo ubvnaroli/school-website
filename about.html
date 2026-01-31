@@ -3,303 +3,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>અમારી વિશે  ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી  </title>
-    /* ======= નારોલી શાળા વેબસાઇટ CSS ======= */
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-    --primary-color: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary-color: #7c3aed;
-    --accent-color: #10b981;
-    --dark-color: #1e293b;
-    --light-color: #f8fafc;
-    --text-color: #334155;
-    --white: #ffffff;
-    --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-    --shadow: 0 4px 20px rgba(0,0,0,0.1);
-    --radius: 12px;
-}
-
-body {
-    font-family: 'Segoe UI', 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background: var(--light-color);
-}
-
-/* નેવિગેશન બાર */
-.navbar {
-    background: var(--white);
-    box-shadow: var(--shadow);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-img {
-    height: 50px;
-    width: auto;
-}
-
-.logo-text h1 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    line-height: 1.2;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--dark-color);
-    font-weight: 500;
-    transition: color 0.3s;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-}
-
-.nav-links a:hover {
-    color: var(--primary-color);
-    background: rgba(37, 99, 235, 0.1);
-}
-
-/* હેરો સેક્શન */
-.hero {
-    background: var(--gradient);
-    color: var(--white);
-    padding: 5rem 2rem;
-    text-align: center;
-    border-radius: 0 0 40px 40px;
-}
-
-.hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    opacity: 0.9;
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--white);
-    color: var(--primary-color);
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-}
-
-/* ફીચર્સ સેક્શન */
-.features {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.features h2 {
-    text-align: center;
-    color: var(--dark-color);
-    margin-bottom: 3rem;
-    font-size: 2.2rem;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.feature-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-}
-
-.feature-card h3 {
-    color: var(--primary-color);
-    margin: 1rem 0;
-    font-size: 1.5rem;
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-/* ફૂટર */
-.footer {
-    background: var(--dark-color);
-    color: var(--white);
-    padding: 3rem 2rem;
-    text-align: center;
-    margin-top: 4rem;
-}
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>અમારા વિશે - ઉત્તર બુનિયાદી શાળા</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        body { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; }
+        
+        /* નેવિગેશન - સમાન */
+        nav { background: linear-gradient(135deg, #1a2980, #26d0ce); padding: 1.2rem; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 1.5rem; font-size: 1.1rem; }
+        
+        /* મુખ્ય કન્ટેન્ટ */
+        .container { max-width: 1000px; margin: 3rem auto; padding: 0 2rem; }
+        
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { color: #1a2980; font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { color: #555; font-size: 1.1rem; }
+        
+        /* શાળાની માહિતી */
+        .school-info { 
+            background: white; 
+            border-radius: 20px; 
+            padding: 3rem; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08); 
+            margin-bottom: 3rem; 
+        }
+        
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 2rem; 
+        }
+        
+        .info-item { 
+            background: #f8fafc; 
+            padding: 1.5rem; 
+            border-radius: 15px; 
+            border-left: 5px solid #26d0ce; 
+        }
+        
+        .info-item h3 { 
+            color: #1a2980; 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .info-item h3::before { 
+            margin-right: 10px; 
+            font-size: 1.5rem; 
+        }
+        
+        .history-item h3::before { content: "📜"; }
+        .mission-item h3::before { content: "🎯"; }
+        .vision-item h3::before { content: "👁️"; }
+        .facility-item h3::before { content: "🏫"; }
+        
+        /* ટીમ સભ્યો */
+        .team-section { margin-top: 4rem; }
+        
+        .team-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 2rem; 
+        }
+        
+        .team-card { 
+            background: white; 
+            border-radius: 15px; 
+            padding: 2rem; 
+            text-align: center; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            transition: transform 0.3s; 
+        }
+        
+        .team-card:hover { transform: translateY(-10px); }
+        
+        .team-icon { 
+            font-size: 3rem; 
+            margin-bottom: 1rem; 
+            color: #1a2980; 
+        }
+        
+        .stats-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            gap: 1.5rem; 
+            margin-top: 3rem; 
+        }
+        
+        .stat-card { 
+            background: linear-gradient(135deg, #1a2980, #26d0ce); 
+            color: white; 
+            padding: 2rem; 
+            border-radius: 15px; 
+            text-align: center; 
+        }
+        
+        .stat-number { 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            margin-bottom: 0.5rem; 
+        }
+        
+        /* ફૂટર - સમાન */
+        footer { background: #1a2980; color: white; text-align: center; padding: 3rem 2rem; margin-top: 5rem; }
+        .footer-links a { color: #26d0ce; text-decoration: none; margin: 0 1rem; }
+        .copyright { margin-top: 2rem; color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="logo.png" alt="School Logo" height="50">
-            <div class="logo-text">
-                <h2>તમારી શાળા</h2>
-                <p>ગુણવત્તાપૂર્ણ શિક્ષણ</p>
-            </div>
-        </div>
-        
-        <ul class="nav-links">
-            <li><a href="index.html">હોમ</a></li>
-            <li><a href="about.html" class="active">અમારી વિશે</a></li>
-            <li><a href="staff.html">સ્ટાફ</a></li>
-            <li><a href="result.html">પરિણામ</a></li>
-            <li><a href="#" class="contact-btn">સંપર્ક</a></li>
-        </ul>
-        
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
+    <!-- નેવિગેશન -->
+    <nav>
+        <a href="index.html">🏠 ઘર</a>
+        <a href="results.html">📊 પરિણામ</a>
+        <a href="notices.html">📢 સૂચનાઓ</a>
+        <a href="about.html">ℹ️ અમારા વિશે</a>
+        <a href="contact.html">📞 સંપર્ક</a>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>અમારી વિશે</h1>
-            <p>શાળાનો ઇતિહાસ, સુવિધાઓ અને ઉદ્દેશ્ય</p>
+    <!-- મુખ્ય કન્ટેન્ટ -->
+    <div class="container">
+        <div class="page-header">
+            <h1>અમારા વિશે</h1>
+            <p>શિક્ષા, સંસ્કાર અને સમાજ નિર્માણમાં અમારી સેવાનો સફર</p>
         </div>
-    </section>
-
-    <!-- About Content -->
-    <section class="about-content">
-        <div class="container">
-            <div class="about-section">
-                <h2>શાળાનો ઇતિહાસ</h2>
-                <p>તમારી શાળાની સ્થાપના 1990માં થઈ હતી. શરૂઆતમાં માત્ર 50 વિદ્યાર્થીઓ અને 5 શિક્ષકો સાથે શરૂ થયેલી આ શાળા આજે 1000+ વિદ્યાર્થીઓ અને 50+ શિક્ષકો સાથે ક્ષેત્રની શ્રેષ્ઠ શાળા બની છે.</p>
+        
+        <!-- શાળાની માહિતી -->
+        <div class="school-info">
+            <h2 style="color: #1a2980; text-align: center; margin-bottom: 2rem;">
+                ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી
+            </h2>
+            
+            <div class="info-grid">
+                <div class="info-item history-item">
+                    <h3>ઇતિહાસ</h3>
+                    <p>અમારી શાળાની સ્થાપના 1878માં થઈ હતી. 150 વર્ષથી વધુ સમયથી અમે શિક્ષણના ક્ષેત્રમાં સેવા આપી રહ્યા છીએ.</p>
+                </div>
                 
-                <p>આપણી શાળા શિક્ષણના ક્ષેત્રે સતત નવીનતા અને ગુણવત્તા માટે પ્રયત્નશીલ છે. વિદ્યાર્થીઓનો સર્વાંગી વિકાસ અમારું મુખ્ય ધ્યેય છે.</p>
+                <div class="info-item mission-item">
+                    <h3>મિશન</h3>
+                    <p>પ્રત્યેક વિદ્યાર્થીમાં છુપાયેલી પ્રતિભા ખીલવવી અને તેમને જીવનની તમામ પડકારોનો સામનો કરવા તૈયાર કરવા.</p>
+                </div>
+                
+                <div class="info-item vision-item">
+                    <h3>વિઝન</h3>
+                    <p>એક એવું શૈક્ષણિક વાતાવરણ સર્જવું જ્યાં દરેક બાળક સુરક્ષિત, સન્માનિત અને પ્રોત્સાહિત અનુભવે.</p>
+                </div>
+                
+                <div class="info-item facility-item">
+                    <h3>સુવિધાઓ</h3>
+                    <p>આધુનિક લેબોરેટરી, પુસ્તકાલય, કોમ્પ્યુટર લેબ, રમત-ગમતની સુવિધાઓ અને શૈક્ષણિક સાધનો.</p>
+                </div>
             </div>
             
-            <div class="about-section">
-                <h2>અમારું ધ્યેય</h2>
-                <ul class="vision-list">
-                    <li><i class="fas fa-check"></i> ગુણવત્તાપૂર્ણ શિક્ષણ પ્રદાન કરવું</li>
-                    <li><i class="fas fa-check"></i> વિદ્યાર્થીઓનો સર્વાંગી વિકાસ</li>
-                    <li><i class="fas fa-check"></i> નૈતિક મૂલ્યોનું શિક્ષણ</li>
-                    <li><i class="fas fa-check"></i> તકનીકી શિક્ષણનું સંવર્ધન</li>
-                    <li><i class="fas fa-check"></i> રમત-ગમત અને સાંસ્કૃતિક પ્રવૃત્તિઓ</li>
-                </ul>
-            </div>
-            
-            <div class="about-section">
-                <h2>સુવિધાઓ</h2>
-                <div class="facilities">
-                    <div class="facility">
-                        <i class="fas fa-book"></i>
-                        <h3>આધુનિક ગ્રંથાલય</h3>
-                        <p>10,000+ પુસ્તકો, ડિજિટલ લાઈબ્રેરી</p>
-                    </div>
-                    
-                    <div class="facility">
-                        <i class="fas fa-desktop"></i>
-                        <h3>કોમ્પ્યુટર લેબ</h3>
-                        <p>50+ કોમ્પ્યુટર, ઈન્ટરનેટ સુવિધા</p>
-                    </div>
-                    
-                    <div class="facility">
-                        <i class="fas fa-flask"></i>
-                        <h3>વિજ્ઞાન લેબ</h3>
-                        <p>ફિઝિક્સ, કેમિસ્ટ્રી, બાયોલોજી લેબ</p>
-                    </div>
-                    
-                    <div class="facility">
-                        <i class="fas fa-football-ball"></i>
-                        <h3>રમત મેદાન</h3>
-                        <p>ક્રિકેટ, ફૂટબોલ, વૉલિબોલ મેદાન</p>
-                    </div>
+            <!-- આંકડાઓ -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-number">150+</div>
+                    <div>વર્ષોનો ઇતિહાસ</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">2000+</div>
+                    <div>વિદ્યાર્થીઓ</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">50+</div>
+                    <div>શિક્ષકો</div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-number">10+</div>
+                    <div>એકર કેમ્પસ</div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3>તમારી શાળા</h3>
-                    <p>ગુણવત્તાપૂર્ણ શિક્ષણ અને સંપૂર્ણ વ્યક્તિત્વ વિકાસ માટે પ્રતિબદ્ધ.</p>
+        
+        <!-- ટીમ સભ્યો -->
+        <div class="team-section">
+            <h2 style="color: #1a2980; text-align: center; margin-bottom: 2rem;">અમારી ટીમ</h2>
+            
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="team-icon">👨‍🏫</div>
+                    <h3>અનુભવી શિક્ષકો</h3>
+                    <p>લાયકાતવાળા અને સમર્પિત શિક્ષકો વિદ્યાર્થીઓના સર્વાંગી વિકાસ માટે કાર્યરત છે.</p>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>ઝડપી લિંક્સ</h3>
-                    <ul>
-                        <li><a href="index.html">હોમ</a></li>
-                        <li><a href="about.html">અમારી વિશે</a></li>
-                        <li><a href="staff.html">સ્ટાફ</a></li>
-                        <li><a href="result.html">પરિણામ</a></li>
-                    </ul>
+                <div class="team-card">
+                    <div class="team-icon">👨‍💼</div>
+                    <h3>પ્રશાસનિક સ્ટાફ</h3>
+                    <p>કાર્યક્ષમ પ્રશાસનિક સ્ટાફ શાળાની નિયમિત કાર્યપધ્ધતિ સુનિશ્ચિત કરે છે.</p>
                 </div>
                 
-                <div class="footer-section">
-                    <h3>સંપર્ક કરો</h3>
-                    <p><i class="fas fa-map-marker-alt"></i>  ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી મુ.પો.નારોલી તા.થરાદ જિ.વાવ થરાદ </p>
-                    <p><i class="fas fa-phone"></i> +91 ૬૩૫૩૬૪૪૧૬૪</p>
-                    <p><i class="fas fa-envelope"></i> ubvnaroli@yahoo.com</p>
+                <div class="team-card">
+                    <div class="team-icon">👨‍🔬</div>
+                    <h3>લેબ સહાયકો</h3>
+                    <p>વિજ્ઞાન અને કોમ્પ્યુટર લેબોરેટરીમાં નિષ્ણાત સહાયકો માર્ગદર્શન આપે છે.</p>
+                </div>
+                
+                <div class="team-card">
+                    <div class="team-icon">👨‍⚕️</div>
+                    <h3>સમર્થન સ્ટાફ</h3>
+                    <p>સ્વચ્છતા, સુરક્ષા અને સાહુલ્યતા માટે સમર્પિત સહાયક સ્ટાફ.</p>
                 </div>
             </div>
+        </div>
+        
+        <!-- પ્રવેશ પ્રક્રિયા -->
+        <div style="background: #e8f4ff; border-radius: 15px; padding: 2.5rem; margin-top: 3rem;">
+            <h3 style="color: #1a2980; text-align: center; margin-bottom: 1.5rem;">પ્રવેશ પ્રક્રિયા</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; text-align: center;">
+                <div>
+                    <h4>📝 નોંધણી</h4>
+                    <p>ઓનલાઈન અથવા ઑફલાઈન નોંધણી ફોર્મ ભરો</p>
+                </div>
+                <div>
+                    <h4>📄 દસ્તાવેજો</h4>
+                    <p>જન્મ પ્રમાણપત્ર, છેલ્લી કક્ષાનું પરિણામ</p>
+                </div>
+                <div>
+                    <h4>🎓 પ્રવેશ</h4>
+                    <p>પ્રવેશ પરીક્ષા અને સંમતિ પ્રક્રિયા</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ફૂટર -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી</h3>
+            <p>શિક્ષા અને સંસ્કારની સાથે, ભવિષ્ય નિર્માણની દિશામાં</p>
             
-            <div class="footer-bottom">
-                <p>&copy; ૨૦૨૬.</p>
+            <div class="footer-links">
+                <a href="index.html">ઘર</a> | 
+                <a href="results.html">પરિણામ</a> | 
+                <a href="notices.html">સૂચનાઓ</a> | 
+                <a href="about.html">અમારા વિશે</a> | 
+                <a href="contact.html">સંપર્ક</a>
+            </div>
+            
+            <div class="copyright">
+                © 2024 ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી. બધા હક્ક સુરક્ષિત.
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript -->
-    <script src="script.js"></script>
 </body>
 </html>
