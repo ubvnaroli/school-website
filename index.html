@@ -2,7 +2,7 @@
 <html lang="gu">
 <head>
   <meta charset="UTF-8">
-  <title>School Website</title>
+  <title>ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <style>
@@ -10,117 +10,141 @@
       margin: 0;
       font-family: "Segoe UI", Arial;
       background: #f4f6fa;
-      text-align: center;
+    }
+
+    /* ===== HEADER ===== */
+    .top-header {
+      background: #ffffff;
+      border-bottom: 4px solid #000;
+      padding: 15px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .logo-box img {
+      width: 110px;
+      border: 3px solid #000;
+      padding: 5px;
+      background: #fff;
+    }
+
+    .school-title h1 {
+      font-size: 17px;
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .school-title h2 {
+      font-size: 22px;
+      margin: 6px 0;
+      font-weight: bold;
+    }
+
+    .school-title h3 {
+      font-size: 15px;
+      margin: 0;
+      font-weight: normal;
+    }
+
+    /* ===== INFO STRIP ===== */
+    .info-strip {
+      background: #000;
+      color: #fff;
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 15px;
+      font-size: 14px;
     }
 
     /* ===== MENU BAR ===== */
-    .menu {
-      background: #0b2d5c;
+    .menu-bar {
+      background: #111;
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      border-bottom: 4px solid gold;
     }
 
-    .menu a {
-      color: gold;
+    .menu-bar a {
+      color: #fff;
       padding: 12px 15px;
       text-decoration: none;
       font-weight: bold;
       font-size: 15px;
     }
 
-    .menu a:hover {
-      background: gold;
-      color: #0b2d5c;
-    }
-
-    /* ===== HEADER ===== */
-    .school-header {
-      background: linear-gradient(180deg, #0b2d5c, #123c7a);
-      color: #fff;
-      padding: 25px 15px;
-      border-bottom: 6px solid gold;
-    }
-
-    .school-header img {
-      width: 90px;
-      background: white;
-      padding: 6px;
-      border-radius: 50%;
-      box-shadow: 0 0 15px rgba(255,215,0,0.8);
-      margin-bottom: 10px;
-    }
-
-    .school-header h1 {
-      font-size: 22px;
-      margin: 5px 0;
-      color: gold;
-      letter-spacing: 1px;
-    }
-
-    .school-header h2 {
-      font-size: 18px;
-      margin: 3px 0;
-    }
-
-    .school-header h3 {
-      font-size: 16px;
-      margin: 0;
-      font-weight: normal;
-      opacity: 0.9;
+    .menu-bar a:hover {
+      background: #ffd700;
+      color: #000;
     }
 
     /* ===== CONTENT ===== */
-    .box {
-      background: white;
+    .content {
+      background: #fff;
       margin: 25px auto;
       padding: 25px;
-      max-width: 600px;
-      border-radius: 10px;
+      max-width: 700px;
+      border-radius: 8px;
       box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+      text-align: center;
     }
 
-    .box p {
-      font-size: 16px;
-      margin-bottom: 20px;
-    }
-
-    .btn {
-      display: block;
-      margin: 12px auto;
-      padding: 12px;
-      max-width: 300px;
-      background: linear-gradient(90deg, #123c7a, #0b2d5c);
-      color: gold;
-      text-decoration: none;
-      font-size: 16px;
-      border-radius: 30px;
-      border: 1px solid gold;
-      transition: 0.3s;
-    }
-
-    .btn:hover {
-      background: gold;
-      color: #0b2d5c;
-      font-weight: bold;
+    .content h2 {
+      margin-top: 0;
     }
 
     /* ===== FOOTER ===== */
     footer {
-      background: #0b2d5c;
-      color: #ddd;
+      background: #111;
+      color: #ccc;
+      text-align: center;
       padding: 12px;
       font-size: 14px;
       margin-top: 30px;
+    }
+
+    /* ===== MOBILE ===== */
+    @media (max-width: 700px) {
+      .top-header {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .info-strip {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+      }
     }
   </style>
 </head>
 
 <body>
 
+<!-- ===== HEADER ===== -->
+<div class="top-header">
+  <div class="logo-box">
+    <img src="saraswati.png" alt="School Logo">
+  </div>
+
+  <div class="school-title">
+    <h1>સર્વ સેવા ટ્રસ્ટ, રાધનપુર (જી. પાટણ) સંચાલિત</h1>
+    <h2>ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા</h2>
+    <h3>
+      મુ.પો. નારોલી, તા. થરાદ, જી. બાવળ-થરાદ<br>
+      પિન – 385565
+    </h3>
+  </div>
+</div>
+
+<!-- ===== INFO STRIP ===== -->
+<div class="info-strip">
+  <span>📧 140ubvnaroli@gmail.com</span>
+  <span>📞 કાર્યાલય સંપર્ક : ૯૯૯૩૦૮૮૫૦૦</span>
+</div>
+
 <!-- ===== MENU ===== -->
-<nav class="menu">
+<nav class="menu-bar">
   <a href="index.html">Home</a>
   <a href="about.html">શાળા માહિતી</a>
   <a href="staff.html">Staff</a>
@@ -129,29 +153,19 @@
   <a href="utsav.html">ઉત્સવ ઉજવણી</a>
   <a href="programs.html">કાર્યક્રમો</a>
   <a href="guests.html">અતિથિ વિશેષ</a>
+  <a href="https://www.youtube.com/@YOURCHANNEL" target="_blank">YouTube</a>
 </nav>
 
-<!-- ===== HEADER ===== -->
-<div class="school-header">
-  <img src="saraswati.png" alt="Saraswati Maa">
-  <h1>સર્વ સેવા ટ્રસ્ટ સંચાલિત</h1>
-  <h2>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા</h2>
-  <h3>નારોલી</h3>
-</div>
-
-<!-- ===== CONTENT ===== -->
-<div class="box">
-  <p>📚 શિક્ષણ એ સંસ્કારની ઓળખ છે</p>
-
-  <a href="about.html" class="btn">🏫 About School</a>
-  <a href="staff.html" class="btn">👩‍🏫 Staff</a>
-  <a href="result.html" class="btn">📊 Result જુઓ</a>
-  <a href="gallery.html" class="btn">📸 Photo Gallery</a>
+<!-- ===== MAIN CONTENT ===== -->
+<div class="content">
+  <h2>સ્વાગત છે</h2>
+  <p>આ અમારી શાળાની અધિકૃત વેબસાઈટ છે.</p>
+  <p>અહીંથી પરિણામ, સ્ટાફ માહિતી, ઉત્સવ ઉજવણી, ફોટો ગેલેરી વગેરે જોઈ શકો છો.</p>
 </div>
 
 <!-- ===== FOOTER ===== -->
 <footer>
-  © 2026 | ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી
+  © 2026 | ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી
 </footer>
 
 </body>
