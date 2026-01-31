@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>સૂચનાઓ - ઉત્તર બુનિયાદી શાળા</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        body { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; }
+        
+        /* નેવિગેશન - સમાન */
+        nav { background: linear-gradient(135deg, #1a2980, #26d0ce); padding: 1.2rem; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 1.5rem; font-size: 1.1rem; }
+        
+        /* મુખ્ય કન્ટેન્ટ */
+        .container { max-width: 1000px; margin: 3rem auto; padding: 0 2rem; }
+        
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { color: #1a2980; font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { color: #555; font-size: 1.1rem; }
+        
+        /* નોટિસ કાર્ડ્સ */
+        .notice-list { margin-bottom: 4rem; }
+        
+        .notice-card { 
+            background: white; 
+            border-radius: 15px; 
+            padding: 2.5rem; 
+            margin-bottom: 2rem; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); 
+            border-left: 6px solid #26d0ce; 
+            transition: transform 0.3s ease; 
+        }
+        
+        .notice-card:hover { 
+            transform: translateX(10px); 
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1); 
+        }
+        
+        .notice-card.important { 
+            border-left-color: #ff6b6b; 
+            background: linear-gradient(135deg, #fff5f5, #fff); 
+        }
+        
+        .notice-card.holiday { 
+            border-left-color: #4cd137; 
+            background: linear-gradient(135deg, #f5fff5, #fff); 
+        }
+        
+        .notice-card.festival { 
+            border-left-color: #ff9f43; 
+            background: linear-gradient(135deg, #fff9f5, #fff); 
+        }
+        
+        .notice-date { 
+            color: #666; 
+            font-size: 0.9rem; 
+            margin-bottom: 0.5rem; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .notice-date::before { 
+            content: "📅"; 
+            margin-right: 8px; 
+        }
+        
+        .notice-title { 
+            color: #1a2980; 
+            font-size: 1.5rem; 
+            margin-bottom: 1rem; 
+            display: flex; 
+            align-items: center; 
+        }
+        
+        .notice-title.important::before { content: "⚠️ "; }
+        .notice-title.holiday::before { content: "🎉 "; }
+        .notice-title.festival::before { content: "🏮 "; }
+        
+        .notice-content { 
+            color: #444; 
+            line-height: 1.7; 
+            margin-top: 1rem; 
+        }
+        
+        /* ફૂટર - સમાન */
+        footer { background: #1a2980; color: white; text-align: center; padding: 3rem 2rem; margin-top: 5rem; }
+        .footer-links a { color: #26d0ce; text-decoration: none; margin: 0 1rem; }
+        .copyright { margin-top: 2rem; color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+        
+        /* ફિલ્ટર બટન્સ */
+        .filter-buttons { 
+            text-align: center; 
+            margin-bottom: 2rem; 
+            display: flex; 
+            justify-content: center; 
+            flex-wrap: wrap; 
+            gap: 10px; 
+        }
+        
+        .filter-btn { 
+            background: white; 
+            border: 2px solid #ddd; 
+            padding: 0.7rem 1.5rem; 
+            border-radius: 50px; 
+            cursor: pointer; 
+            transition: all 0.3s; 
+            font-weight: 500; 
+        }
+        
+        .filter-btn.active { 
+            background: linear-gradient(135deg, #1a2980, #26d0ce); 
+            color: white; 
+            border-color: #1a2980; 
+        }
+        
+        .filter-btn:hover { 
+            border-color: #1a2980; 
+            transform: translateY(-2px); 
+        }
+    </style>
+</head>
+<body>
+    <!-- નેવિગેશન -->
+    <nav>
+        <a href="index.html">🏠 ઘર</a>
+        <a href="results.html">📊 પરિણામ</a>
+        <a href="notices.html">📢 સૂચનાઓ</a>
+        <a href="about.html">ℹ️ અમારા વિશે</a>
+        <a href="contact.html">📞 સંપર્ક</a>
+    </nav>
+
+    <!-- મુખ્ય કન્ટેન્ટ -->
+    <div class="container">
+        <div class="page-header">
+            <h1>શાળાની સૂચનાઓ</h1>
+            <p>તાજેતરની સૂચનાઓ, રજાઓ, તહેવારો અને ઉત્સવો વિશેની માહિતી</p>
+        </div>
+        
+        <!-- ફિલ્ટર બટન્સ -->
+        <div class="filter-buttons">
+            <button class="filter-btn active" onclick="filterNotices('all')">બધી સૂચનાઓ</button>
+            <button class="filter-btn" onclick="filterNotices('important')">મહત્વપૂર્ણ</button>
+            <button class="filter-btn" onclick="filterNotices('holiday')">રજાઓ</button>
+            <button class="filter-btn" onclick="filterNotices('festival')">તહેવારો</button>
+        </div>
+        
+        <!-- નોટિસ લિસ્ટ -->
+        <div class="notice-list">
+            <!-- નોટિસ 1 -->
+            <div class="notice-card important" data-category="important">
+                <div class="notice-date">જાન્યુઆરી 15, 2024</div>
+                <h3 class="notice-title important">મહત્વપૂર્ણ: વાર્ષિક પરીક્ષા તારીખો</h3>
+                <div class="notice-content">
+                    <p>વાર્ષિક પરીક્ષાની તારીખો જાહેર કરવામાં આવી છે. પરીક્ષા 1 માર્ચથી શરૂ થશે. સમયપત્રક ડાઉનલોડ કરવા માટે નીચેની લિંક પર ક્લિક કરો.</p>
+                    <p><strong>સમય:</strong> સવારે 10:00 થી બપોરે 1:00 સુધી</p>
+                    <p><strong>સુચના:</strong> તમામ વિદ્યાર્થીઓ સમયસર પહોંચે તેની કાળજી લેવી.</p>
+                </div>
+            </div>
+            
+            <!-- નોટિસ 2 -->
+            <div class="notice-card holiday" data-category="holiday">
+                <div class="notice-date">જાન્યુઆરી 20, 2024</div>
+                <h3 class="notice-title holiday">રજા: ગુરુ પૂર્ણિમા</h3>
+                <div class="notice-content">
+                    <p>ગુરુ પૂર્ણિમાની રજા 21 જાન્યુઆરીથી 23 જાન્યુઆરી સુધી રહેશે. શાળા 24 જાન્યુઆરીથી ફરીથી શરૂ થશે.</p>
+                    <p>તમામ વિદ્યાર્થીઓ અને અભિભાવકોને ગુરુ પૂર્ણિમાની શુભકામનાઓ.</p>
+                </div>
+            </div>
+            
+            <!-- નોટિસ 3 -->
+            <div class="notice-card festival" data-category="festival">
+                <div class="notice-date">ફેબ્રુઆરી 1, 2024</div>
+                <h3 class="notice-title festival">વાર્ષિક સાંસ્કૃતિક ઉત્સવ</h3>
+                <div class="notice-content">
+                    <p>શાળાનો વાર્ષિક સાંસ્કૃતિક ઉત્સવ 15 ફેબ્રુઆરીએ યોજાશે. સમારોખમાં ભાગ લેવા માંગતા વિદ્યાર્થીઓ નીચેના વિભાગોમાં નોંધણી કરાવી શકે છે:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>સંગીત અને નૃત્ય</li>
+                        <li>નાટક અને અભિનય</li>
+                        <li>કવિતા વાચન</li>
+                        <li>કલા પ્રદર્શન</li>
+                    </ul>
+                    <p><strong>નોંધણી છેલ્લી તારીખ:</strong> 10 ફેબ્રુઆરી, 2024</p>
+                </div>
+            </div>
+            
+            <!-- નોટિસ 4 -->
+            <div class="notice-card important" data-category="important">
+                <div class="notice-date">ફેબ્રુઆરી 5, 2024</div>
+                <h3 class="notice-title important">પુસ્તકાલય સુવિધા વિસ્તરણ</h3>
+                <div class="notice-content">
+                    <p>શાળાના પુસ્તકાલયમાં નવી પુસ્તકો ઉમેરવામાં આવી છે. વિદ્યાર્થીઓ પુસ્તક લેવા માટે પુસ્તકાલયમાં સંપર્ક કરી શકે છે.</p>
+                    <p><strong>પુસ્તકાલય સમય:</strong> સોમવારથી શનિવાર, સવારે 9:00 થી બપોરે 4:00 સુધી</p>
+                </div>
+            </div>
+            
+            <!-- નોટિસ 5 -->
+            <div class="notice-card holiday" data-category="holiday">
+                <div class="notice-date">માર્ચ 1, 2024</div>
+                <h3 class="notice-title holiday">હોલી રજા</h3>
+                <div class="notice-content">
+                    <p>હોલીની રજા 25 માર્ચથી 27 માર્ચ સુધી રહેશે. તમામ વિદ્યાર્થીઓ અને શિક્ષકોને હોલીની શુભકામનાઓ.</p>
+                    <p><strong>શાળા ફરીથી શરૂ:</strong> 28 માર્ચ, 2024</p>
+                </div>
+            </div>
+        </div>
+        
+        <div style="text-align: center; color: #666; padding: 2rem; background: white; border-radius: 15px; margin-top: 3rem;">
+            <h3 style="color: #1a2980; margin-bottom: 1rem;">સૂચના માટે</h3>
+            <p>• નવી સૂચનાઓ માટે આ પેજ રોજ નિયમિત તપાસો</p>
+            <p>• કોઈ પ્રશ્ન હોય તો શાળા કચેરીમાં સંપર્ક કરો</p>
+            <p>• મહત્વપૂર્ણ સૂચનાઓ SMS દ્વારા પણ મોકલવામાં આવશે</p>
+        </div>
+    </div>
+
+    <!-- ફૂટર -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી</h3>
+            <p>શિક્ષા અને સંસ્કારની સાથે, ભવિષ્ય નિર્માણની દિશામાં</p>
+            
+            <div class="footer-links">
+                <a href="index.html">ઘર</a> | 
+                <a href="results.html">પરિણામ</a> | 
+                <a href="notices.html">સૂચનાઓ</a> | 
+                <a href="about.html">અમારા વિશે</a> | 
+                <a href="contact.html">સંપર્ક</a>
+            </div>
+            
+            <div class="copyright">
+                © 2024 ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી. બધા હક્ક સુરક્ષિત.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function filterNotices(category) {
+            // બટન્સ સક્રિય/નિષ્ક્રિય કરો
+            var buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(function(btn) {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // નોટિસ ફિલ્ટર કરો
+            var notices = document.querySelectorAll('.notice-card');
+            
+            notices.forEach(function(notice) {
+                if (category === 'all') {
+                    notice.style.display = 'block';
+                } else if (notice.getAttribute('data-category') === category) {
+                    notice.style.display = 'block';
+                } else {
+                    notice.style.display = 'none';
+                }
+            });
+        }
+    </script>
+</body>
+</html>
