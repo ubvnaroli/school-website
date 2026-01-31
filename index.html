@@ -3,47 +3,240 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ઉત્તર બુનિયાદી શાળા નારોલી</title>
-    <link rel="stylesheet" href="style.css">
+    <title>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        /* નેવિગેશન */
+        nav {
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-size: 1.1rem;
+            font-weight: 500;
+            padding: 0.5rem 0;
+            display: inline-block;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+        
+        nav a:hover {
+            border-bottom: 2px solid white;
+            transform: translateY(-2px);
+        }
+        
+        /* હીરો વિભાગ */
+        .hero {
+            background: linear-gradient(rgba(26, 41, 128, 0.85), rgba(38, 208, 206, 0.85)),
+                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=1600');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 6rem 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
+            font-weight: 700;
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto 2.5rem;
+            opacity: 0.95;
+        }
+        
+        /* મુખ્ય કન્ટેન્ટ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* ફીચર કાર્ડ્સ */
+        .feature-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 4rem 0;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+            border-top: 5px solid #26d0ce;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.12);
+        }
+        
+        .card h3 {
+            color: #1a2980;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+        }
+        
+        .card p {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(26, 41, 128, 0.3);
+        }
+        
+        /* ફૂટર */
+        footer {
+            background: #1a2980;
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+        }
+        
+        .footer-links {
+            margin: 1.5rem 0;
+        }
+        
+        .footer-links a {
+            color: #26d0ce;
+            text-decoration: none;
+            margin: 0 1rem;
+            font-weight: 500;
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+        
+        /* રિસ્પોન્સિવ */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            nav a {
+                margin: 0 0.8rem;
+                font-size: 1rem;
+            }
+            
+            .feature-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">
-            <h1>ઉત્તર બુનિયાદી શાળા નારોલી</h1>
-            <p>ગુણવત્તાપૂર્ણ શિક્ષણ</p>
-        </div>
-        <div class="nav-links">
-            <a href="#">હોમ</a>
-            <a href="#">અમારી વિશે</a>
-            <a href="#">સ્ટાફ</a>
-            <a href="#">પરિણામ</a>
-            <a href="#">સંપર્ક</a>
-        </div>
+    <!-- નેવિગેશન -->
+    <nav>
+        <a href="index.html">🏠 ઘર</a>
+        <a href="results.html">📊 પરિણામ જોવા</a>
+        <a href="notices.html">📢 સૂચનાઓ</a>
+        <a href="about.html">ℹ️ અમારા વિશે</a>
+        <a href="contact.html">📞 સંપર્ક કરો</a>
     </nav>
 
+    <!-- હીરો વિભાગ -->
     <section class="hero">
-        <h1>સ્વાગત છે ઉત્તર બુનિયાદી શાળા</h1>
-        <p>જ્યાં પ્રત્યેક બાળકની પ્રતિભા વિકસિત થાય છે.</p>
-        <button class="cta-button">વધુ જાણો</button>
-    </section>
-
-    <section class="features">
-        <div class="feature-card">
-            <h3>અનુભવી શિક્ષકો</h3>
-            <p>સમર્પિત શિક્ષકો વિદ્યાર્થીઓના વિકાસ માટે.</p>
-        </div>
-        <div class="feature-card">
-            <h3>આધુનિક લેબોરેટરી</h3>
-            <p>વિજ્ઞાન અને કોમ્પ્યુટર લેબ વ્યવહારિક શિક્ષણ માટે.</p>
-        </div>
-        <div class="feature-card">
-            <h3>રમત-ગમત સુવિધાઓ</h3>
-            <p>શારીરિક વિકાસ માટે રમતની સુવિધાઓ.</p>
+        <div class="container">
+            <h1>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી</h1>
+            <p>જ્યાં પ્રત્યેક બાળકની પ્રતિભા વિકસિત થાય છે અને ભવિષ્ય નિખારવામાં આવે છે</p>
+            <a href="about.html" class="btn">અમારા વિશે વધુ જાણો</a>
         </div>
     </section>
 
-    <footer class="footer">
-        <p>© 2026 શાળા નારોલી. જય જગત</p>
+    <!-- મુખ્ય કન્ટેન્ટ -->
+    <div class="container">
+        <div class="feature-cards">
+            <!-- કાર્ડ 1: પરિણામ -->
+            <div class="card">
+                <h3>📊 પરિણામ જોવા</h3>
+                <p>વિદ્યાર્થીઓ અને માતા-પિતા GR નંબર અને જન્મતારીખ નાખી શૈક્ષણિક પરિણામ ઑનલાઇન જોઈ શકે છે.</p>
+                <a href="results.html" class="btn">પરિણામ જુઓ</a>
+            </div>
+            
+            <!-- કાર્ડ 2: સૂચનાઓ -->
+            <div class="card">
+                <h3>📢 સૂચનાઓ</h3>
+                <p>શાળાની તાજેતરની સૂચનાઓ, રજાઓ, તહેવારો અને ઉત્સવો વિશેની માહિતી.</p>
+                <a href="notices.html" class="btn">સૂચનાઓ જુઓ</a>
+            </div>
+            
+            <!-- કાર્ડ 3: અમારા વિશે -->
+            <div class="card">
+                <h3>🏫 અમારા વિશે</h3>
+                <p>શાળાનો ઇતિહાસ, ધ્યેય, સુવિધાઓ અને શૈક્ષણિક માળખું વિશેની વિગતવાર માહિતી.</p>
+                <a href="about.html" class="btn">વધુ જાણો</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ફૂટર -->
+    <footer>
+        <div class="container">
+            <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી</h3>
+            <p>શિક્ષા અને સંસ્કારની સાથે, ભવિષ્ય નિર્માણની દિશામાં</p>
+            
+            <div class="footer-links">
+                <a href="index.html">ઘર</a> | 
+                <a href="results.html">પરિણામ</a> | 
+                <a href="notices.html">સૂચનાઓ</a> | 
+                <a href="about.html">અમારા વિશે</a> | 
+                <a href="contact.html">સંપર્ક</a>
+            </div>
+            
+            <div class="copyright">
+                © 2024 ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી. બધા હક્ક સુરક્ષિત.
+            </div>
+        </div>
     </footer>
 </body>
 </html>
