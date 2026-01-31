@@ -2,146 +2,130 @@
 <html lang="gu">
 <head>
 <meta charset="UTF-8">
-<title>ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી</title>
 
 <style>
 body{
-  margin:0;
-  font-family:"Segoe UI", Arial;
-  background:#f2f2f2;
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    background:#f4f6f9;
 }
 
-/* ===== HEADER BOX ===== */
-.header-box{
-  background:#fff;
-  border:3px solid #000;
-  margin:10px;
-  padding:10px;
+/* ===== HEADER ===== */
+.header{
+    background: linear-gradient(135deg,#1a237e,#3949ab,#6a1b9a);
+    color:#fff;
+    padding:20px;
 }
 
-/* TOP LINE */
-.trust-line{
-  text-align:center;
-  font-weight:bold;
-  font-size:16px;
-  border-bottom:2px solid #000;
-  padding-bottom:5px;
+.header-top{
+    display:flex;
+    align-items:center;
+    gap:20px;
 }
 
-/* MIDDLE */
-.header-middle{
-  display:flex;
-  align-items:center;
-  gap:15px;
-  margin-top:10px;
+.logo{
+    width:110px;
+    height:110px;
+    border-radius:50%;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#1a237e;
+    font-weight:bold;
+    font-size:14px;
 }
 
-.logo img{
-  width:110px;
-  border:2px solid #000;
-  padding:4px;
+.school-name h1{
+    margin:0;
+    font-size:30px;
+}
+.school-name h3{
+    margin:5px 0;
+    font-weight:normal;
+}
+.school-name p{
+    margin:0;
+    font-size:14px;
+    opacity:0.9;
 }
 
-.school-text{
-  text-align:center;
-  flex:1;
+/* ===== INFO BOX ===== */
+.info-box{
+    display:flex;
+    justify-content:space-between;
+    margin-top:20px;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-.school-text h1{
-  margin:0;
-  font-size:30px;
-  font-weight:900;
+.info{
+    background:#ffffff15;
+    border-radius:12px;
+    padding:15px;
+    flex:1;
+    min-width:220px;
+    text-align:center;
 }
 
-.school-text h2{
-  margin:5px 0;
-  font-size:18px;
-  font-weight:bold;
+.info h4{
+    margin:0 0 10px;
+    color:#ffd54f;
 }
 
-.school-text h3{
-  margin:0;
-  font-size:15px;
-  font-weight:normal;
-}
-
-/* ===== INDEX INFO ===== */
-.index-row{
-  display:flex;
-  gap:10px;
-  margin-top:15px;
-}
-
-.index-box{
-  flex:1;
-  border:2px solid #000;
-  padding:8px;
-  background:#fafafa;
-  font-size:15px;
-}
-
-.index-title{
-  background:#000;
-  color:#fff;
-  text-align:center;
-  font-weight:bold;
-  padding:4px;
-  margin-bottom:6px;
-}
-
-/* ===== CONTACT ===== */
-.contact-row{
-  display:flex;
-  justify-content:space-between;
-  margin-top:10px;
-  border-top:2px solid #000;
-  padding-top:6px;
-  font-weight:bold;
+.info p{
+    margin:4px 0;
+    font-size:14px;
 }
 
 /* ===== MENU ===== */
-.menu-bar{
-  background:#000;
-  display:flex;
-  flex-wrap:wrap;
-  justify-content:center;
+.menu{
+    background:#ffffff;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
-.menu-bar a{
-  color:#fff;
-  padding:10px 14px;
-  text-decoration:none;
-  font-weight:bold;
-  font-size:15px;
+.menu a{
+    padding:15px 20px;
+    text-decoration:none;
+    color:#1a237e;
+    font-weight:600;
 }
 
-.menu-bar a:hover{
-  background:#ffd700;
-  color:#000;
+.menu a:hover{
+    background:#1a237e;
+    color:#fff;
 }
 
 /* ===== CONTENT ===== */
-.content{
-  background:#fff;
-  margin:20px auto;
-  padding:20px;
-  max-width:900px;
-  border:2px solid #000;
+.container{
+    padding:30px;
+    text-align:center;
 }
 
-/* ===== MOBILE ===== */
-@media(max-width:768px){
-  .header-middle{
-    flex-direction:column;
-  }
-  .index-row{
-    flex-direction:column;
-  }
-  .contact-row{
-    flex-direction:column;
-    gap:5px;
-  }
+.card{
+    background:#fff;
+    padding:25px;
+    border-radius:16px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+    max-width:900px;
+    margin:auto;
+}
+
+.card h2{
+    color:#1a237e;
+}
+
+footer{
+    margin-top:40px;
+    background:#1a237e;
+    color:#fff;
+    text-align:center;
+    padding:15px;
 }
 </style>
 </head>
@@ -149,72 +133,70 @@ body{
 <body>
 
 <!-- ===== HEADER ===== -->
-<div class="header-box">
-
-  <div class="trust-line">
-    સર્વ સેવા ટ્રસ્ટ, રાધનપુર (જી. પાટણ) સંચાલિત
-  </div>
-
-  <div class="header-middle">
-    <div class="logo">
-      <img src="saraswati.png" alt="School Logo">
+<div class="header">
+    <div class="header-top">
+        <div class="logo">
+            LOGO
+        </div>
+        <div class="school-name">
+            <h1>ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા</h1>
+            <h3>નારોલી, તા. થરાદ, જી. વાવ-થરાદ </h3>
+            <p>સર્વ સેવા ટ્રસ્ટ, રાધનપુર (જિ. પાટણ) સંચાલિત</p>
+        </div>
     </div>
 
-    <div class="school-text">
-      <h1>ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા</h1>
-      <h2>મુ.પો. નારોલી, તા. થરાદ, જી. વાવ-થરાદ</h2>
-      <h3>પિન – 385565</h3>
+    <!-- INFO -->
+    <div class="info-box">
+        <div class="info">
+            <h4>એસ.એસ.સી.</h4>
+            <p>સ્થાપના વર્ષ : 1988</p>
+            <p>ઈન્ડેક્સ નંબર : 60.0070</p>
+        </div>
+
+        <div class="info">
+            <h4>એચ.એસ.સી. (સામાન્ય પ્રવાહ)</h4>
+            <p>સ્થાપના વર્ષ : 1999</p>
+            <p>ઈન્ડેક્સ નંબર : 10.0061</p>
+        </div>
+
+        <div class="info">
+            <h4>એચ.એસ.સી. (વિજ્ઞાન પ્રવાહ)</h4>
+            <p>સ્થાપના વર્ષ : 2007</p>
+            <p>ઈન્ડેક્સ નંબર : 10.0120</p>
+        </div>
     </div>
-  </div>
-
-  <div class="index-row">
-    <div class="index-box">
-      <div class="index-title">માધ્યમિક (SSC)</div>
-      સ્થાપના વર્ષ : ૧૯૮૮<br>
-      ઇન્ડેક્સ નંબર : <b>૬૦.૦૦૭૦</b>
-    </div>
-
-    <div class="index-box">
-      <div class="index-title">ઉચ્ચતર માધ્યમિક (HSC)</div>
-      સ્થાપના વર્ષ : ૧૯૯૮<br>
-      ઇન્ડેક્સ નંબર : <b>૧૦.૦૦૬૧</b>
-    </div>
-
-    <div class="index-box">
-      <div class="index-title">ઉચ્ચતર માધ્યમિક (વિજ્ઞાન પ્રવાહ)</div>
-      સ્થાપના વર્ષ : ૨૦૦૬<br>
-      ઇન્ડેક્સ નંબર : <b>૧૦.૦૧૨૦</b>
-    </div>
-  </div>
-
-  <div class="contact-row">
-    <div>📧 E-mail : 140ubvnaroli@gmail.com</div>
-    <div>📞 કાર્યાલય સંપર્ક : ૯૯૯૩૦૮૮૫૦૦</div>
-  </div>
-
 </div>
 
-<!-- ===== MENU ===== -->
-<nav class="menu-bar">
-  <a href="index.html">Home</a>
-  <a href="about.html">શાળા માહિતી</a>
-  <a href="staff.html">Staff</a>
-  <a href="result.html">Result</a>
-  <a href="gallery.html">Photo Gallery</a>
-  <a href="utsav.html">ઉત્સવ ઉજવણી</a>
-  <a href="programs.html">કાર્યક્રમો</a>
-  <a href="guests.html">અતિથિ વિશેષ</a>
-  <a href="https://www.youtube.com/@YOURCHANNEL" target="_blank">YouTube</a>
-</nav>
+<!-- ===== MENU BAR ===== -->
+<div class="menu">
+    <a href="index.html">Home</a>
+    <a href="about.html">શાળા માહિતી</a>
+    <a href="staff.html">સ્ટાફ</a>
+    <a href="result.html">પરિણામ</a>
+    <a href="gallery.html">ફોટો ગેલેરી</a>
+    <a href="events.html">ઉત્સવ ઉજવણી</a>
+    <a href="videos.html">YouTube વિડિઓ</a>
+    <a href="contact.html">સંપર્ક</a>
+</div>
 
 <!-- ===== CONTENT ===== -->
-<div class="content">
-  <h2>સ્વાગત છે</h2>
-  <p>
-    આ અમારી શાળાની અધિકૃત વેબસાઈટ છે.  
-    અહીં પરિણામ, સ્ટાફ માહિતી, ઉત્સવ ઉજવણી, ફોટો ગેલેરી વગેરે જોઈ શકો છો.
-  </p>
+<div class="container">
+    <div class="card">
+        <h2>અમારી શાળામાં આપનું સ્વાગત છે</h2>
+        <p>
+            આ શાળા ગુણવત્તાસભર શિક્ષણ, સંસ્કાર અને આધુનિક ટેક્નોલોજી સાથે
+            વિદ્યાર્થીઓના સર્વાંગી વિકાસ માટે કાર્યરત છે.
+        </p>
+        <p>
+            અહીંથી પરિણામ, ફોટો ગેલેરી, કાર્યક્રમો અને YouTube વિડિઓઝ સરળતાથી જોઈ શકાય છે.
+        </p>
+    </div>
 </div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+    © 2026 ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી
+</footer>
 
 </body>
 </html>
