@@ -4,6 +4,177 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી </title>
+
+    /* ======= નારોલી શાળા વેબસાઇટ CSS ======= */
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --primary-color: #2563eb;
+    --primary-dark: #1d4ed8;
+    --secondary-color: #7c3aed;
+    --accent-color: #10b981;
+    --dark-color: #1e293b;
+    --light-color: #f8fafc;
+    --text-color: #334155;
+    --white: #ffffff;
+    --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+    --shadow: 0 4px 20px rgba(0,0,0,0.1);
+    --radius: 12px;
+}
+
+body {
+    font-family: 'Segoe UI', 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: var(--light-color);
+}
+
+/* નેવિગેશન બાર */
+.navbar {
+    background: var(--white);
+    box-shadow: var(--shadow);
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo-img {
+    height: 50px;
+    width: auto;
+}
+
+.logo-text h1 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    line-height: 1.2;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: color 0.3s;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius);
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+}
+
+/* હેરો સેક્શન */
+.hero {
+    background: var(--gradient);
+    color: var(--white);
+    padding: 5rem 2rem;
+    text-align: center;
+    border-radius: 0 0 40px 40px;
+}
+
+.hero h1 {
+    font-size: 2.8rem;
+    margin-bottom: 1rem;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 700px;
+    margin: 0 auto 2rem;
+    opacity: 0.9;
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--white);
+    color: var(--primary-color);
+    padding: 0.8rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+}
+
+/* ફીચર્સ સેક્શન */
+.features {
+    padding: 4rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.features h2 {
+    text-align: center;
+    color: var(--dark-color);
+    margin-bottom: 3rem;
+    font-size: 2.2rem;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.feature-card {
+    background: var(--white);
+    padding: 2rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.feature-card:hover {
+    transform: translateY(-10px);
+}
+
+.feature-card h3 {
+    color: var(--primary-color);
+    margin: 1rem 0;
+    font-size: 1.5rem;
+}
+
+.feature-icon {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+/* ફૂટર */
+.footer {
+    background: var(--dark-color);
+    color: var(--white);
+    padding: 3rem 2rem;
+    text-align: center;
+    margin-top: 4rem;
+}
+
+    
     
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
