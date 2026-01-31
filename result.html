@@ -205,6 +205,68 @@
     </footer>
 
     <script>
+
+<script>
+    // Google Sheets URL
+    const SHEET_URL = "તમારી_Google_Sheet_Link_અહીં_લખો";
+    
+    document.getElementById("resultForm").onsubmit = async function(event) {
+        event.preventDefault();
+        
+        let grNo = document.getElementById("grNo").value.trim();
+        let dob = document.getElementById("dob").value;
+        
+        // Google Sheets થી ડેટા લો
+        try {
+            const response = await fetch(SHEET_URL);
+            const text = await response.text();
+            const data = parseCSV(text);
+            
+            // શોધો વિદ્યાર્થી
+            const student = data.find(s => 
+                s.GR_No === grNo && s.જન્મતારીખ === dob
+            );
+            
+            if (student) {
+                // પરિણામ દર્શાવો
+                document.getElementById("errorMessage").style.display = "none";
+                document.getElementById("resultDisplay").style.display = "block";
+                
+                document.getElementById("displayGrNo").textContent = student.GR_No;
+                document.getElementById("studentName").textContent = student.વિદ્યાર્થીનું_નામ;
+                document.getElementById("studentClass").textContent = student.વર્ગ;
+                document.getElementById("totalPercentage").textContent = student.કુલ_ટકા;
+                document.getElementById("overallGrade").textContent = student.ગ્રેડ;
+            } else {
+                // ભૂલ
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("resultDisplay").style.display = "none";
+            }
+        } catch (error) {
+            console.error("Error:", error);
+            document.getElementById("errorMessage").innerHTML = 
+                "સર્વર ભૂલ. કૃપા કરી પછી પ્રયત્ન કરો.";
+            document.getElementById("errorMessage").style.display = "block";
+        }
+    };
+    
+    // CSV પાર્સ કરવાનું ફંક્શન
+    function parseCSV(text) {
+        const lines = text.split('\n');
+        const headers = lines[0].split(',').map(h => h.trim());
+        
+        return lines.slice(1).map(line => {
+            const values = line.split(',');
+            let obj = {};
+            headers.forEach((header, index) => {
+                obj[header] = values[index] ? values[index].trim() : '';
+            });
+            return obj;
+        });
+    }
+</script>
+        
+        
         document.getElementById("resultForm").onsubmit = function(event) {
             event.preventDefault();
             
