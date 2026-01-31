@@ -3,534 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>પરિણામ - ક્લાસ 9-12 ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી  </title>
-
-/* ======= નારોલી શાળા વેબસાઇટ CSS ======= */
-
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-    --primary-color: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary-color: #7c3aed;
-    --accent-color: #10b981;
-    --dark-color: #1e293b;
-    --light-color: #f8fafc;
-    --text-color: #334155;
-    --white: #ffffff;
-    --gradient: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-    --shadow: 0 4px 20px rgba(0,0,0,0.1);
-    --radius: 12px;
-}
-
-body {
-    font-family: 'Segoe UI', 'Poppins', sans-serif;
-    line-height: 1.6;
-    color: var(--text-color);
-    background: var(--light-color);
-}
-
-/* નેવિગેશન બાર */
-.navbar {
-    background: var(--white);
-    box-shadow: var(--shadow);
-    padding: 1rem 2rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.logo-img {
-    height: 50px;
-    width: auto;
-}
-
-.logo-text h1 {
-    font-size: 1.5rem;
-    color: var(--primary-color);
-    line-height: 1.2;
-}
-
-.nav-links {
-    display: flex;
-    gap: 2rem;
-    list-style: none;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: var(--dark-color);
-    font-weight: 500;
-    transition: color 0.3s;
-    padding: 0.5rem 1rem;
-    border-radius: var(--radius);
-}
-
-.nav-links a:hover {
-    color: var(--primary-color);
-    background: rgba(37, 99, 235, 0.1);
-}
-
-/* હેરો સેક્શન */
-.hero {
-    background: var(--gradient);
-    color: var(--white);
-    padding: 5rem 2rem;
-    text-align: center;
-    border-radius: 0 0 40px 40px;
-}
-
-.hero h1 {
-    font-size: 2.8rem;
-    margin-bottom: 1rem;
-    text-shadow: 0 2px 10px rgba(0,0,0,0.2);
-}
-
-.hero p {
-    font-size: 1.2rem;
-    max-width: 700px;
-    margin: 0 auto 2rem;
-    opacity: 0.9;
-}
-
-.cta-button {
-    display: inline-block;
-    background: var(--white);
-    color: var(--primary-color);
-    padding: 0.8rem 2rem;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    transition: all 0.3s;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-}
-
-.cta-button:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.25);
-}
-
-/* ફીચર્સ સેક્શન */
-.features {
-    padding: 4rem 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.features h2 {
-    text-align: center;
-    color: var(--dark-color);
-    margin-bottom: 3rem;
-    font-size: 2.2rem;
-}
-
-.feature-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-}
-
-.feature-card {
-    background: var(--white);
-    padding: 2rem;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    text-align: center;
-    transition: transform 0.3s;
-}
-
-.feature-card:hover {
-    transform: translateY(-10px);
-}
-
-.feature-card h3 {
-    color: var(--primary-color);
-    margin: 1rem 0;
-    font-size: 1.5rem;
-}
-
-.feature-icon {
-    font-size: 2.5rem;
-    color: var(--accent-color);
-    margin-bottom: 1rem;
-}
-
-/* ફૂટર */
-.footer {
-    background: var(--dark-color);
-    color: var(--white);
-    padding: 3rem 2rem;
-    text-align: center;
-    margin-top: 4rem;
-}
-
-    
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- CSS -->
-    <link rel="stylesheet" href="style.css">
+    <title>પરિણામ જોવા - ઉત્તર બુનિયાદી શાળા</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        
+        body { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; }
+        
+        /* નેવિગેશન - સમાન રહેશે */
+        nav { background: linear-gradient(135deg, #1a2980, #26d0ce); padding: 1.2rem; text-align: center; }
+        nav a { color: white; text-decoration: none; margin: 0 1.5rem; font-size: 1.1rem; }
+        
+        /* મુખ્ય કન્ટેન્ટ */
+        .container { max-width: 800px; margin: 3rem auto; padding: 0 2rem; }
+        
+        .page-header { text-align: center; margin-bottom: 3rem; }
+        .page-header h1 { color: #1a2980; font-size: 2.5rem; margin-bottom: 1rem; }
+        .page-header p { color: #555; font-size: 1.1rem; }
+        
+        /* રિજલ્ટ બોક્સ */
+        .result-box { 
+            background: white; 
+            padding: 3rem; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+            text-align: center; 
+            margin-bottom: 3rem; 
+        }
+        
+        .input-group { margin: 2rem 0; text-align: left; }
+        .input-group label { display: block; color: #1a2980; margin-bottom: 0.5rem; font-weight: 600; }
+        .input-group input { 
+            width: 100%; 
+            padding: 1rem; 
+            border: 2px solid #ddd; 
+            border-radius: 10px; 
+            font-size: 1rem; 
+            transition: border 0.3s; 
+        }
+        .input-group input:focus { 
+            border-color: #26d0ce; 
+            outline: none; 
+            box-shadow: 0 0 0 3px rgba(38, 208, 206, 0.2); 
+        }
+        
+        .btn { 
+            background: linear-gradient(135deg, #1a2980, #26d0ce); 
+            color: white; 
+            padding: 1rem 3rem; 
+            border: none; 
+            border-radius: 50px; 
+            font-size: 1.1rem; 
+            cursor: pointer; 
+            transition: transform 0.3s; 
+            font-weight: 600; 
+        }
+        .btn:hover { transform: scale(1.05); }
+        
+        /* પરિણામ ડિસ્પ્લે */
+        .result-display { 
+            background: #f8fff8; 
+            border-left: 5px solid #28a745; 
+            padding: 2rem; 
+            margin-top: 2rem; 
+            border-radius: 10px; 
+            text-align: left; 
+            display: none; 
+        }
+        
+        .result-item { 
+            display: flex; 
+            justify-content: space-between; 
+            padding: 0.8rem 0; 
+            border-bottom: 1px solid #eee; 
+        }
+        
+        .error { 
+            background: #fff8f8; 
+            border-left: 5px solid #dc3545; 
+            color: #dc3545; 
+            padding: 1rem; 
+            margin-top: 2rem; 
+            border-radius: 10px; 
+            display: none; 
+        }
+        
+        /* ફૂટર - સમાન રહેશે */
+        footer { background: #1a2980; color: white; text-align: center; padding: 3rem 2rem; margin-top: 5rem; }
+        .footer-links a { color: #26d0ce; text-decoration: none; margin: 0 1rem; }
+        .copyright { margin-top: 2rem; color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+    </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
-        <div class="logo">
-            <img src="logo.png" alt="School Logo" height="50">
-            <div class="logo-text">
-                <h2>તમારી શાળા</h2>
-                <p>ગુણવત્તાપૂર્ણ શિક્ષણ</p>
-            </div>
-        </div>
-        
-        <ul class="nav-links">
-            <li><a href="index.html">હોમ</a></li>
-            <li><a href="about.html">અમારી વિશે</a></li>
-            <li><a href="staff.html">સ્ટાફ</a></li>
-            <li><a href="result.html" class="active">પરિણામ</a></li>
-            <li><a href="admin-results.html" class="admin-btn">Admin</a></li>
-        </ul>
-        
-        <div class="menu-toggle">
-            <i class="fas fa-bars"></i>
-        </div>
+    <!-- નેવિગેશન -->
+    <nav>
+        <a href="index.html">🏠 ઘર</a>
+        <a href="results.html">📊 પરિણામ</a>
+        <a href="notices.html">📢 સૂચનાઓ</a>
+        <a href="about.html">ℹ️ અમારા વિશે</a>
+        <a href="contact.html">📞 સંપર્ક</a>
     </nav>
 
-    <!-- Page Header -->
-    <section class="page-header">
-        <div class="container">
-            <h1>પરિણામ પોર્ટલ</h1>
-            <p>ક્લાસ 9 થી 12 - યુનિટ 1 અને યુનિટ 2 પરિણામ</p>
+    <!-- મુખ્ય કન્ટેન્ટ -->
+    <div class="container">
+        <div class="page-header">
+            <h1>પરિણામ જોવા</h1>
+            <p>તમારો GR નંબર અને જન્મતારીખ નાખી શૈક્ષણિક પરિણામ જુઓ</p>
         </div>
-    </section>
-
-    <!-- Result Search -->
-    <section class="result-search">
-        <div class="container">
-            <div class="search-box">
-                <h2>તમારું પરિણામ શોધો</h2>
-                <p>તમારો GR નંબર અને જન્મતારીખ દાખલ કરો</p>
+        
+        <div class="result-box">
+            <h2 style="color: #1a2980; margin-bottom: 2rem;">પરિણામ ચેક કરો</h2>
+            
+            <form id="resultForm">
+                <div class="input-group">
+                    <label for="grNo">GR નંબર / નોંધણી નંબર</label>
+                    <input type="text" id="grNo" placeholder="ઉદાહરણ: 12345" required>
+                </div>
                 
-                <form id="resultForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="classSelect"><i class="fas fa-graduation-cap"></i> તમારો વર્ગ</label>
-                            <select id="classSelect" required>
-                                <option value="">-- પસંદ કરો --</option>
-                                <option value="9">ક્લાસ 9</option>
-                                <option value="10">ક્લાસ 10</option>
-                                <option value="11">ક્લાસ 11</option>
-                                <option value="12">ક્લાસ 12</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="grNumber"><i class="fas fa-id-card"></i> GR નંબર</label>
-                            <input type="text" id="grNumber" placeholder="દા.ત: GR2024001" required>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="dob"><i class="fas fa-calendar-alt"></i> જન્મતારીખ</label>
-                            <input type="date" id="dob" required>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="btn-primary">
-                        <i class="fas fa-search"></i> પરિણામ જુઓ
-                    </button>
-                </form>
+                <div class="input-group">
+                    <label for="dob">જન્મ તારીખ</label>
+                    <input type="date" id="dob" required>
+                </div>
+                
+                <button type="submit" class="btn">પરિણામ જુઓ</button>
+            </form>
+            
+            <div id="errorMessage" class="error">
+                ❌ માફ કરશો, GR નંબર અથવા જન્મતારીખ ખોટી છે. ફરી પ્રયત્ન કરો.
             </div>
             
-            <div id="resultDisplay" class="result-display" style="display: none;">
-                <div class="student-info">
-                    <div class="info-item">
-                        <span class="label">વિદ્યાર્થી નામ:</span>
-                        <span id="studentName" class="value">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">GR નંબર:</span>
-                        <span id="studentGR" class="value">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">વર્ગ:</span>
-                        <span id="studentClass" class="value">-</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="label">રોલ નંબર:</span>
-                        <span id="studentRoll" class="value">-</span>
-                    </div>
+            <div id="resultDisplay" class="result-display">
+                <h3 style="color: #1a2980; margin-bottom: 1.5rem;">તમારું પરિણામ</h3>
+                <div class="result-item">
+                    <span>વિદ્યાર્થીનું નામ:</span>
+                    <strong id="studentName">રાજેશ પટેલ</strong>
+                </div>
+                <div class="result-item">
+                    <span>વર્ગ:</span>
+                    <strong id="studentClass">10મી સામાન્ય</strong>
+                </div>
+                <div class="result-item">
+                    <span>GR નંબર:</span>
+                    <strong id="displayGrNo">12345</strong>
+                </div>
+                <hr style="margin: 1.5rem 0; border-color: #eee;">
+                
+                <h4 style="color: #1a2980; margin-bottom: 1rem;">વિષયવાર ગુણ</h4>
+                <div class="result-item">
+                    <span>ગણિત</span>
+                    <strong>A+ (95/100)</strong>
+                </div>
+                <div class="result-item">
+                    <span>અંગ્રેજી</span>
+                    <strong>A (88/100)</strong>
+                </div>
+                <div class="result-item">
+                    <span>વિજ્ઞાન</span>
+                    <strong>A (90/100)</strong>
+                </div>
+                <div class="result-item">
+                    <span>સામાજિક વિજ્ઞાન</span>
+                    <strong>B+ (78/100)</strong>
+                </div>
+                <div class="result-item">
+                    <span>ગુજરાતી</span>
+                    <strong>A (92/100)</strong>
                 </div>
                 
-                <div class="exam-tabs" id="examTabs"></div>
-                
-                <div class="marks-table-container">
-                    <table class="marks-table" id="marksTable">
-                        <thead>
-                            <tr>
-                                <th>વિષય</th>
-                                <th>મહત્તમ</th>
-                                <th>પ્રાપ્ત</th>
-                                <th>ટકા</th>
-                                <th>ગ્રેડ</th>
-                            </tr>
-                        </thead>
-                        <tbody id="marksBody"></tbody>
-                    </table>
-                </div>
-                
-                <div class="summary">
-                    <div class="summary-card">
-                        <h4><i class="fas fa-percentage"></i> કુલ ટકા</h4>
-                        <div id="totalPercentage" class="summary-value">-</div>
-                    </div>
-                    
-                    <div class="summary-card">
-                        <h4><i class="fas fa-star"></i> ગ્રેડ</h4>
-                        <div id="finalGrade" class="summary-value">-</div>
-                    </div>
-                    
-                    <div class="summary-card">
-                        <h4><i class="fas fa-trophy"></i> ક્લાસ રેંક</h4>
-                        <div id="classRank" class="summary-value">-</div>
-                    </div>
-                </div>
-                
-                <div class="actions">
-                    <button onclick="printResult()" class="btn-secondary">
-                        <i class="fas fa-print"></i> પ્રિન્ટ કરો
-                    </button>
-                    <button onclick="downloadResult()" class="btn-secondary">
-                        <i class="fas fa-download"></i> PDF ડાઉનલોડ
-                    </button>
-                </div>
-                
-                <div class="notice">
-                    <h4><i class="fas fa-info-circle"></i> મહત્વપૂર્ણ સૂચનાઓ</h4>
-                    <ul>
-                        <li>પરિણામની ઓનલાઇન કોપી માત્ર સૂચનાત્મક હેતુ માટે છે</li>
-                        <li>અધિકૃત પરિણામ માર્કશીટ શાળા કચેરીથી મેળવો</li>
-                        <li>કોઈ ભૂલ હોય તો 7 દિવસમાં જણાવો</li>
-                    </ul>
+                <div style="margin-top: 2rem; padding: 1rem; background: #e8f4ff; border-radius: 10px;">
+                    <strong style="color: #1a2980;">કુલ ટકા:</strong> <span id="totalPercentage">88.6%</span><br>
+                    <strong style="color: #1a2980;">ગ્રેડ:</strong> <span id="overallGrade">A</span>
                 </div>
             </div>
         </div>
-    </section>
+        
+        <div style="text-align: center; color: #666; padding: 2rem;">
+            <h3 style="color: #1a2980; margin-bottom: 1rem;">સૂચનાઓ</h3>
+            <p>• GR નંબર તમારા શાળાના દસ્તાવેજમાં આપેલ છે</p>
+            <p>• કોઈ તકલીફ હોય તો શાળા કચેરીમાં સંપર્ક કરો</p>
+            <p>• પરિણામ ફક્ત વિદ્યાર્થી/પાલક જ જોઈ શકે છે</p>
+        </div>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <h3> ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી  </h3>
-                    <p>ગુણવત્તાપૂર્ણ શિક્ષણ અને સંપૂર્ણ વ્યક્તિત્વ વિકાસ માટે પ્રતિબદ્ધ.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>ઝડપી લિંક્સ</h3>
-                    <ul>
-                        <li><a href="index.html">હોમ</a></li>
-                        <li><a href="about.html">અમારી વિશે</a></li>
-                        <li><a href="staff.html">સ્ટાફ</a></li>
-                        <li><a href="result.html">પરિણામ</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-section">
-                    <h3>સંપર્ક કરો</h3>
-                    <p><i class="fas fa-map-marker-alt"></i> મુ.પો.નારોલી તા.થરાદ.જિ.વાવ-થરાદ  </p>
-                    <p><i class="fas fa-phone"></i> +91 6353644164 </p>
-                    <p><i class="fas fa-envelope"></i> ubvnaroli@yahoo.com </p>
-                </div>
+    <!-- ફૂટર -->
+    <footer>
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી</h3>
+            <p>શિક્ષા અને સંસ્કારની સાથે, ભવિષ્ય નિર્માણની દિશામાં</p>
+            
+            <div class="footer-links">
+                <a href="index.html">ઘર</a> | 
+                <a href="results.html">પરિણામ</a> | 
+                <a href="notices.html">સૂચનાઓ</a> | 
+                <a href="about.html">અમારા વિશે</a> | 
+                <a href="contact.html">સંપર્ક</a>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; શાળાનું નામ ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી | પરિણામ હેલ્પલાઇન: ૬૩૫૩૬૪૪૧૬૪ </p>
+            <div class="copyright">
+                © 2024 ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી. બધા હક્ક સુરક્ષિત.
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
-    <script src="script.js"></script>
-    
     <script>
-        // Result Page Specific JavaScript
-        document.addEventListener('DOMContentLoaded', function() {
-            // Set today's date as default
-            document.getElementById('dob').valueAsDate = new Date());
+        document.getElementById("resultForm").onsubmit = function(event) {
+            event.preventDefault();
             
-            // Load results from localStorage
-            loadResults();
-        });
-        
-        async function loadResults() {
-            try {
-                // Try to load from localStorage first
-                const storedResults = localStorage.getItem('schoolResults');
-                if (storedResults) {
-                    window.resultsData = JSON.parse(storedResults);
-                    return;
-                }
+            var grNo = document.getElementById("grNo").value.trim();
+            var dob = document.getElementById("dob").value;
+            
+            // નમૂના તપાસ (તમે આ બદલી શકો છો)
+            if (grNo === "12345" && dob === "2010-01-01") {
+                // સફળ લૉગિન
+                document.getElementById("errorMessage").style.display = "none";
                 
-                // Try to load from JSON file
-                const response = await fetch('results.json');
-                if (response.ok) {
-                    const data = await response.json();
-                    window.resultsData = data;
-                    localStorage.setItem('schoolResults', JSON.stringify(data));
-                } else {
-                    // Load demo data
-                    window.resultsData = getDemoData();
-                }
-            } catch (error) {
-                console.log('Using demo data:', error);
-                window.resultsData = getDemoData();
-            }
-        }
-        
-        function getDemoData() {
-            return {
-                "GR2024001": {
-                    name: "રાજ પટેલ",
-                    class: "10",
-                    roll: "25",
-                    dob: "2008-05-15",
-                    exams: {
-                        "unit1": {
-                            name: "યુનિટ ટેસ્ટ 1",
-                            subjects: [
-                                { name: "ગુજરાતી", max: 50, obtained: 42, grade: "A" },
-                                { name: "અંગ્રેજી", max: 50, obtained: 40, grade: "A" },
-                                { name: "ગણિત", max: 50, obtained: 45, grade: "A+" },
-                                { name: "વિજ્ઞાન", max: 50, obtained: 38, grade: "B+" },
-                                { name: "સામાજિક વિજ્ઞાન", max: 50, obtained: 41, grade: "A" }
-                            ],
-                            totalPercentage: 82.4,
-                            grade: "A",
-                            rank: 5
-                        }
-                    }
-                }
-            };
-        }
-        
-        document.getElementById('resultForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const grNumber = document.getElementById('grNumber').value.trim().toUpperCase();
-            const dob = document.getElementById('dob').value;
-            const studentClass = document.getElementById('classSelect').value;
-            
-            if (!grNumber || !dob || !studentClass) {
-                alert('કૃપા કરીને બધી માહિતી ભરો');
-                return;
-            }
-            
-            const student = window.resultsData?.[grNumber];
-            
-            if (!student) {
-                alert('વિદ્યાર્થી નથી મળ્યો. કૃપા કરીને GR નંબર તપાસો.');
-                return;
-            }
-            
-            if (student.dob && student.dob !== dob) {
-                alert('જન્મતારીખ યોગ્ય નથી. કૃપા કરીને તપાસો.');
-                return;
-            }
-            
-            if (student.class && student.class !== studentClass) {
-                alert('GR નંબર આ વર્ગ માટે નથી.');
-                return;
-            }
-            
-            // Display student info
-            document.getElementById('studentName').textContent = student.name;
-            document.getElementById('studentGR').textContent = grNumber;
-            document.getElementById('studentClass').textContent = `ક્લાસ ${student.class}`;
-            document.getElementById('studentRoll').textContent = student.roll;
-            
-            // Create exam tabs
-            createExamTabs(student.exams);
-            
-            // Show results section
-            document.getElementById('resultDisplay').style.display = 'block';
-        });
-        
-        function createExamTabs(exams) {
-            const tabsContainer = document.getElementById('examTabs');
-            tabsContainer.innerHTML = '';
-            
-            for (const [examKey, examData] of Object.entries(exams)) {
-                const tab = document.createElement('button');
-                tab.className = 'exam-tab';
-                tab.textContent = examData.name;
-                tab.dataset.examKey = examKey;
+                // પરિણામ ડિસ્પ્લે કરો
+                document.getElementById("resultDisplay").style.display = "block";
                 
-                if (examKey === 'unit1') {
-                    tab.classList.add('active');
-                    showExamResults(examKey, examData);
-                }
-                
-                tab.addEventListener('click', function() {
-                    document.querySelectorAll('.exam-tab').forEach(t => {
-                        t.classList.remove('active');
-                    });
-                    this.classList.add('active');
-                    showExamResults(examKey, examData);
-                });
-                
-                tabsContainer.appendChild(tab);
+                // મૂલ્યો સેટ કરો
+                document.getElementById("displayGrNo").textContent = grNo;
+                document.getElementById("studentName").textContent = "રાજેશ પટેલ";
+                document.getElementById("studentClass").textContent = "10મી સામાન્ય";
+                document.getElementById("totalPercentage").textContent = "88.6%";
+                document.getElementById("overallGrade").textContent = "A";
+            } else {
+                // ભૂલ
+                document.getElementById("errorMessage").style.display = "block";
+                document.getElementById("resultDisplay").style.display = "none";
             }
-        }
-        
-        function showExamResults(examKey, examData) {
-            const marksBody = document.getElementById('marksBody');
-            marksBody.innerHTML = '';
-            
-            let totalMax = 0;
-            let totalObtained = 0;
-            
-            examData.subjects.forEach(subject => {
-                totalMax += subject.max;
-                totalObtained += subject.obtained;
-                
-                const percentage = ((subject.obtained / subject.max) * 100).toFixed(1);
-                
-                const row = document.createElement('tr');
-                row.innerHTML = `
-                    <td>${subject.name}</td>
-                    <td>${subject.max}</td>
-                    <td>${subject.obtained}</td>
-                    <td>${percentage}%</td>
-                    <td><strong>${subject.grade}</strong></td>
-                `;
-                marksBody.appendChild(row);
-            });
-            
-            // Update summary
-            document.getElementById('totalPercentage').textContent = `${examData.totalPercentage}%`;
-            document.getElementById('finalGrade').textContent = examData.grade;
-            document.getElementById('classRank').textContent = examData.rank;
-        }
-        
-        function printResult() {
-            window.print();
-        }
-        
-        function downloadResult() {
-            alert('PDF ડાઉનલોડ શરૂ થઈ રહ્યું છે...');
-        }
+        };
     </script>
 </body>
 </html>
