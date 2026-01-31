@@ -1,103 +1,35 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
-  
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>પરિણામ જોવા - ઉત્તર બુનિયાદી શાળા</title>
- <link rel="stylesheet" href="style.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
+        /* તમારું હાલનું style રહેશે */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
-        
         body { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); min-height: 100vh; }
-        
-        /* નેવિગેશન - સમાન રહેશે */
         nav { background: linear-gradient(135deg, #1a2980, #26d0ce); padding: 1.2rem; text-align: center; }
         nav a { color: white; text-decoration: none; margin: 0 1.5rem; font-size: 1.1rem; }
-        
-        /* મુખ્ય કન્ટેન્ટ */
         .container { max-width: 800px; margin: 3rem auto; padding: 0 2rem; }
-        
         .page-header { text-align: center; margin-bottom: 3rem; }
         .page-header h1 { color: #1a2980; font-size: 2.5rem; margin-bottom: 1rem; }
         .page-header p { color: #555; font-size: 1.1rem; }
-        
-        /* રિજલ્ટ બોક્સ */
-        .result-box { 
-            background: white; 
-            padding: 3rem; 
-            border-radius: 20px; 
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
-            text-align: center; 
-            margin-bottom: 3rem; 
-        }
-        
+        .result-box { background: white; padding: 3rem; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; margin-bottom: 3rem; }
         .input-group { margin: 2rem 0; text-align: left; }
         .input-group label { display: block; color: #1a2980; margin-bottom: 0.5rem; font-weight: 600; }
-        .input-group input { 
-            width: 100%; 
-            padding: 1rem; 
-            border: 2px solid #ddd; 
-            border-radius: 10px; 
-            font-size: 1rem; 
-            transition: border 0.3s; 
-        }
-        .input-group input:focus { 
-            border-color: #26d0ce; 
-            outline: none; 
-            box-shadow: 0 0 0 3px rgba(38, 208, 206, 0.2); 
-        }
-        
-        .btn { 
-            background: linear-gradient(135deg, #1a2980, #26d0ce); 
-            color: white; 
-            padding: 1rem 3rem; 
-            border: none; 
-            border-radius: 50px; 
-            font-size: 1.1rem; 
-            cursor: pointer; 
-            transition: transform 0.3s; 
-            font-weight: 600; 
-        }
+        .input-group input { width: 100%; padding: 1rem; border: 2px solid #ddd; border-radius: 10px; font-size: 1rem; transition: border 0.3s; }
+        .input-group input:focus { border-color: #26d0ce; outline: none; box-shadow: 0 0 0 3px rgba(38, 208, 206, 0.2); }
+        .btn { background: linear-gradient(135deg, #1a2980, #26d0ce); color: white; padding: 1rem 3rem; border: none; border-radius: 50px; font-size: 1.1rem; cursor: pointer; transition: transform 0.3s; font-weight: 600; }
         .btn:hover { transform: scale(1.05); }
-        
-        /* પરિણામ ડિસ્પ્લે */
-        .result-display { 
-            background: #f8fff8; 
-            border-left: 5px solid #28a745; 
-            padding: 2rem; 
-            margin-top: 2rem; 
-            border-radius: 10px; 
-            text-align: left; 
-            display: none; 
-        }
-        
-        .result-item { 
-            display: flex; 
-            justify-content: space-between; 
-            padding: 0.8rem 0; 
-            border-bottom: 1px solid #eee; 
-        }
-        
-        .error { 
-            background: #fff8f8; 
-            border-left: 5px solid #dc3545; 
-            color: #dc3545; 
-            padding: 1rem; 
-            margin-top: 2rem; 
-            border-radius: 10px; 
-            display: none; 
-        }
-        
-        /* ફૂટર - સમાન રહેશે */
+        .result-display { background: #f8fff8; border-left: 5px solid #28a745; padding: 2rem; margin-top: 2rem; border-radius: 10px; text-align: left; display: none; }
+        .result-item { display: flex; justify-content: space-between; padding: 0.8rem 0; border-bottom: 1px solid #eee; }
+        .error { background: #fff8f8; border-left: 5px solid #dc3545; color: #dc3545; padding: 1rem; margin-top: 2rem; border-radius: 10px; display: none; }
         footer { background: #1a2980; color: white; text-align: center; padding: 3rem 2rem; margin-top: 5rem; }
         .footer-links a { color: #26d0ce; text-decoration: none; margin: 0 1rem; }
         .copyright { margin-top: 2rem; color: rgba(255,255,255,0.7); font-size: 0.9rem; }
     </style>
 </head>
 <body>
-    <!-- નેવિગેશન -->
     <nav>
         <a href="index.html">🏠 ઘર</a>
         <a href="results.html">📊 પરિણામ</a>
@@ -106,7 +38,6 @@
         <a href="contact.html">📞 સંપર્ક</a>
     </nav>
 
-    <!-- મુખ્ય કન્ટેન્ટ -->
     <div class="container">
         <div class="page-header">
             <h1>પરિણામ જોવા</h1>
@@ -138,56 +69,55 @@
                 <h3 style="color: #1a2980; margin-bottom: 1.5rem;">તમારું પરિણામ</h3>
                 <div class="result-item">
                     <span>વિદ્યાર્થીનું નામ:</span>
-                    <strong id="studentName">રાજેશ પટેલ</strong>
+                    <strong id="studentName">-</strong>
                 </div>
                 <div class="result-item">
                     <span>વર્ગ:</span>
-                    <strong id="studentClass">10મી સામાન્ય</strong>
+                    <strong id="studentClass">-</strong>
                 </div>
                 <div class="result-item">
                     <span>GR નંબર:</span>
-                    <strong id="displayGrNo">12345</strong>
+                    <strong id="displayGrNo">-</strong>
                 </div>
                 <hr style="margin: 1.5rem 0; border-color: #eee;">
                 
                 <h4 style="color: #1a2980; margin-bottom: 1rem;">વિષયવાર ગુણ</h4>
                 <div class="result-item">
                     <span>ગણિત</span>
-                    <strong>A+ (95/100)</strong>
+                    <strong id="mathMarks">-</strong>
                 </div>
                 <div class="result-item">
                     <span>અંગ્રેજી</span>
-                    <strong>A (88/100)</strong>
+                    <strong id="englishMarks">-</strong>
                 </div>
                 <div class="result-item">
                     <span>વિજ્ઞાન</span>
-                    <strong>A (90/100)</strong>
+                    <strong id="scienceMarks">-</strong>
                 </div>
                 <div class="result-item">
                     <span>સામાજિક વિજ્ઞાન</span>
-                    <strong>B+ (78/100)</strong>
+                    <strong id="socialMarks">-</strong>
                 </div>
                 <div class="result-item">
                     <span>ગુજરાતી</span>
-                    <strong>A (92/100)</strong>
+                    <strong id="gujaratiMarks">-</strong>
                 </div>
                 
                 <div style="margin-top: 2rem; padding: 1rem; background: #e8f4ff; border-radius: 10px;">
-                    <strong style="color: #1a2980;">કુલ ટકા:</strong> <span id="totalPercentage">88.6%</span><br>
-                    <strong style="color: #1a2980;">ગ્રેડ:</strong> <span id="overallGrade">A</span>
+                    <strong style="color: #1a2980;">કુલ ટકા:</strong> <span id="totalPercentage">-</span><br>
+                    <strong style="color: #1a2980;">ગ્રેડ:</strong> <span id="overallGrade">-</span>
                 </div>
             </div>
         </div>
         
         <div style="text-align: center; color: #666; padding: 2rem;">
-            <h3 style="color: #1a2980; margin-bottom: 1rem;">સૂચનાઓ</h3>
-            <p>• GR નંબર તમારા શાળાના દસ્તાવેજમાં આપેલ છે</p>
-            <p>• કોઈ તકલીફ હોય તો શાળા કચેરીમાં સંપર્ક કરો</p>
-            <p>• પરિણામ ફક્ત વિદ્યાર્થી/પાલક જ જોઈ શકે છે</p>
+            <h3 style="color: #1a2980; margin-bottom: 1rem;">ટેસ્ટ માટે ડેટા</h3>
+            <p>• GR નંબર: 12345, જન્મતારીખ: 2010-01-01</p>
+            <p>• GR નંબર: 12346, જન્મતારીખ: 2010-02-15</p>
+            <p>• GR નંબર: 12347, જન્મતારીખ: 2009-03-20</p>
         </div>
     </div>
 
-    <!-- ફૂટર -->
     <footer>
         <div style="max-width: 1200px; margin: 0 auto;">
             <h3>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા નારોલી</h3>
@@ -208,148 +138,56 @@
     </footer>
 
     <script>
-
-<script>
-    // Google Sheets URL
-    const SHEET_URL = "તમારી_Google_Sheet_Link_અહીં_લખો";
-    
-    document.getElementById("resultForm").onsubmit = async function(event) {
-        event.preventDefault();
+        // JSON ફાઈલની લિંક
+        const JSON_URL = "https://ubvnaroli.github.io/school-website/students.json";
         
-        let grNo = document.getElementById("grNo").value.trim();
-        let dob = document.getElementById("dob").value;
-        
-        // Google Sheets થી ડેટા લો
-        try {
-            const response = await fetch(SHEET_URL);
-            const text = await response.text();
-            const data = parseCSV(text);
-            
-            // શોધો વિદ્યાર્થી
-            const student = data.find(s => 
-                s.GR_No === grNo && s.જન્મતારીખ === dob
-            );
-            
-            if (student) {
-                // પરિણામ દર્શાવો
-                document.getElementById("errorMessage").style.display = "none";
-                document.getElementById("resultDisplay").style.display = "block";
-                
-                document.getElementById("displayGrNo").textContent = student.GR_No;
-                document.getElementById("studentName").textContent = student.વિદ્યાર્થીનું_નામ;
-                document.getElementById("studentClass").textContent = student.વર્ગ;
-                document.getElementById("totalPercentage").textContent = student.કુલ_ટકા;
-                document.getElementById("overallGrade").textContent = student.ગ્રેડ;
-            } else {
-                // ભૂલ
-                document.getElementById("errorMessage").style.display = "block";
-                document.getElementById("resultDisplay").style.display = "none";
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            document.getElementById("errorMessage").innerHTML = 
-                "સર્વર ભૂલ. કૃપા કરી પછી પ્રયત્ન કરો.";
-            document.getElementById("errorMessage").style.display = "block";
-        }
-    };
-    
-    // CSV પાર્સ કરવાનું ફંક્શન
-    function parseCSV(text) {
-        const lines = text.split('\n');
-        const headers = lines[0].split(',').map(h => h.trim());
-        
-        return lines.slice(1).map(line => {
-            const values = line.split(',');
-            let obj = {};
-            headers.forEach((header, index) => {
-                obj[header] = values[index] ? values[index].trim() : '';
-            });
-            return obj;
-        });
-    }
-</script>
-         // JSON ફાઈલની લિંક
-    const JSON_URL = "https://ubvnaroli.github.io/school-website/students.json";
-    
-    document.getElementById("resultForm").onsubmit = async function(event) {
-        event.preventDefault();
-        
-        let grNo = document.getElementById("grNo").value.trim();
-        let dob = document.getElementById("dob").value;
-        
-        try {
-            // JSON ડેટા લોડ કરો
-            const response = await fetch(JSON_URL);
-            const students = await response.json();
-            
-            // વિદ્યાર્થી શોધો
-            const student = students.find(s => 
-                s.GR_No === grNo && s.જન્મતારીખ === dob
-            );
-            
-            if (student) {
-                // ભૂલ છુપાવો
-                document.getElementById("errorMessage").style.display = "none";
-                
-                // પરિણામ દર્શાવો
-                document.getElementById("resultDisplay").style.display = "block";
-                
-                // મૂલ્યો ભરો
-                document.getElementById("displayGrNo").textContent = student.GR_No;
-                document.getElementById("studentName").textContent = student.વિદ્યાર્થીનું_નામ;
-                document.getElementById("studentClass").textContent = student.વર્ગ;
-                
-                // વિષયો ભરો
-                document.querySelectorAll('.result-item')[3].innerHTML = 
-                    `<span>ગણિત</span><strong>A (${student.ગણિત}/100)</strong>`;
-                document.querySelectorAll('.result-item')[4].innerHTML = 
-                    `<span>અંગ્રેજી</span><strong>A (${student.અંગ્રેજી}/100)</strong>`;
-                document.querySelectorAll('.result-item')[5].innerHTML = 
-                    `<span>વિજ્ઞાન</span><strong>A (${student.વિજ્ઞાન}/100)</strong>`;
-                document.querySelectorAll('.result-item')[6].innerHTML = 
-                    `<span>સામાજિક વિજ્ઞાન</span><strong>B+ (${student.સામાજિક_વિજ્ઞાન}/100)</strong>`;
-                document.querySelectorAll('.result-item')[7].innerHTML = 
-                    `<span>ગુજરાતી</span><strong>A (${student.ગુજરાતી}/100)</strong>`;
-                
-                document.getElementById("totalPercentage").textContent = student.કુલ_ટકા + "%";
-                document.getElementById("overallGrade").textContent = student.ગ્રેડ;
-            } else {
-                // ભૂલ
-                document.getElementById("errorMessage").style.display = "block";
-                document.getElementById("resultDisplay").style.display = "none";
-            }
-        } catch (error) {
-            console.error("Error:", error);
-            document.getElementById("errorMessage").innerHTML = 
-                "સર્વર ભૂલ. કૃપા કરી પછી પ્રયત્ન કરો.";
-            document.getElementById("errorMessage").style.display = "block";
-        }
-    };
-        
-        document.getElementById("resultForm").onsubmit = function(event) {
+        document.getElementById("resultForm").onsubmit = async function(event) {
             event.preventDefault();
             
-            var grNo = document.getElementById("grNo").value.trim();
-            var dob = document.getElementById("dob").value;
+            let grNo = document.getElementById("grNo").value.trim();
+            let dob = document.getElementById("dob").value;
             
-            // નમૂના તપાસ (તમે આ બદલી શકો છો)
-            if (grNo === "12345" && dob === "2010-01-01") {
-                // સફળ લૉગિન
-                document.getElementById("errorMessage").style.display = "none";
+            try {
+                // JSON ડેટા લોડ કરો
+                const response = await fetch(JSON_URL);
+                const students = await response.json();
                 
-                // પરિણામ ડિસ્પ્લે કરો
-                document.getElementById("resultDisplay").style.display = "block";
+                // વિદ્યાર્થી શોધો
+                const student = students.find(s => 
+                    s.GR_No === grNo && s.જન્મતારીખ === dob
+                );
                 
-                // મૂલ્યો સેટ કરો
-                document.getElementById("displayGrNo").textContent = grNo;
-                document.getElementById("studentName").textContent = "રાજેશ પટેલ";
-                document.getElementById("studentClass").textContent = "10મી સામાન્ય";
-                document.getElementById("totalPercentage").textContent = "88.6%";
-                document.getElementById("overallGrade").textContent = "A";
-            } else {
-                // ભૂલ
+                if (student) {
+                    // ભૂલ છુપાવો
+                    document.getElementById("errorMessage").style.display = "none";
+                    
+                    // પરિણામ દર્શાવો
+                    document.getElementById("resultDisplay").style.display = "block";
+                    
+                    // મૂલ્યો ભરો
+                    document.getElementById("displayGrNo").textContent = student.GR_No;
+                    document.getElementById("studentName").textContent = student.વિદ્યાર્થીનું_નામ;
+                    document.getElementById("studentClass").textContent = student.વર્ગ;
+                    
+                    // વિષયો ભરો
+                    document.getElementById("mathMarks").textContent = student.ગણિત + "/100";
+                    document.getElementById("englishMarks").textContent = student.અંગ્રેજી + "/100";
+                    document.getElementById("scienceMarks").textContent = student.વિજ્ઞાન + "/100";
+                    document.getElementById("socialMarks").textContent = student.સામાજિક_વિજ્ઞાન + "/100";
+                    document.getElementById("gujaratiMarks").textContent = student.ગુજરાતી + "/100";
+                    
+                    document.getElementById("totalPercentage").textContent = student.કુલ_ટકા + "%";
+                    document.getElementById("overallGrade").textContent = student.ગ્રેડ;
+                } else {
+                    // ભૂલ
+                    document.getElementById("errorMessage").style.display = "block";
+                    document.getElementById("resultDisplay").style.display = "none";
+                }
+            } catch (error) {
+                console.error("Error:", error);
+                document.getElementById("errorMessage").innerHTML = 
+                    "સર્વર ભૂલ. કૃપા કરી પછી પ્રયત્ન કરો.";
                 document.getElementById("errorMessage").style.display = "block";
-                document.getElementById("resultDisplay").style.display = "none";
             }
         };
     </script>
