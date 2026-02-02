@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>પરિણામ - યુ.બી.વી.નારોલી</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
@@ -692,8 +691,6 @@
                             <li class="instructions-item">
                                 <i class="fas fa-check-circle"></i> કોઈ તકનિકી સમસ્યા હોય તો સંપર્ક કરો
                             </li>
-                           
-                            </li>
                         </ul>
                     </div>
                 </div>
@@ -712,7 +709,7 @@
             </div>
         </section>
 
-        <!-- પ્રયોગશાળા વિભાગ (તમારું હાલનું કન્ટેન્ટ) -->
+        <!-- પ્રયોગશાળા વિભાગ -->
         <section class="laboratories">
             <div class="container">
                 <h2 style="text-align: center; color: #1a2980; margin-bottom: 30px; font-size: 32px;">અમારી પ્રયોગશાળાઓ</h2>
@@ -810,9 +807,9 @@
                     return response.json();
                 })
                 .then(data => {
-                    // વિદ્યાર્થી શોધો
-                    const student = data.students.find(s => 
-                        s.grNumber === grNumber && s.dob === dob
+                    // તમારા JSON ફોર્મેટ મુજબ શોધો
+                    const student = data.find(s => 
+                        s.GR_No === grNumber && s["જન્મતારીખ"] === dob
                     );
                     
                     if (student) {
@@ -829,7 +826,7 @@
                 });
         });
         
-        // પરિણામ બતાવવાનું ફંક્શન
+        // પરિણામ બતાવવાનું ફંક્શન (તમારા JSON મુજબ)
         function displayResult(student) {
             // રિઝલ્ટ ડિસ્પ્લે સેક્શન બતાવો
             const resultDisplay = document.getElementById('resultDisplay');
@@ -839,46 +836,43 @@
             const resultContent = document.getElementById('resultContent');
             
             // વિષયો અને માર્ક્સની લીસ્ટ બનાવો
-            let marksList = '';
-            for (const [subject, marks] of Object.entries(student.marks)) {
-                marksList += `
-                    <tr>
-                        <td>${subject}</td>
-                        <td>${marks}/100</td>
-                    </tr>
-                `;
-            }
+            let marksList = `
+                <tr>
+                    <td>ગણિત</td>
+                    <td>${student["ગણિત"]}</td>
+                </tr>
+                <tr>
+                    <td>અંગ્રેજી</td>
+                    <td>${student["અંગ્રેજી"]}</td>
+                </tr>
+                <tr>
+                    <td>વિજ્ઞાન</td>
+                    <td>${student["વિજ્ઞાન"]}</td>
+                </tr>
+            `;
             
             resultContent.innerHTML = `
                 <div class="result-header">
                     <h2 class="result-title">વિદ્યાર્થી પરિણામ</h2>
-                    <p class="result-subtitle">${student.examType} ${student.examYear}</p>
+                    <p class="result-subtitle">વાર્ષિક પરીક્ષા 2024</p>
                 </div>
                 
                 <div class="student-info">
                     <div class="info-item">
                         <span class="info-label">વિદ્યાર્થીનું નામ:</span>
-                        <span class="info-value">${student.name}</span>
+                        <span class="info-value">${student["વિદ્યાર્થીનું_નામ"]}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">ગ્ર નંબર:</span>
-                        <span class="info-value">${student.grNumber}</span>
+                        <span class="info-value">${student.GR_No}</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">ધોરણ:</span>
-                        <span class="info-value">${student.standard} ${student.division}</span>
+                        <span class="info-label">વર્ગ:</span>
+                        <span class="info-value">${student["વર્ગ"]}</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">સીન નંબર:</span>
-                        <span class="info-value">${student.seatNumber}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">પરીક્ષા:</span>
-                        <span class="info-value">${student.examType}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">વર્ષ:</span>
-                        <span class="info-value">${student.examYear}</span>
+                        <span class="info-label">જન્મતારીખ:</span>
+                        <span class="info-value">${student["જન્મતારીખ"]}</span>
                     </div>
                 </div>
                 
@@ -897,28 +891,21 @@
                 
                 <div class="result-summary">
                     <div class="summary-box">
-                        <h4>કુલ માર્ક્સ</h4>
-                        <div class="value">${student.totalMarks}/500</div>
-                    </div>
-                    <div class="summary-box">
-                        <h4>ટકાવારી</h4>
-                        <div class="value">${student.percentage}%</div>
+                        <h4>કુલ ટકા</h4>
+                        <div class="value">${student["કુલ_ટકા"]}</div>
                     </div>
                     <div class="summary-box">
                         <h4>ગ્રેડ</h4>
-                        <div class="value">${student.grade}</div>
-                    </div>
-                    <div class="summary-box">
-                        <h4>રેન્ક</h4>
-                        <div class="value">${student.rank}</div>
+                        <div class="value">${student["ગ્રેડ"]}</div>
                     </div>
                 </div>
                 
                 <div class="announcement-box">
                     <h4 class="announcement-title"><i class="fas fa-bullhorn"></i> મહત્વની સૂચનાઓ:</h4>
                     <ul class="announcement-list">
-                      
                         <li>ઓરિજિનલ માર્કશીટ સ્કૂલ ઓફિસમાંથી મળશે.</li>
+                        <li>પરિણામમાં કોઈ સુધારણા હોય તો સંપર્ક કરો.</li>
+                        <li>આગામી તારીખ માટે સ્કૂલમાં જણાવવામાં આવશે.</li>
                     </ul>
                 </div>
             `;
