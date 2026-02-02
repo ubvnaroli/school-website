@@ -806,11 +806,15 @@
                     }
                     return response.json();
                 })
-                .then(data => {
-                    // તમારા JSON ફોર્મેટ મુજબ શોધો
-                    const student = data.find(s => 
-                        s.GR_No === grNumber && s["જન્મતારીખ"] === dob
+                .then(students => {
+                    console.log('ડેટા મળ્યો:', students); // ડીબગ માટે
+                    
+                    // Array માંથી વિદ્યાર્થી શોધો
+                    const student = students.find(s => 
+                        s.GR_No.toString() === grNumber && s["જન્મતારીખ"] === dob
                     );
+                    
+                    console.log('મળેલો વિદ્યાર્થી:', student); // ડીબગ માટે
                     
                     if (student) {
                         // પરિણામ બતાવો
@@ -836,20 +840,56 @@
             const resultContent = document.getElementById('resultContent');
             
             // વિષયો અને માર્ક્સની લીસ્ટ બનાવો
-            let marksList = `
-                <tr>
-                    <td>ગણિત</td>
-                    <td>${student["ગણિત"]}</td>
-                </tr>
-                <tr>
-                    <td>અંગ્રેજી</td>
-                    <td>${student["અંગ્રેજી"]}</td>
-                </tr>
-                <tr>
-                    <td>વિજ્ઞાન</td>
-                    <td>${student["વિજ્ઞાન"]}</td>
-                </tr>
-            `;
+            let marksList = '';
+            
+            // ગણિત
+            if (student["ગણિત"]) {
+                marksList += `
+                    <tr>
+                        <td>ગણિત</td>
+                        <td>${student["ગણિત"]}</td>
+                    </tr>
+                `;
+            }
+            
+            // અંગ્રેજી
+            if (student["અંગ્રેજી"]) {
+                marksList += `
+                    <tr>
+                        <td>અંગ્રેજી</td>
+                        <td>${student["અંગ્રેજી"]}</td>
+                    </tr>
+                `;
+            }
+            
+            // વિજ્ઞાન
+            if (student["વિજ્ઞાન"]) {
+                marksList += `
+                    <tr>
+                        <td>વિજ્ઞાન</td>
+                        <td>${student["વિજ્ઞાન"]}</td>
+                    </tr>
+                `;
+            }
+            
+            // વધારાના વિષયો (જો હોય તો)
+            if (student["સામાજિક_વિજ્ઞાન"]) {
+                marksList += `
+                    <tr>
+                        <td>સામાજિક વિજ્ઞાન</td>
+                        <td>${student["સામાજિક_વિજ્ઞાન"]}</td>
+                    </tr>
+                `;
+            }
+            
+            if (student["ગુજરાતી"]) {
+                marksList += `
+                    <tr>
+                        <td>ગુજરાતી</td>
+                        <td>${student["ગુજરાતી"]}</td>
+                    </tr>
+                `;
+            }
             
             resultContent.innerHTML = `
                 <div class="result-header">
@@ -860,19 +900,19 @@
                 <div class="student-info">
                     <div class="info-item">
                         <span class="info-label">વિદ્યાર્થીનું નામ:</span>
-                        <span class="info-value">${student["વિદ્યાર્થીનું_નામ"]}</span>
+                        <span class="info-value">${student["વિદ્યાર્થીનું_નામ"] || 'નામ નથી'}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">ગ્ર નંબર:</span>
-                        <span class="info-value">${student.GR_No}</span>
+                        <span class="info-value">${student.GR_No || 'નથી'}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">વર્ગ:</span>
-                        <span class="info-value">${student["વર્ગ"]}</span>
+                        <span class="info-value">${student["વર્ગ"] || 'નથી'}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">જન્મતારીખ:</span>
-                        <span class="info-value">${student["જન્મતારીખ"]}</span>
+                        <span class="info-value">${student["જન્મતારીખ"] || 'નથી'}</span>
                     </div>
                 </div>
                 
@@ -885,18 +925,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        ${marksList}
+                        ${marksList || '<tr><td colspan="2" style="text-align: center;">માર્ક્સ મળ્યાં નથી</td></tr>'}
                     </tbody>
                 </table>
                 
                 <div class="result-summary">
                     <div class="summary-box">
                         <h4>કુલ ટકા</h4>
-                        <div class="value">${student["કુલ_ટકા"]}</div>
+                        <div class="value">${student["કુલ_ટકા"] || 'નથી'}</div>
                     </div>
                     <div class="summary-box">
                         <h4>ગ્રેડ</h4>
-                        <div class="value">${student["ગ્રેડ"]}</div>
+                        <div class="value">${student["ગ્રેડ"] || 'નથી'}</div>
                     </div>
                 </div>
                 
@@ -940,6 +980,19 @@
             const today = new Date().toISOString().split('T')[0];
             document.getElementById('dob').value = today;
         });
+        
+        // ડીબગ: JSON ફાઈલ લોડ થાય છે કે નહીં તે તપાસો
+        fetch('students.json')
+            .then(response => {
+                console.log('JSON ફાઈલ સ્ટેટસ:', response.status);
+                return response.json();
+            })
+            .then(data => {
+                console.log('JSON ડેટા લોડ થયો:', data);
+            })
+            .catch(error => {
+                console.error('JSON લોડ થતી નથી:', error);
+            });
     </script>
 </body>
 </html>
