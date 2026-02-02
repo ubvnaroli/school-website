@@ -131,6 +131,83 @@
             box-shadow: 0 5px 15px rgba(26, 41, 128, 0.3);
         }
         
+        /* ફોટો ગેલેરી */
+        .gallery-section {
+            padding: 5rem 0;
+            background: #f0f4f8;
+        }
+        
+        .section-title {
+            text-align: center;
+            color: #1a2980;
+            margin-bottom: 3rem;
+            font-size: 2.5rem;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: #26d0ce;
+            margin: 10px auto;
+            border-radius: 2px;
+        }
+        
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 250px;
+        }
+        
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(26, 41, 128, 0.8));
+            color: white;
+            padding: 1.5rem;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+        
+        .gallery-overlay h4 {
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
         /* ફૂટર */
         footer {
             background: #1a2980;
@@ -171,6 +248,25 @@
             .feature-cards {
                 grid-template-columns: 1fr;
             }
+            
+            .gallery-container {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            nav a {
+                display: block;
+                margin: 0.5rem 0;
+            }
         }
     </style>
 </head>
@@ -178,7 +274,7 @@
     <!-- નેવિગેશન -->
     <nav>
         <a href="index.html">🏠 ઘર</a>
-        <a href="results.html">📊 પરિણામ જોવા</a>
+        <a href="result.html">📊 પરિણામ જોવા</a> <!-- result.html સાથે જોડાયેલ -->
         <a href="notices.html">📢 સૂચનાઓ</a>
         <a href="about.html">ℹ️ અમારા વિશે</a>
         <a href="contact.html">📞 સંપર્ક કરો</a>
@@ -200,7 +296,7 @@
             <div class="card">
                 <h3>📊 પરિણામ જોવા</h3>
                 <p>વિદ્યાર્થીઓ અને માતા-પિતા GR નંબર અને જન્મતારીખ નાખી શૈક્ષણિક પરિણામ ઑનલાઇન જોઈ શકે છે.</p>
-                <a href="results.html" class="btn">પરિણામ જુઓ</a>
+                <a href="result.html" class="btn">પરિણામ જુઓ</a> <!-- result.html સાથે જોડાયેલ -->
             </div>
             
             <!-- કાર્ડ 2: સૂચનાઓ -->
@@ -219,6 +315,82 @@
         </div>
     </div>
 
+    <!-- ફોટો ગેલેરી -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">શાળાની ગેલેરી</h2>
+            <p style="text-align: center; color: #666; max-width: 800px; margin: 0 auto 3rem; font-size: 1.1rem;">
+                અમારી શાળાની વિવિધ પ્રવૃત્તિઓ, સુવિધાઓ અને ઉત્સવોના ક્ષણો
+            </p>
+            
+            <div class="gallery-container">
+                <!-- ફોટો 1 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80" 
+                         alt="શાળાની ઇમારત">
+                    <div class="gallery-overlay">
+                        <h4>શાળા ઇમારત</h4>
+                        <p>આધુનિક શૈક્ષણિક વાતાવરણ</p>
+                    </div>
+                </div>
+                
+                <!-- ફોટો 2 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=600&q=80" 
+                         alt="વર્ગખંડ">
+                    <div class="gallery-overlay">
+                        <h4>વર્ગખંડ</h4>
+                        <p>આધુનિક શિક્ષણ સાધનો</p>
+                    </div>
+                </div>
+                
+                <!-- ફોટો 3 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=600&q=80" 
+                         alt="પ્રયોગશાળા">
+                    <div class="gallery-overlay">
+                        <h4>વિજ્ઞાન પ્રયોગશાળા</h4>
+                        <p>વ્યવહારિક શિક્ષણ</p>
+                    </div>
+                </div>
+                
+                <!-- ફોટો 4 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1546410531-bb4caa6b424d?auto=format&fit=crop&w=600&q=80" 
+                         alt="પુસ્તકાલય">
+                    <div class="gallery-overlay">
+                        <h4>પુસ્તકાલય</h4>
+                        <p>જ્ઞાનનો ભંડાર</p>
+                    </div>
+                </div>
+                
+                <!-- ફોટો 5 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1519861158645-7b61bc9ac471?auto=format&fit=crop&w=600&q=80" 
+                         alt="ખેલ મેદાન">
+                    <div class="gallery-overlay">
+                        <h4>ખેલ મેદાન</h4>
+                        <p>ક્રીકેટ અને ફૂટબોલ</p>
+                    </div>
+                </div>
+                
+                <!-- ફોટો 6 -->
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1492684223066-dd23140edf6d?auto=format&fit=crop&w=600&q=80" 
+                         alt="સાંસ્કૃતિક કાર્યક્રમ">
+                    <div class="gallery-overlay">
+                        <h4>સાંસ્કૃતિક કાર્યક્રમ</h4>
+                        <p>વાર્ષિક ઉત્સવ</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="gallery.html" class="btn">વધુ ફોટા જુઓ</a>
+            </div>
+        </div>
+    </section>
+
     <!-- ફૂટર -->
     <footer>
         <div class="container">
@@ -227,7 +399,7 @@
             
             <div class="footer-links">
                 <a href="index.html">ઘર</a> | 
-                <a href="results.html">પરિણામ</a> | 
+                <a href="result.html">પરિણામ</a> | <!-- result.html સાથે જોડાયેલ -->
                 <a href="notices.html">સૂચનાઓ</a> | 
                 <a href="about.html">અમારા વિશે</a> | 
                 <a href="contact.html">સંપર્ક</a>
