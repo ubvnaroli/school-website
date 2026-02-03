@@ -2,27 +2,20 @@
 <html lang="gu">
 <head>
 <meta charset="UTF-8">
-<title>School Result Portal</title>
+<title>Result Portal | UBV Naroli</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-
 <style>
 body{margin:0;font-family:Arial;background:#f4f6f8}
 header{background:#0b3c5d;color:#fff;padding:15px;text-align:center}
-nav{background:#183b5b;color:#fff;padding:10px;text-align:center}
-nav span{margin:0 15px;font-weight:bold}
-.container{max-width:1000px;margin:20px auto;background:#fff;padding:20px}
-.hidden{display:none}
+.container{max-width:900px;margin:20px auto;background:#fff;padding:20px}
 input,button{padding:8px;font-size:15px}
-button{background:#0b3c5d;color:#fff;border:none;border-radius:4px;cursor:pointer}
+button{background:#0b3c5d;color:#fff;border:none;border-radius:4px}
+.hidden{display:none}
 table{width:100%;border-collapse:collapse;margin-top:15px}
 th,td{border:1px solid #000;padding:6px;text-align:center}
-th{background:#eee}
 .pass{color:green;font-weight:bold}
 .fail{color:red;font-weight:bold}
-footer{text-align:center;padding:10px;font-size:13px;color:#555}
-@media print{
-  nav,footer,.noprint{display:none}
-}
+footer{text-align:center;font-size:13px;padding:10px;color:#555}
 </style>
 </head>
 
@@ -30,34 +23,23 @@ footer{text-align:center;padding:10px;font-size:13px;color:#555}
 
 <header>
   <h2>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા – નારોલી</h2>
-  <div>Result Management Portal</div>
+  <div>Result Portal</div>
 </header>
-
-<nav>
-  <span>Home</span>
-  <span>Result</span>
-  <span>Admin</span>
-</nav>
 
 <div class="container">
 
-<!-- LOGIN -->
-<div id="loginBox" class="noprint">
-  <h3>🔐 Admin Login</h3>
-  <input type="password" id="pwd" placeholder="Password">
-  <button onclick="login()">Login</button>
-  <div id="loginMsg" style="color:red"></div>
-</div>
-
-<!-- UPLOAD -->
-<div id="uploadBox" class="hidden noprint">
-  <h3>📂 Excel (CSV) Upload</h3>
-  <input type="file" id="file" accept=".csv">
-  <button onclick="loadCSV()">Load File</button>
+<!-- REGISTRATION -->
+<div id="regBox">
+  <h3>📋 વિદ્યાર્થી નોંધણી</h3>
+  <input id="rname" placeholder="વિદ્યાર્થીનું નામ"><br><br>
+  <input id="rvillage" placeholder="ગામ"><br><br>
+  <input id="rmobile" placeholder="મોબાઈલ નંબર"><br><br>
+  <button onclick="register()">Register</button>
+  <div id="regMsg" style="color:red"></div>
 </div>
 
 <!-- SEARCH -->
-<div id="searchBox" class="hidden noprint">
+<div id="searchBox" class="hidden">
   <h3>🔍 પરિણામ શોધો</h3>
   <input id="gr" placeholder="GR નંબર લખો">
   <button onclick="findResult()">Search</button>
@@ -97,38 +79,46 @@ footer{text-align:center;padding:10px;font-size:13px;color:#555}
 
 </div>
 
-<footer>
-  © School Result Portal
-</footer>
+<footer>© UBV Naroli School</footer>
 
 <script>
-const PASSWORD="12345";   // 🔑 change if needed
 let data=[];
 
-function login(){
-  if(document.getElementById("pwd").value===PASSWORD){
-    document.getElementById("loginBox").style.display="none";
-    document.getElementById("uploadBox").classList.remove("hidden");
-    document.getElementById("searchBox").classList.remove("hidden");
-  }else{
-    document.getElementById("loginMsg").innerText="Wrong Password";
-  }
+// already registered?
+if(localStorage.getItem("student_registered")){
+  document.getElementById("regBox").style.display="none";
+  document.getElementById("searchBox").classList.remove("hidden");
 }
 
-function loadCSV(){
-  let f=document.getElementById("file").files[0];
-  if(!f) return;
-  let r=new FileReader();
-  r.onload=e=>{
-    let rows=e.target.result.split("\n").map(x=>x.split(","));
-    data=rows;
-    alert("File Loaded Successfully");
+// registration
+function register(){
+  let n=rname.value.trim(),
+      v=rvillage.value.trim(),
+      m=rmobile.value.trim();
+
+  if(!n||!v||!m){
+    regMsg.innerText="બધી માહિતી ભરો";
+    return;
   }
-  r.readAsText(f);
+  if(m.length!==10 || isNaN(m)){
+    regMsg.innerText="માન્ય મોબાઈલ નંબર નાખો";
+    return;
+  }
+
+  localStorage.setItem("student_registered","yes");
+  localStorage.setItem("student_mobile",m);
+
+  regBox.style.display="none";
+  searchBox.classList.remove("hidden");
 }
+
+// load CSV automatically (offline uploaded by admin earlier)
+fetch("data/marks_2023_24.csv")
+.then(r=>r.text())
+.then(t=>data=t.split("\n").map(x=>x.split(",")));
 
 function findResult(){
-  let gr=document.getElementById("gr").value.trim();
+  let gr=grno.value=gr.value.trim();
   for(let i=1;i<data.length;i++){
     if(data[i][3]===gr){
       let r=data[i];
@@ -136,11 +126,11 @@ function findResult(){
       return;
     }
   }
-  document.getElementById("msg").innerText="Result not found";
+  msg.innerText="પરિણામ મળ્યું નથી";
 }
 
 function show(r){
-  document.getElementById("resultBox").classList.remove("hidden");
+  resultBox.classList.remove("hidden");
   set("name",r[4]); set("grno",r[3]);
   set("std",r[1]); set("div",r[2]);
   set("g",r[6]); set("h",r[7]); set("e",r[8]);
@@ -148,10 +138,11 @@ function show(r){
   set("m",r[11]); set("sc",r[12]);
   set("total",r[13]); set("per",r[14]);
   set("rank",r[16]);
-  document.getElementById("res").innerHTML=
-    r[15].includes("પાસ")?"<span class='pass'>પાસ</span>":"<span class='fail'>નાપાસ</span>";
+  res.innerHTML=r[15].includes("પાસ")
+    ?"<span class='pass'>પાસ</span>"
+    :"<span class='fail'>નાપાસ</span>";
 }
-function set(id,v){document.getElementById(id).innerText=v||""}
+function set(i,v){document.getElementById(i).innerText=v||""}
 </script>
 
 </body>
