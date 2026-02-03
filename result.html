@@ -2,188 +2,156 @@
 <html lang="gu">
 <head>
 <meta charset="UTF-8">
-<title>પરિણામ પત્ર | UBV Naroli</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>School Result Portal</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body{
-  font-family:"Noto Sans Gujarati",Arial;
-  background:#eef2f5;
-  margin:0
-}
-.search{
-  text-align:center;
-  padding:20px
-}
-input,button{
-  padding:10px;
-  font-size:16px
-}
-button{
-  background:#0b3c5d;
-  color:#fff;
-  border:none;
-  border-radius:4px
-}
-.sheet{
-  max-width:900px;
-  margin:20px auto;
-  background:#fff;
-  padding:25px;
-  border:2px solid #000
-}
-.school{
-  text-align:center;
-  font-size:20px;
-  font-weight:bold
-}
-.sub{
-  text-align:center;
-  font-size:16px;
-  margin-bottom:10px
-}
-.info{
-  display:flex;
-  justify-content:space-between;
-  margin:15px 0
-}
-table{
-  width:100%;
-  border-collapse:collapse;
-  font-size:14px
-}
-th,td{
-  border:1px solid #000;
-  padding:6px;
-  text-align:center
-}
-th{background:#f0f0f0}
+body{margin:0;font-family:Arial;background:#f4f6f8}
+header{background:#0b3c5d;color:#fff;padding:15px;text-align:center}
+nav{background:#183b5b;color:#fff;padding:10px;text-align:center}
+nav span{margin:0 15px;font-weight:bold}
+.container{max-width:1000px;margin:20px auto;background:#fff;padding:20px}
+.hidden{display:none}
+input,button{padding:8px;font-size:15px}
+button{background:#0b3c5d;color:#fff;border:none;border-radius:4px;cursor:pointer}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+th,td{border:1px solid #000;padding:6px;text-align:center}
+th{background:#eee}
 .pass{color:green;font-weight:bold}
 .fail{color:red;font-weight:bold}
-.footer{
-  font-size:13px;
-  margin-top:15px
-}
+footer{text-align:center;padding:10px;font-size:13px;color:#555}
 @media print{
-  .search,button{display:none}
+  nav,footer,.noprint{display:none}
 }
 </style>
 </head>
 
 <body>
 
-<div class="search">
+<header>
+  <h2>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા – નારોલી</h2>
+  <div>Result Management Portal</div>
+</header>
+
+<nav>
+  <span>Home</span>
+  <span>Result</span>
+  <span>Admin</span>
+</nav>
+
+<div class="container">
+
+<!-- LOGIN -->
+<div id="loginBox" class="noprint">
+  <h3>🔐 Admin Login</h3>
+  <input type="password" id="pwd" placeholder="Password">
+  <button onclick="login()">Login</button>
+  <div id="loginMsg" style="color:red"></div>
+</div>
+
+<!-- UPLOAD -->
+<div id="uploadBox" class="hidden noprint">
+  <h3>📂 Excel (CSV) Upload</h3>
+  <input type="file" id="file" accept=".csv">
+  <button onclick="loadCSV()">Load File</button>
+</div>
+
+<!-- SEARCH -->
+<div id="searchBox" class="hidden noprint">
+  <h3>🔍 પરિણામ શોધો</h3>
   <input id="gr" placeholder="GR નંબર લખો">
-  <button onclick="find()">પરિણામ જુઓ</button>
+  <button onclick="findResult()">Search</button>
   <div id="msg" style="color:red"></div>
 </div>
 
-<div id="out" class="sheet" style="display:none">
+<!-- RESULT -->
+<div id="resultBox" class="hidden">
+  <h3 style="text-align:center">પરિણામ પત્ર</h3>
 
-  <div class="school">ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા – નારોલી</div>
-  <div class="sub">વાર્ષિક પરીક્ષાનું પરિણામ પત્ર</div>
-
-  <div class="info">
-    <div>
-      વિદ્યાર્થીનું નામ : <b id="name"></b><br>
-      GR નંબર : <b id="grno"></b><br>
-      ધોરણ : <b id="std"></b> - <b id="div"></b>
-    </div>
-    <div>
-      પરીક્ષા નંબર : <b id="exam"></b><br>
-      જન્મ તારીખ : <b id="dob"></b>
-    </div>
-  </div>
+  <p>
+    નામ: <b id="name"></b><br>
+    GR: <b id="grno"></b><br>
+    ધોરણ: <b id="std"></b> - <b id="div"></b>
+  </p>
 
   <table>
-    <tr>
-      <th>વિષય</th>
-      <th>મેળવેલ ગુણ</th>
-      <th>ગ્રેડ</th>
-    </tr>
-    <tr><td>ગુજરાતી</td><td id="g"></td><td id="gg"></td></tr>
-    <tr><td>હિન્દી</td><td id="h"></td><td id="hg"></td></tr>
-    <tr><td>અંગ્રેજી</td><td id="e"></td><td id="eg"></td></tr>
-    <tr><td>સંસ્કૃત</td><td id="s"></td><td id="sg"></td></tr>
-    <tr><td>સામાજિક વિજ્ઞાન</td><td id="ss"></td><td id="ssg"></td></tr>
-    <tr><td>ગણિત</td><td id="m"></td><td id="mg"></td></tr>
-    <tr><td>વિજ્ઞાન</td><td id="sc"></td><td id="scg"></td></tr>
-    <tr>
-      <th>કુલ ગુણ</th>
-      <th id="total"></th>
-      <th></th>
-    </tr>
+    <tr><th>વિષય</th><th>ગુણ</th></tr>
+    <tr><td>ગુજરાતી</td><td id="g"></td></tr>
+    <tr><td>હિન્દી</td><td id="h"></td></tr>
+    <tr><td>અંગ્રેજી</td><td id="e"></td></tr>
+    <tr><td>સંસ્કૃત</td><td id="s"></td></tr>
+    <tr><td>સામાજિક વિજ્ઞાન</td><td id="ss"></td></tr>
+    <tr><td>ગણિત</td><td id="m"></td></tr>
+    <tr><td>વિજ્ઞાન</td><td id="sc"></td></tr>
+    <tr><th>કુલ ગુણ</th><th id="total"></th></tr>
   </table>
 
-  <div class="info">
-    <div>
-      પરિણામ : <span id="res"></span><br>
-      ટકાવારી : <b id="per"></b> %
-    </div>
-    <div>
-      રેન્ક : <b id="rank"></b>
-    </div>
-  </div>
-
-  <div class="footer">
-    નોંધ : આ કમ્પ્યુટર જનરેટેડ પરિણામ છે. સહી જરૂરી નથી.
-  </div>
+  <p>
+    ટકા: <b id="per"></b>%<br>
+    રેન્ક: <b id="rank"></b><br>
+    પરિણામ: <span id="res"></span>
+  </p>
 
   <button onclick="window.print()">PRINT</button>
 </div>
 
+</div>
+
+<footer>
+  © School Result Portal
+</footer>
+
 <script>
-const URL =
-"https://docs.google.com/spreadsheets/d/1ZTgo_1Li-l4FtSsyJvLJC6gs5rYpS7r2/export?format=csv&gid=0";
+const PASSWORD="12345";   // 🔑 change if needed
+let data=[];
 
-async function find(){
+function login(){
+  if(document.getElementById("pwd").value===PASSWORD){
+    document.getElementById("loginBox").style.display="none";
+    document.getElementById("uploadBox").classList.remove("hidden");
+    document.getElementById("searchBox").classList.remove("hidden");
+  }else{
+    document.getElementById("loginMsg").innerText="Wrong Password";
+  }
+}
+
+function loadCSV(){
+  let f=document.getElementById("file").files[0];
+  if(!f) return;
+  let r=new FileReader();
+  r.onload=e=>{
+    let rows=e.target.result.split("\n").map(x=>x.split(","));
+    data=rows;
+    alert("File Loaded Successfully");
+  }
+  r.readAsText(f);
+}
+
+function findResult(){
   let gr=document.getElementById("gr").value.trim();
-  if(!gr){msg("GR નંબર લખો");return;}
-
-  let csv=await fetch(URL).then(r=>r.text());
-  let rows=csv.split("\n").map(r=>r.split(","));
-
-  for(let i=1;i<rows.length;i++){
-    let r=rows[i];
-    if(r[3]===gr){
+  for(let i=1;i<data.length;i++){
+    if(data[i][3]===gr){
+      let r=data[i];
       show(r);
       return;
     }
   }
-  msg("પરિણામ મળ્યું નથી");
+  document.getElementById("msg").innerText="Result not found";
 }
 
 function show(r){
-  document.getElementById("out").style.display="block";
-  msg("");
-
-  set("exam",r[0]);
-  set("std",r[1]);
-  set("div",r[2]);
-  set("grno",r[3]);
-  set("name",r[4]);
-  set("dob",r[5]);
-
-  set("g",r[6]); set("gg",r[17]);
-  set("h",r[7]); set("hg",r[18]);
-  set("e",r[8]); set("eg",r[19]);
-  set("s",r[9]); set("sg",r[20]);
-  set("ss",r[10]); set("ssg",r[21]);
-  set("m",r[11]); set("mg",r[22]);
-  set("sc",r[12]); set("scg",r[23]);
-
-  set("total",r[13]);
-  set("per",r[14]);
-  set("rank",r[15]);
-
-  document.getElementById("res").innerHTML =
-    r[16].includes("પાસ")
-    ? "<span class='pass'>પાસ</span>"
-    : "<span class='fail'>નાપાસ</span>";
+  document.getElementById("resultBox").classList.remove("hidden");
+  set("name",r[4]); set("grno",r[3]);
+  set("std",r[1]); set("div",r[2]);
+  set("g",r[6]); set("h",r[7]); set("e",r[8]);
+  set("s",r[9]); set("ss",r[10]);
+  set("m",r[11]); set("sc",r[12]);
+  set("total",r[13]); set("per",r[14]);
+  set("rank",r[16]);
+  document.getElementById("res").innerHTML=
+    r[15].includes("પાસ")?"<span class='pass'>પાસ</span>":"<span class='fail'>નાપાસ</span>";
 }
-
 function set(id,v){document.getElementById(id).innerText=v||""}
-function msg(t){document.getElementById("msg").innerText=t}
 </script>
 
 </body>
