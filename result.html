@@ -2,27 +2,20 @@
 <html lang="gu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>પરિણામ પત્ર | UBV Naroli</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{font-family:"Noto Sans Gujarati",Arial;background:#f4f6f8;margin:0}
-.container{max-width:900px;margin:30px auto;background:#fff;padding:20px;border:1px solid #333}
-h1,h2,h3{text-align:center;margin:5px 0}
-.search{text-align:center;margin-bottom:20px}
+body{font-family:Arial;background:#f4f6f8;margin:0}
+.box{max-width:900px;margin:20px auto;background:#fff;padding:20px;border:1px solid #333}
+.search{text-align:center;margin-bottom:15px}
 input,button{padding:8px;font-size:16px}
-button{background:#1a2980;color:#fff;border:none;border-radius:4px;cursor:pointer}
-table{width:100%;border-collapse:collapse;margin-top:15px;font-size:14px}
+button{background:#1a2980;color:#fff;border:none;border-radius:4px}
+table{width:100%;border-collapse:collapse;margin-top:15px}
 th,td{border:1px solid #333;padding:6px;text-align:center}
-th{background:#eaeaea}
-.flex{display:flex;justify-content:space-between;margin-top:10px}
-.right{text-align:right}
 .pass{color:green;font-weight:bold}
 .fail{color:red;font-weight:bold}
-@media print{
-  .search,button{display:none}
-  body{background:#fff}
-}
+@media print{.search,button{display:none}}
 </style>
 </head>
 
@@ -31,29 +24,21 @@ th{background:#eaeaea}
 <div class="search">
   <input type="text" id="gr" placeholder="GR નંબર લખો">
   <button onclick="getResult()">પરિણામ જુઓ</button>
-  <div id="msg" style="color:red;margin-top:5px"></div>
+  <div id="msg" style="color:red"></div>
 </div>
 
-<div id="marksheet" class="container" style="display:none">
-  <h2>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા – નારોલી</h2>
-  <h3>પરિણામ પત્ર (MARKSHEET)</h3>
-
-  <div class="flex">
-    <div>
-      વિદ્યાર્થીનું નામ : <b id="name"></b><br>
-      ધોરણ : <b id="std"></b> &nbsp; વિભાગ : <b id="div"></b><br>
-      GR નંબર : <b id="grno"></b>
-    </div>
-    <div class="right">
-      પરીક્ષા નંબર : <b id="examno"></b><br>
-      જન્મ તારીખ : <b id="dob"></b>
-    </div>
-  </div>
+<div id="out" class="box" style="display:none">
+  <h3 style="text-align:center">પરિણામ પત્ર (MARKSHEET)</h3>
 
   <table>
-    <tr>
-      <th>વિષય</th><th>મેળવેલ ગુણ</th><th>ગ્રેડ</th>
-    </tr>
+    <tr><th>વિદ્યાર્થીનું નામ</th><td id="name"></td></tr>
+    <tr><th>GR નંબર</th><td id="grno"></td></tr>
+    <tr><th>ધોરણ</th><td id="std"></td></tr>
+    <tr><th>પરીક્ષા નંબર</th><td id="exam"></td></tr>
+  </table>
+
+  <table>
+    <tr><th>વિષય</th><th>મેળવેલ ગુણ</th><th>ગ્રેડ</th></tr>
     <tr><td>ગુજરાતી</td><td id="g"></td><td id="gg"></td></tr>
     <tr><td>હિન્દી</td><td id="h"></td><td id="hg"></td></tr>
     <tr><td>અંગ્રેજી</td><td id="e"></td><td id="eg"></td></tr>
@@ -61,81 +46,71 @@ th{background:#eaeaea}
     <tr><td>સામાજિક વિજ્ઞાન</td><td id="ss"></td><td id="ssg"></td></tr>
     <tr><td>ગણિત</td><td id="m"></td><td id="mg"></td></tr>
     <tr><td>વિજ્ઞાન</td><td id="sc"></td><td id="scg"></td></tr>
-    <tr>
-      <th>કુલ ગુણ</th>
-      <th id="total"></th>
-      <th></th>
-    </tr>
+    <tr><th>કુલ ગુણ</th><th id="total"></th><th></th></tr>
   </table>
 
-  <div class="flex" style="margin-top:15px">
-    <div>
-      પરિણામ : <span id="result"></span><br>
-      ટકાવારી : <b id="per"></b> %
-    </div>
-    <div class="right">
-      રેન્ક / પાસ નંબર : <b id="rank"></b>
-    </div>
-  </div>
-
-  <p style="margin-top:15px;font-size:13px">
-    નોંધ : આ કમ્પ્યુટર જનરેટેડ પરિણામ છે. સહી જરૂરી નથી.
+  <p>
+    પરિણામ : <span id="res"></span><br>
+    ટકા : <b id="per"></b><br>
+    રેન્ક : <b id="rank"></b>
   </p>
 
   <button onclick="window.print()">PRINT</button>
 </div>
 
 <script>
-const SHEET_URL =
-"https://docs.google.com/spreadsheets/d/1ZTgo_1Li-l4FtSsyJvLJC6gs5rYpS7r2/export?format=csv&gid=1023437449";
+const URL="https://docs.google.com/spreadsheets/d/1ZTgo_1Li-l4FtSsyJvLJC6gs5rYpS7r2/export?format=csv&gid=1023437449";
 
 async function getResult(){
   let gr=document.getElementById("gr").value.trim();
-  if(!gr){document.getElementById("msg").innerText="GR નંબર લખો";return;}
+  if(!gr){msg("GR નંબર નાખો");return;}
 
-  let csv=await fetch(SHEET_URL).then(r=>r.text());
+  let csv=await fetch(URL).then(r=>r.text());
   let rows=csv.split("\n").map(r=>r.split(","));
 
-  for(let i=1;i<rows.length;i++){
-    if(rows[i][2] && rows[i][2].trim()===gr){
-      let c=rows[i];
-
-      document.getElementById("examno").innerText=c[0];
-      document.getElementById("std").innerText=c[4];
-      document.getElementById("div").innerText="";
-      document.getElementById("grno").innerText=c[2];
-      document.getElementById("name").innerText=c[5]+" "+c[6];
-      document.getElementById("dob").innerText=c[9];
-
-      document.getElementById("g").innerText=c[3+9];
-      document.getElementById("h").innerText=c[3+10];
-      document.getElementById("e").innerText=c[3+11];
-      document.getElementById("s").innerText=c[3+12];
-      document.getElementById("ss").innerText=c[3+13];
-      document.getElementById("m").innerText=c[3+14];
-      document.getElementById("sc").innerText=c[3+15];
-
-      document.getElementById("gg").innerText=c[7+9];
-      document.getElementById("hg").innerText=c[7+10];
-      document.getElementById("eg").innerText=c[7+11];
-      document.getElementById("sg").innerText=c[7+12];
-      document.getElementById("ssg").innerText=c[7+13];
-      document.getElementById("mg").innerText=c[7+14];
-      document.getElementById("scg").innerText=c[7+15];
-
-      document.getElementById("total").innerText=c[21];
-      document.getElementById("per").innerText=c[24];
-      document.getElementById("rank").innerText=c[27];
-      document.getElementById("result").innerHTML =
-        c[22].includes("પાસ") ? "<span class='pass'>પાસ</span>" : "<span class='fail'>નાપાસ</span>";
-
-      document.getElementById("marksheet").style.display="block";
-      document.getElementById("msg").innerText="";
+  for(let i=0;i<rows.length;i++){
+    let row=rows[i].map(x=>x.trim());
+    if(row.includes(gr)){   // 🔥 GR column auto-detect
+      fill(row);
       return;
     }
   }
-  document.getElementById("msg").innerText="પરિણામ મળ્યું નથી";
+  msg("પરિણામ મળ્યું નથી");
 }
+
+function fill(c){
+  document.getElementById("out").style.display="block";
+  document.getElementById("msg").innerText="";
+
+  document.getElementById("grno").innerText=c[2];
+  document.getElementById("exam").innerText=c[0];
+  document.getElementById("std").innerText=c[4];
+  document.getElementById("name").innerText=c[5]+" "+c[6];
+
+  document.getElementById("g").innerText=c[12];
+  document.getElementById("h").innerText=c[13];
+  document.getElementById("e").innerText=c[14];
+  document.getElementById("s").innerText=c[15];
+  document.getElementById("ss").innerText=c[16];
+  document.getElementById("m").innerText=c[17];
+  document.getElementById("sc").innerText=c[18];
+
+  document.getElementById("gg").innerText=c[22];
+  document.getElementById("hg").innerText=c[23];
+  document.getElementById("eg").innerText=c[24];
+  document.getElementById("sg").innerText=c[25];
+  document.getElementById("ssg").innerText=c[26];
+  document.getElementById("mg").innerText=c[27];
+  document.getElementById("scg").innerText=c[28];
+
+  document.getElementById("total").innerText=c[30];
+  document.getElementById("per").innerText=c[31];
+  document.getElementById("rank").innerText=c[32];
+  document.getElementById("res").innerHTML =
+    c[33].includes("પાસ")?"<span class='pass'>પાસ</span>":"<span class='fail'>નાપાસ</span>";
+}
+
+function msg(t){document.getElementById("msg").innerText=t;}
 </script>
 
 </body>
