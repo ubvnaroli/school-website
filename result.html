@@ -4,11 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>પરિણામ - યુ.બી.વી.નારોલી</title>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap">
     <style>
-        /* અહીં CSS ઉમેરો કારણ કે style.css ન હોય તો */
+        /* તમારું CSS અહીં છે (ઉપર જેવું જ) */
         * {
             margin: 0;
             padding: 0;
@@ -29,7 +28,6 @@
             padding: 0 15px;
         }
         
-        /* નેવિગેશન સ્ટાઇલ */
         .navbar {
             background: linear-gradient(135deg, #1a2980, #26d0ce);
             padding: 18px 0;
@@ -89,13 +87,11 @@
             background: rgba(255, 255, 255, 0.2);
         }
         
-        /* મુખ્ય કન્ટેન્ટ */
         .main-content {
             margin-top: 100px;
             padding-bottom: 60px;
         }
         
-        /* પરિણામ શોધ વિભાગ */
         .search-section {
             background: linear-gradient(135deg, #1a2980, #26d0ce);
             color: white;
@@ -211,14 +207,6 @@
             box-shadow: 0 15px 35px rgba(255, 65, 108, 0.4);
         }
         
-        .search-btn:active {
-            transform: translateY(-2px);
-        }
-        
-        .search-btn i {
-            margin-right: 12px;
-        }
-        
         .message-box {
             margin-top: 25px;
             padding: 18px;
@@ -262,35 +250,6 @@
             font-size: 20px;
         }
         
-        .instructions-title i {
-            margin-right: 12px;
-            font-size: 22px;
-        }
-        
-        .instructions-list {
-            list-style-type: none;
-        }
-        
-        .instructions-item {
-            padding: 12px 0;
-            color: #555;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            border-bottom: 1px dashed #ddd;
-        }
-        
-        .instructions-item:last-child {
-            border-bottom: none;
-        }
-        
-        .instructions-item i {
-            color: #4CAF50;
-            margin-right: 12px;
-            font-size: 18px;
-        }
-        
-        /* પરિણામ પ્રદર્શન વિભાગ */
         .result-display-section {
             padding: 60px 0;
             background: #f8f9fa;
@@ -333,13 +292,6 @@
             z-index: 10;
         }
         
-        .close-btn:hover {
-            color: #ff416c;
-            background: #f0f0f0;
-            transform: rotate(90deg);
-        }
-        
-        /* પરિણામ ડિઝાઇન */
         .result-header {
             text-align: center;
             margin-bottom: 40px;
@@ -365,11 +317,6 @@
             font-size: 32px;
         }
         
-        .result-subtitle {
-            color: #666;
-            font-size: 18px;
-        }
-        
         .student-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -386,10 +333,6 @@
             justify-content: space-between;
             padding: 12px 0;
             border-bottom: 1px dashed #ccc;
-        }
-        
-        .info-item:last-child {
-            border-bottom: none;
         }
         
         .info-label {
@@ -437,15 +380,6 @@
             background: #f9f9f9;
         }
         
-        .marks-table tr:hover {
-            background: #f0f7ff;
-        }
-        
-        .marks-table td:last-child {
-            font-weight: 700;
-            color: #1a2980;
-        }
-        
         .result-summary {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -479,7 +413,6 @@
             font-weight: 700;
         }
         
-        /* જાહેરાત બોક્સ */
         .announcement-box {
             background: linear-gradient(135deg, #fff8e1, #fff3cd);
             border: 2px solid #ffd54f;
@@ -496,21 +429,6 @@
             font-size: 20px;
         }
         
-        .announcement-title i {
-            margin-right: 12px;
-        }
-        
-        .announcement-list {
-            color: #856404;
-            padding-left: 20px;
-        }
-        
-        .announcement-list li {
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        /* ફૂટર */
         .footer {
             background: linear-gradient(135deg, #1a2980, #26d0ce);
             color: white;
@@ -565,7 +483,94 @@
             color: rgba(255, 255, 255, 0.7);
         }
         
-        /* રેસ્પોન્સિવ ડિઝાઇન */
+        /* એડમિન લોગિન સ્ટાઇલ */
+        .login-section {
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
+            color: white;
+            padding: 100px 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .login-box {
+            background: white;
+            border-radius: 20px;
+            padding: 50px 40px;
+            max-width: 500px;
+            margin: 0 auto;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+        }
+        
+        .login-title {
+            color: #1a2980;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 32px;
+        }
+        
+        .admin-btn {
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(255, 65, 108, 0.3);
+        }
+        
+        .logout-btn {
+            background: linear-gradient(to right, #f44336, #d32f2f);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-nav {
+            background: #333;
+            padding: 15px 0;
+            color: white;
+        }
+        
+        .admin-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .admin-menu {
+            display: flex;
+            list-style: none;
+            gap: 20px;
+        }
+        
+        .admin-menu a {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 6px;
+            transition: background 0.3s ease;
+        }
+        
+        .admin-menu a:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
         @media (max-width: 768px) {
             .navbar {
                 padding: 15px 0;
@@ -573,10 +578,6 @@
             
             .nav-container {
                 flex-direction: column;
-            }
-            
-            .logo {
-                margin-bottom: 15px;
             }
             
             .nav-menu {
@@ -595,37 +596,11 @@
             .search-title {
                 font-size: 28px;
             }
-            
-            .search-subtitle {
-                font-size: 16px;
-            }
-            
-            .form-group {
-                min-width: 100%;
-            }
-            
-            .search-btn {
-                padding: 18px 40px;
-                font-size: 18px;
-                width: 100%;
-            }
-            
-            .result-card {
-                padding: 30px 20px;
-            }
-            
-            .result-title {
-                font-size: 26px;
-            }
-            
-            .summary-box .value {
-                font-size: 30px;
-            }
         }
     </style>
 </head>
 <body>
-    <!-- નેવિગેશન બાર -->
+    <!-- મુખ્ય પેજ -->
     <nav class="navbar">
         <div class="container nav-container">
             <div class="logo">
@@ -638,14 +613,12 @@
                 <li class="nav-item"><a href="notices.html" class="nav-link">સૂચનાઓ</a></li>
                 <li class="nav-item"><a href="result.html" class="nav-link active">પરિણામ</a></li>
                 <li class="nav-item"><a href="staff.html" class="nav-link">સ્ટાફ</a></li>
-                <li class="nav-item"><a href="admin-results.html" class="nav-link">એડમિન</a></li>
+                <li class="nav-item"><a href="admin-login.html" class="nav-link">એડમિન</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- મુખ્ય કન્ટેન્ટ -->
     <div class="main-content">
-        <!-- પરિણામ શોધ વિભાગ -->
         <section class="search-section">
             <div class="container">
                 <div class="search-box">
@@ -656,7 +629,7 @@
                         <div class="form-row">
                             <div class="form-group">
                                 <label for="grNumber" class="form-label">
-                                    <i class="fas fa-id-card"></i> જી.આર  નંબર (GR Number)
+                                    <i class="fas fa-id-card"></i> જી.આર  નંબર
                                 </label>
                                 <input type="text" id="grNumber" name="grNumber" class="form-input" 
                                        placeholder="ઉદાહરણ: 12345" required>
@@ -664,7 +637,7 @@
                             
                             <div class="form-group">
                                 <label for="dob" class="form-label">
-                                    <i class="fas fa-calendar-alt"></i> જન્મતારીખ (Date of Birth)
+                                    <i class="fas fa-calendar-alt"></i> જન્મતારીખ
                                 </label>
                                 <input type="date" id="dob" name="dob" class="form-input" required>
                             </div>
@@ -677,7 +650,6 @@
                     
                     <div id="searchMessage" class="message-box"></div>
                     
-                    <!-- સૂચનાઓ -->
                     <div class="instructions">
                         <h4 class="instructions-title">
                             <i class="fas fa-info-circle"></i> સૂચનાઓ:
@@ -692,86 +664,36 @@
                             <li class="instructions-item">
                                 <i class="fas fa-check-circle"></i> કોઈ તકનિકી સમસ્યા હોય તો સંપર્ક કરો
                             </li>
-                           
-                            </li>
                         </ul>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- પરિણામ પ્રદર્શન વિભાગ (પ્રથમથી છુપાયેલ) -->
         <section id="resultDisplay" class="result-display-section">
             <div class="container">
                 <div class="result-card">
                     <button id="closeResult" class="close-btn" title="બંધ કરો">&times;</button>
-                    <div id="resultContent">
-                        <!-- પરિણામ અહીં ડાયનેમિક લોડ થશે -->
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- પ્રયોગશાળા વિભાગ (તમારું હાલનું કન્ટેન્ટ) -->
-        <section class="laboratories">
-            <div class="container">
-                <h2 style="text-align: center; color: #1a2980; margin-bottom: 30px; font-size: 32px;">અમારી પ્રયોગશાળાઓ</h2>
-                
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin-top: 40px;">
-                    <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
-                        <div style="background: linear-gradient(135deg, #1a2980, #26d0ce); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                            <i class="fas fa-flask" style="font-size: 30px; color: white;"></i>
-                        </div>
-                        <h3 style="color: #1a2980; margin-bottom: 15px; font-size: 22px;">વિજ્ઞાન પ્રયોગશાળા</h3>
-                        <p style="color: #666; line-height: 1.7;">આધુનિક સાધનોથી સજ્જ વિજ્ઞાન પ્રયોગશાળામાં વિદ્યાર્થીઓ વ્યવહારિક જ્ઞાન પ્રાપ્ત કરે છે.</p>
-                    </div>
-                    
-                    <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
-                        <div style="background: linear-gradient(135deg, #ff416c, #ff4b2b); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                            <i class="fas fa-desktop" style="font-size: 30px; color: white;"></i>
-                        </div>
-                        <h3 style="color: #1a2980; margin-bottom: 15px; font-size: 22px;">કમ્પ્યુટર પ્રયોગશાળા</h3>
-                        <p style="color: #666; line-height: 1.7;">ટેકનોલોજીની દુનિયાથી જોડાવા માટે આધુનિક કમ્પ્યુટર પ્રયોગશાળા.</p>
-                    </div>
-                    
-                    <div style="background: white; border-radius: 15px; padding: 30px; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
-                        <div style="background: linear-gradient(135deg, #4CAF50, #8BC34A); width: 70px; height: 70px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 20px;">
-                            <i class="fas fa-book" style="font-size: 30px; color: white;"></i>
-                        </div>
-                        <h3 style="color: #1a2980; margin-bottom: 15px; font-size: 22px;">પુસ્તકાલય</h3>
-                        <p style="color: #666; line-height: 1.7;">જ્ઞાનનો ભંડાર - વિવિધ વિષયોનાં પુસ્તકો, સામયિકો અને સંદર્ભજી.આર ંથો.</p>
-                    </div>
+                    <div id="resultContent"></div>
                 </div>
             </div>
         </section>
     </div>
 
-    <!-- ફૂટર -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h3 class="footer-title">યુ.બી.વી.નારોલી</h3>
-                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 20px;">શિક્ષણ એ સમાજનો આધાર સ્તંભ છે. અમારું ધ્યેય ઉત્તમ શિક્ષણ પૂરું પાડવાનું છે.</p>
-                </div>
-                
-                <div class="footer-section">
-                    <h3 class="footer-title">ઝડપી લિંક્સ</h3>
-                    <ul class="footer-links">
-                        <li><a href="index.html">હોમ પેજ</a></li>
-                        <li><a href="about.html">અમારા વિશે</a></li>
-                        <li><a href="notices.html">સૂચનાઓ</a></li>
-                        <li><a href="result.html">પરિણામ</a></li>
-                        <li><a href="staff.html">શિક્ષકો</a></li>
-                    </ul>
+                    <p style="color: rgba(255,255,255,0.8); margin-bottom: 20px;">શિક્ષણ એ સમાજનો આધાર સ્તંભ છે.</p>
                 </div>
                 
                 <div class="footer-section">
                     <h3 class="footer-title">સંપર્ક કરો</h3>
                     <ul class="footer-links">
-                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> નારોલી તા.થરાદ જિ. વાવ થરાદ </li>
-                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +91 ૬૩૫૩૬૪૪૧૬૪ </li>
-                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> ubvnaroli@yahoo.com </li>
+                        <li><i class="fas fa-map-marker-alt" style="margin-right: 10px;"></i> નારોલી, તા.થરાદ</li>
+                        <li><i class="fas fa-phone" style="margin-right: 10px;"></i> +91 ૬૩૫૩૬૪૪૧૬૪</li>
+                        <li><i class="fas fa-envelope" style="margin-right: 10px;"></i> ubvnaroli@yahoo.com</li>
                     </ul>
                 </div>
             </div>
@@ -782,103 +704,130 @@
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script>
-        // ફોર્મ સબમિશન હેન્ડલર
-        document.getElementById('resultSearchForm').addEventListener('submit', function(event) {
-            event.preventDefault();
+        // તમારું Google Sheets CSV URL અહીં લગાવો
+        const SHEET_URL = 'તમારી_Google_Sheets_CSV_URL_અહીં_લગાવો';
+        
+        let studentsData = [];
+        
+        // પેજ લોડ થાય ત્યારે ડેટા લોડ કરો
+        window.addEventListener('load', function() {
+            loadStudentsData();
+            const today = new Date().toISOString().split('T')[0];
+            document.getElementById('dob').value = today;
+        });
+        
+        // CSV ડેટા લોડ કરવાનું ફંક્શન
+        async function loadStudentsData() {
+            try {
+                const response = await fetch(SHEET_URL);
+                const csvText = await response.text();
+                studentsData = parseCSV(csvText);
+                console.log('ડેટા લોડ થયો:', studentsData);
+            } catch (error) {
+                console.error('ડેટા લોડ કરવામાં ત્રુટી:', error);
+                showMessage('ડેટા લોડ કરવામાં ત્રુટી', 'error');
+            }
+        }
+        
+        // CSV પાર્સ કરવાનું ફંક્શન
+        function parseCSV(csvText) {
+            const lines = csvText.split('\n');
+            const headers = lines[0].split(',').map(h => h.trim());
+            const data = [];
+            
+            for (let i = 1; i < lines.length; i++) {
+                if (!lines[i].trim()) continue;
+                
+                const values = lines[i].split(',').map(v => v.trim());
+                const obj = {};
+                
+                for (let j = 0; j < headers.length; j++) {
+                    if (values[j] !== undefined) {
+                        obj[headers[j]] = values[j];
+                    }
+                }
+                
+                data.push(obj);
+            }
+            
+            return data;
+        }
+        
+        // ફોર્મ સબમિશન
+        document.getElementById('resultSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
             const grNumber = document.getElementById('grNumber').value.trim();
             const dob = document.getElementById('dob').value;
-            const messageBox = document.getElementById('searchMessage');
             
-            // વેલિડેશન
             if (!grNumber || !dob) {
                 showMessage('કૃપા કરીને બંને ફીલ્ડ ભરો', 'error');
                 return;
             }
             
-            // શોધ શરૂ
-            showMessage('પરિણામ શોધાઈ રહ્યું છે...', 'success');
+            if (studentsData.length === 0) {
+                showMessage('ડેટા લોડ થઈ રહ્યો છે, કૃપા કરીને થોડી રાહ જુઓ', 'error');
+                return;
+            }
             
-            // students.json માંથી ડેટા ફેચ કરો
-            fetch('students.json')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('ડેટા લોડ કરવામાં સમસ્યા');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // વિદ્યાર્થી શોધો
-                    const student = data.students.find(s => 
-                        s.grNumber === grNumber && s.dob === dob
-                    );
-                    
-                    if (student) {
-                        // પરિણામ બતાવો
-                        displayResult(student);
-                        showMessage('પરિણામ મળ્યું છે!', 'success');
-                    } else {
-                        showMessage('તમારું પરિણામ મળ્યું નથી. કૃપા કરીને ફરી તપાસો.', 'error');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    showMessage('તકનિકી સમસ્યા: ' + error.message, 'error');
-                });
+            // વિદ્યાર્થી શોધો
+            const student = studentsData.find(s => {
+                const studentGR = (s.GR_No || s['જી.આર નંબર'] || s['GR Number'] || '').toString().trim();
+                const studentDOB = (s['જન્મતારીખ'] || s.DOB || s['Date of Birth'] || '').toString().trim();
+                
+                return studentGR === grNumber && studentDOB === dob;
+            });
+            
+            if (student) {
+                displayResult(student);
+                showMessage('પરિણામ મળ્યું છે!', 'success');
+            } else {
+                showMessage('તમારું પરિણામ મળ્યું નથી', 'error');
+            }
         });
         
-        // પરિણામ બતાવવાનું ફંક્શન
+        // પરિણામ બતાવો
         function displayResult(student) {
-            // રિઝલ્ટ ડિસ્પ્લે સેક્શન બતાવો
             const resultDisplay = document.getElementById('resultDisplay');
-            resultDisplay.style.display = 'block';
-            
-            // પરિણામ કન્ટેન્ટ બનાવો
             const resultContent = document.getElementById('resultContent');
             
-            // વિષયો અને માર્ક્સની લીસ્ટ બનાવો
-            let marksList = '';
-            for (const [subject, marks] of Object.entries(student.marks)) {
-                marksList += `
-                    <tr>
-                        <td>${subject}</td>
-                        <td>${marks}/100</td>
-                    </tr>
-                `;
-            }
+            // વિષયોની યાદી બનાવો
+            let marksHTML = '';
+            const subjectKeys = Object.keys(student).filter(key => 
+                !['GR_No', 'જી.આર નંબર', 'GR Number', 'જન્મતારીખ', 'DOB', 'Date of Birth', 
+                  'વિદ્યાર્થીનું_નામ', 'નામ', 'Name', 'વર્ગ', 'Class', 'Standard',
+                  'કુલ_ટકા', 'કુલ ટકા', 'Total Percentage', 'ગ્રેડ', 'Grade'].includes(key)
+            );
+            
+            subjectKeys.forEach(key => {
+                if (student[key]) {
+                    marksHTML += `<tr><td>${key}</td><td>${student[key]}</td></tr>`;
+                }
+            });
             
             resultContent.innerHTML = `
                 <div class="result-header">
                     <h2 class="result-title">વિદ્યાર્થી પરિણામ</h2>
-                    <p class="result-subtitle">${student.examType} ${student.examYear}</p>
+                    <p class="result-subtitle">વાર્ષિક પરીક્ષા 2024</p>
                 </div>
                 
                 <div class="student-info">
                     <div class="info-item">
                         <span class="info-label">વિદ્યાર્થીનું નામ:</span>
-                        <span class="info-value">${student.name}</span>
+                        <span class="info-value">${student['વિદ્યાર્થીનું_નામ'] || student['નામ'] || student['Name'] || ''}</span>
                     </div>
                     <div class="info-item">
                         <span class="info-label">ગ્ર નંબર:</span>
-                        <span class="info-value">${student.grNumber}</span>
+                        <span class="info-value">${student.GR_No || student['જી.આર નંબર'] || student['GR Number'] || ''}</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">ધોરણ:</span>
-                        <span class="info-value">${student.standard} ${student.division}</span>
+                        <span class="info-label">વર્ગ:</span>
+                        <span class="info-value">${student['વર્ગ'] || student.Class || student.Standard || ''}</span>
                     </div>
                     <div class="info-item">
-                        <span class="info-label">સીન નંબર:</span>
-                        <span class="info-value">${student.seatNumber}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">પરીક્ષા:</span>
-                        <span class="info-value">${student.examType}</span>
-                    </div>
-                    <div class="info-item">
-                        <span class="info-label">વર્ષ:</span>
-                        <span class="info-value">${student.examYear}</span>
+                        <span class="info-label">જન્મતારીખ:</span>
+                        <span class="info-value">${student['જન્મતારીખ'] || student.DOB || student['Date of Birth'] || ''}</span>
                     </div>
                 </div>
                 
@@ -890,68 +839,40 @@
                             <th>માર્ક્સ</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        ${marksList}
-                    </tbody>
+                    <tbody>${marksHTML}</tbody>
                 </table>
                 
                 <div class="result-summary">
                     <div class="summary-box">
-                        <h4>કુલ માર્ક્સ</h4>
-                        <div class="value">${student.totalMarks}/500</div>
-                    </div>
-                    <div class="summary-box">
-                        <h4>ટકાવારી</h4>
-                        <div class="value">${student.percentage}%</div>
+                        <h4>કુલ ટકા</h4>
+                        <div class="value">${student['કુલ_ટકા'] || student['કુલ ટકા'] || student['Total Percentage'] || ''}</div>
                     </div>
                     <div class="summary-box">
                         <h4>ગ્રેડ</h4>
-                        <div class="value">${student.grade}</div>
+                        <div class="value">${student['ગ્રેડ'] || student.Grade || ''}</div>
                     </div>
-                    <div class="summary-box">
-                        <h4>રેન્ક</h4>
-                        <div class="value">${student.rank}</div>
-                    </div>
-                </div>
-                
-                <div class="announcement-box">
-                    <h4 class="announcement-title"><i class="fas fa-bullhorn"></i> મહત્વની સૂચનાઓ:</h4>
-                    <ul class="announcement-list">
-                      
-                        <li>ઓરિજિનલ માર્કશીટ સ્કૂલ ઓફિસમાંથી મળશે.</li>
-                    </ul>
                 </div>
             `;
             
-            // પેજ ટોપ પર સ્ક્રોલ કરો
-            window.scrollTo({
-                top: resultDisplay.offsetTop - 100,
-                behavior: 'smooth'
-            });
+            resultDisplay.style.display = 'block';
+            window.scrollTo({ top: resultDisplay.offsetTop - 100, behavior: 'smooth' });
         }
         
-        // મેસેજ બતાવવાનું ફંક્શન
+        // સંદેશ બતાવો
         function showMessage(message, type) {
             const messageBox = document.getElementById('searchMessage');
             messageBox.textContent = message;
             messageBox.className = `message-box ${type}`;
             messageBox.style.display = 'block';
             
-            // 5 સેકન્ડ પછી મેસેજ હટાવો
             setTimeout(() => {
                 messageBox.style.display = 'none';
             }, 5000);
         }
         
-        // રિઝલ્ટ બંધ કરવાનું બટન
+        // બંધ કરો બટન
         document.getElementById('closeResult').addEventListener('click', function() {
             document.getElementById('resultDisplay').style.display = 'none';
-        });
-        
-        // પેજ લોડ થાય ત્યારે જન્મતારીખના ઇનપુટમાં આજની તારીખ સેટ કરો
-        window.addEventListener('load', function() {
-            const today = new Date().toISOString().split('T')[0];
-            document.getElementById('dob').value = today;
         });
     </script>
 </body>
