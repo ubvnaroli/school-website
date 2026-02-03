@@ -1,450 +1,203 @@
-<!DOCTYPE html>
-<html lang="gu">
-<head>
-    <meta charset="UTF-8">
-    <title>પરિણામ એડમિન પેનલ</title>
-    <style>
-        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
-        .container { max-width: 1000px; margin: auto; background: white; padding: 30px; border-radius: 10px; box-shadow: 0 0 20px rgba(0,0,0,0.1); }
-        h2 { color: #2c3e50; text-align: center; margin-bottom: 30px; }
-        .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
-        .tab { padding: 10px 20px; background: #ddd; border: none; border-radius: 5px; cursor: pointer; }
-        .tab.active { background: #3498db; color: white; }
-        .form-section { display: none; }
-        .form-section.active { display: block; }
-        .form-group { margin-bottom: 15px; }
-        label { display: block; margin-bottom: 5px; font-weight: bold; }
-        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; }
-        .row { display: flex; gap: 15px; }
-        .row > div { flex: 1; }
-        .subject-row { display: flex; gap: 10px; align-items: center; margin-bottom: 10px; padding: 10px; background: #f9f9f9; border-radius: 5px; }
-        .btn { background: #2ecc71; color: white; padding: 12px 25px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
-        .btn-print { background: #3498db; }
-        .btn-delete { background: #e74c3c; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ddd; padding: 10px; text-align: center; }
-        th { background: #34495e; color: white; }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h2>📊 પરિણામ એડમિન પેનલ</h2>
-        
-        <!-- Tabs -->
-        <div class="tabs">
-            <button class="tab active" onclick="showTab('single')">એક વિદ્યાર્થી</button>
-            <button class="tab" onclick="showTab('bulk')">બલ્ક અપલોડ</button>
-            <button class="tab" onclick="showTab('view')">જોવા/એડિટ</button>
-        </div>
-        
-        <!-- Single Student Form -->
-        <div id="single" class="form-section active">
-            <h3>એક વિદ્યાર્થીનું પરિણામ એન્ટર કરો</h3>
-            <form id="singleForm">
-                <div class="row">
-                    <div class="form-group">
-                        <label>GR નંબર *</label>
-                        <input type="text" id="grNumber" required placeholder="GR2024001">
-                    </div>
-                    <div class="form-group">
-                        <label>વિદ્યાર્થીનું નામ *</label>
-                        <input type="text" id="studentName" required placeholder="રાજ પટેલ">
-                    </div>
-                </div>
-                
-                <div class="row">
-                    <div class="form-group">
-                        <label>વર્ગ *</label>
-                        <select id="studentClass" required>
-                            <option value="">પસંદ કરો</option>
-                            <option value="9">ક્લાસ 9</option>
-                            <option value="10">ક્લાસ 10</option>
-                            <option value="11">ક્લાસ 11</option>
-                            <option value="12">ક્લાસ 12</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>રોલ નંબર *</label>
-                        <input type="number" id="rollNo" required>
-                    </div>
-                    <div class="form-group">
-                        <label>જન્મતારીખ *</label>
-                        <input type="date" id="dob" required>
-                    </div>
-                </div>
-                
-                <div class="form-group">
-                    <label>પરીક્ષા પસંદ કરો *</label>
-                    <select id="examType" required>
-                        <option value="unit1">યુનિટ ટેસ્ટ 1</option>
-                        <option value="unit2">યુનિટ ટેસ્ટ 2 (વાર્ષિક)</option>
-                    </select>
-                </div>
-                
-                <!-- Subjects -->
-                <h4>વિષયવાર માર્ક્સ</h4>
-                <div id="subjectsContainer">
-                    <!-- Subjects will be added dynamically -->
-                </div>
-                
-                <button type="button" class="btn" onclick="addSubject()">+ વિષય ઉમેરો</button>
-                
-                <div style="margin-top: 30px;">
-                    <button type="submit" class="btn">💾 સેવ કરો</button>
-                    <button type="button" class="btn btn-print" onclick="printForm()">🖨️ પ્રિન્ટ</button>
-                </div>
-            </form>
-        </div>
-        
-        <!-- Bulk Upload -->
-        <div id="bulk" class="form-section">
-            <h3>CSV ફાઇલથી બલ્ક અપલોડ</h3>
-            <div class="form-group">
-                <label>CSV ફાઇલ સિલેક્ટ કરો</label>
-                <input type="file" id="csvFile" accept=".csv">
-                <p style="font-size: 12px; color: #666;">CSV ફોર્મેટ: GR_Number,Name,Class,Roll,DOB,Gujarati,English,Maths,...</p>
-            </div>
-            
-            <div class="form-group">
-                <label>અથવા Excel ડેટા કૉપી-પેસ્ટ કરો</label>
-                <textarea id="excelData" rows="10" placeholder="અહીં Excel ડેટા પેસ્ટ કરો..."></textarea>
-            </div>
-            
-            <button class="btn" onclick="uploadBulk()">📤 અપલોડ કરો</button>
-            
-            <div id="previewTable" style="margin-top: 20px;"></div>
-        </div>
-        
-        <!-- View/Edit Results -->
-        <div id="view" class="form-section">
-            <h3>સેવ થયેલ પરિણામો</h3>
-            
-            <div class="row">
-                <div class="form-group">
-                    <label>વર્ગ ફિલ્ટર કરો</label>
-                    <select id="filterClass" onchange="filterResults()">
-                        <option value="all">બધા વર્ગ</option>
-                        <option value="9">ક્લાસ 9</option>
-                        <option value="10">ક્લાસ 10</option>
-                        <option value="11">ક્લાસ 11</option>
-                        <option value="12">ક્લાસ 12</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>પરીક્ષા ફિલ્ટર કરો</label>
-                    <select id="filterExam" onchange="filterResults()">
-                        <option value="all">બધી પરીક્ષા</option>
-                        <option value="unit1">યુનિટ 1</option>
-                        <option value="unit2">યુનિટ 2</option>
-                    </select>
-                </div>
-            </div>
-            
-            <div id="resultsTable"></div>
-        </div>
+<!-- Excel અપલોડ સેક્શન -->
+<div class="upload-section">
+    <h3>📊 Excel ફાઇલથી પરિણામ અપલોડ કરો</h3>
+    
+    <div style="background:#f5f5f5; padding:15px; border-radius:5px; margin:10px 0;">
+        <h4>Excel ફાઇલ ફોર્મેટ:</h4>
+        <ol>
+            <li>કૉલમ: SeatNo, Name, Gujarati, Maths, Science, English, Sanskrit</li>
+            <li>વૈકલ્પિક: Total, Percentage, Grade (ન હોય તો ઓટો ગણાશે)</li>
+            <li>ફાઇલ ફોર્મેટ: .xlsx અથવા .xls</li>
+        </ol>
+        <a href="results_template.xlsx" download>📥 ટેમ્પલેટ ડાઉનલોડ કરો</a>
     </div>
+    
+    <input type="file" id="excelUpload" accept=".xlsx,.xls">
+    <button onclick="uploadExcel()" style="background:#4CAF50; color:white; padding:10px 20px; border:none; border-radius:5px; cursor:pointer;">
+        અપલોડ અને કન્વર્ટ કરો
+    </button>
+    
+    <div id="uploadProgress" style="margin-top:10px;"></div>
+    
+    <div id="dataPreview" style="margin-top:20px;"></div>
+</div>
 
-    <script>
-        // Initialize subjects
-        let subjects = [
-            { name: 'ગુજરાતી', maxMarks: 100 },
-            { name: 'અંગ્રેજી', maxMarks: 100 },
-            { name: 'ગણિત', maxMarks: 100 },
-            { name: 'વિજ્ઞાન', maxMarks: 100 },
-            { name: 'સામાજિક વિજ્ઞાન', maxMarks: 100 }
-        ];
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+async function uploadExcel() {
+    const fileInput = document.getElementById('excelUpload');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        alert("કૃપા કરી Excel ફાઇલ પસંદ કરો");
+        return;
+    }
+    
+    const progress = document.getElementById('uploadProgress');
+    progress.innerHTML = '<p>ફાઇલ પ્રોસેસ કરી રહ્યા છીએ... ⏳</p>';
+    
+    try {
+        // FileReader વાપરીને Excel વાંચો
+        const reader = new FileReader();
         
-        // Render subjects
-        function renderSubjects() {
-            const container = document.getElementById('subjectsContainer');
-            container.innerHTML = '';
+        reader.onload = function(e) {
+            const data = new Uint8Array(e.target.result);
+            const workbook = XLSX.read(data, {type: 'array'});
             
-            subjects.forEach((subject, index) => {
-                const div = document.createElement('div');
-                div.className = 'subject-row';
-                div.innerHTML = `
-                    <input type="text" value="${subject.name}" style="flex: 2;" onchange="updateSubject(${index}, 'name', this.value)">
-                    <input type="number" value="${subject.maxMarks}" style="flex: 1;" placeholder="મહત્તમ" onchange="updateSubject(${index}, 'maxMarks', this.value)">
-                    <input type="number" style="flex: 1;" placeholder="પ્રાપ્ત" id="marks_${index}">
-                    <button type="button" onclick="removeSubject(${index})" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 3px;">×</button>
-                `;
-                container.appendChild(div);
-            });
-        }
+            // પ્રથમ શીટ
+            const sheetName = workbook.SheetNames[0];
+            const worksheet = workbook.Sheets[sheetName];
+            
+            // JSON માં કન્વર્ટ
+            const excelJSON = XLSX.utils.sheet_to_json(worksheet);
+            
+            // ડેટા પ્રોસેસ
+            const processedData = processExcelData(excelJSON);
+            
+            // પૂર્વાવલોકન દર્શાવો
+            showDataPreview(processedData);
+            
+            // GitHub પર સેવ કરવાનો વિકલ્પ
+            showSaveOptions(processedData);
+            
+            progress.innerHTML = '<p style="color:green;">✅ ફાઇલ સફળતાપૂર્વક પ્રોસેસ થઈ!</p>';
+        };
         
-        // Add new subject
-        function addSubject() {
-            subjects.push({ name: 'નવો વિષય', maxMarks: 100 });
-            renderSubjects();
-        }
+        reader.onerror = function() {
+            progress.innerHTML = '<p style="color:red;">❌ ફાઇલ વાંચવામાં ભૂલ આવી</p>';
+        };
         
-        // Update subject
-        function updateSubject(index, field, value) {
-            subjects[index][field] = value;
-        }
+        reader.readAsArrayBuffer(file);
         
-        // Remove subject
-        function removeSubject(index) {
-            if (subjects.length > 1) {
-                subjects.splice(index, 1);
-                renderSubjects();
-            }
-        }
+    } catch (error) {
+        progress.innerHTML = `<p style="color:red;">❌ ભૂલ: ${error.message}</p>`;
+    }
+}
+
+function processExcelData(data) {
+    return data.map(row => {
+        // જરૂરી ફીલ્ડઝ
+        const seatNo = row.SeatNo || row['સીટ નંબર'] || '';
+        const name = row.Name || row['નામ'] || '';
         
-        // Tab switching
-        function showTab(tabName) {
-            // Update tabs
-            document.querySelectorAll('.tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            event.target.classList.add('active');
-            
-            // Update sections
-            document.querySelectorAll('.form-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            document.getElementById(tabName).classList.add('active');
-        }
+        // વિષયોના માર્ક્સ
+        const gujarati = parseInt(row.Gujarati || row['ગુજરાતી'] || 0);
+        const maths = parseInt(row.Maths || row['ગણિત'] || 0);
+        const science = parseInt(row.Science || row['વિજ્ઞાન'] || 0);
+        const english = parseInt(row.English || row['અંગ્રેજી'] || 0);
+        const sanskrit = parseInt(row.Sanskrit || row['સંસ્કૃત'] || 0);
         
-        // Save single student result
-        document.getElementById('singleForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Collect data
-            const result = {
-                grNumber: document.getElementById('grNumber').value,
-                name: document.getElementById('studentName').value,
-                class: document.getElementById('studentClass').value,
-                rollNo: document.getElementById('rollNo').value,
-                dob: document.getElementById('dob').value,
-                examType: document.getElementById('examType').value,
-                subjects: [],
-                total: 0,
-                maxTotal: 0
-            };
-            
-            // Collect marks
-            subjects.forEach((subject, index) => {
-                const marks = parseFloat(document.getElementById(`marks_${index}`).value) || 0;
-                result.subjects.push({
-                    name: subject.name,
-                    maxMarks: subject.maxMarks,
-                    obtained: marks
-                });
-                result.total += marks;
-                result.maxTotal += subject.maxMarks;
-            });
-            
-            // Calculate percentage and grade
-            result.percentage = ((result.total / result.maxTotal) * 100).toFixed(2);
-            result.grade = calculateGrade(result.percentage);
-            
-            // Save to localStorage (or send to server)
-            saveResult(result);
-            
-            alert('પરિણામ સેવ થયું!');
-            this.reset();
-            renderSubjects();
-        });
+        // ગણતરીઓ
+        const total = gujarati + maths + science + english + sanskrit;
+        const percentage = (total / 5).toFixed(2);
+        const grade = calculateGrade(percentage);
         
-        // Calculate grade
-        function calculateGrade(percentage) {
-            if (percentage >= 90) return 'A+';
-            if (percentage >= 80) return 'A';
-            if (percentage >= 70) return 'B+';
-            if (percentage >= 60) return 'B';
-            if (percentage >= 50) return 'C';
-            if (percentage >= 40) return 'D';
-            return 'F';
-        }
-        
-        // Save result to localStorage
-        function saveResult(result) {
-            let allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
+        return {
+            seatNo: seatNo.toString(),
+            name: name,
+            gujarati: gujarati,
+            maths: maths,
+            science: science,
+            english: english,
+            sanskrit: sanskrit,
+            total: total,
+            percentage: parseFloat(percentage),
+            grade: grade
+        };
+    });
+}
+
+function calculateGrade(percentage) {
+    const perc = parseFloat(percentage);
+    if (perc >= 90) return 'A1';
+    if (perc >= 80) return 'A2';
+    if (perc >= 70) return 'B1';
+    if (perc >= 60) return 'B2';
+    if (perc >= 50) return 'C1';
+    if (perc >= 40) return 'C2';
+    if (perc >= 33) return 'D';
+    return 'E';
+}
+
+function showDataPreview(data) {
+    const container = document.getElementById('dataPreview');
+    let html = `<h4>પરિણામ પૂર્વાવલોકન (કુલ ${data.length} વિદ્યાર્થીઓ):</h4>`;
+    
+    html += '<table border="1" cellpadding="8" style="border-collapse:collapse; width:100%;">';
+    html += '<tr style="background:#4CAF50; color:white;">';
+    html += '<th>સીટ નંબર</th><th>નામ</th><th>કુલ</th><th>ટકાવારી</th><th>ગ્રેડ</th>';
+    html += '</tr>';
+    
+    // પ્રથમ 10 રેકોર્ડ દર્શાવો
+    data.slice(0, 10).forEach((student, index) => {
+        const bgColor = index % 2 === 0 ? '#f9f9f9' : '#ffffff';
+        html += `<tr style="background:${bgColor}">`;
+        html += `<td>${student.seatNo}</td>`;
+        html += `<td>${student.name}</td>`;
+        html += `<td>${student.total}</td>`;
+        html += `<td>${student.percentage}%</td>`;
+        html += `<td>${student.grade}</td>`;
+        html += '</tr>';
+    });
+    
+    html += '</table>';
+    
+    if (data.length > 10) {
+        html += `<p>... અને ${data.length - 10} વધુ વિદ્યાર્થીઓ</p>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+function showSaveOptions(data) {
+    const container = document.getElementById('dataPreview');
+    
+    container.innerHTML += `
+        <div style="margin-top:20px; padding:15px; background:#e8f5e9; border-radius:5px;">
+            <h4>સંગ્રહ વિકલ્પો:</h4>
             
-            // Remove existing entry for same GR + Exam
-            allResults = allResults.filter(r => 
-                !(r.grNumber === result.grNumber && r.examType === result.examType)
-            );
+            <button onclick="downloadAsJSON(${JSON.stringify(data)})" 
+                    style="background:#2196F3; color:white; padding:10px; margin:5px; border:none; border-radius:5px; cursor:pointer;">
+                💾 JSON તરીકે ડાઉનલોડ કરો
+            </button>
             
-            allResults.push(result);
-            localStorage.setItem('schoolResults', JSON.stringify(allResults));
+            <button onclick="saveToLocalStorage(${JSON.stringify(data)})" 
+                    style="background:#FF9800; color:white; padding:10px; margin:5px; border:none; border-radius:5px; cursor:pointer;">
+                📱 લોકલ સંગ્રહ કરો
+            </button>
             
-            // Update view table
-            if (document.getElementById('view').classList.contains('active')) {
-                filterResults();
-            }
-        }
-        
-        // Bulk upload from CSV
-        function uploadBulk() {
-            const fileInput = document.getElementById('csvFile');
-            const textArea = document.getElementById('excelData');
-            
-            if (fileInput.files.length > 0) {
-                const file = fileInput.files[0];
-                const reader = new FileReader();
-                
-                reader.onload = function(e) {
-                    processCSVData(e.target.result);
-                };
-                
-                reader.readAsText(file);
-            } else if (textArea.value.trim()) {
-                processCSVData(textArea.value);
-            } else {
-                alert('કૃપા કરીને CSV ફાઇલ અપલોડ કરો અથવા ડેટા પેસ્ટ કરો');
-            }
-        }
-        
-        // Process CSV data
-        function processCSVData(csvText) {
-            const lines = csvText.split('\n');
-            const headers = lines[0].split(',').map(h => h.trim());
-            
-            let tableHTML = '<table border="1"><tr>';
-            headers.forEach(header => {
-                tableHTML += `<th>${header}</th>`;
-            });
-            tableHTML += '</tr>';
-            
-            for (let i = 1; i < lines.length; i++) {
-                if (lines[i].trim()) {
-                    const data = lines[i].split(',');
-                    tableHTML += '<tr>';
-                    data.forEach(cell => {
-                        tableHTML += `<td>${cell}</td>`;
-                    });
-                    tableHTML += '</tr>';
-                }
-            }
-            
-            tableHTML += '</table>';
-            document.getElementById('previewTable').innerHTML = tableHTML;
-            
-            alert(`${lines.length - 1} રેકોર્ડ્સ લોડ થયા. પ્રિવ્યુ જુઓ.`);
-        }
-        
-        // Filter and display results
-        function filterResults() {
-            const allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
-            const filterClass = document.getElementById('filterClass').value;
-            const filterExam = document.getElementById('filterExam').value;
-            
-            let filteredResults = allResults;
-            
-            if (filterClass !== 'all') {
-                filteredResults = filteredResults.filter(r => r.class === filterClass);
-            }
-            
-            if (filterExam !== 'all') {
-                filteredResults = filteredResults.filter(r => r.examType === filterExam);
-            }
-            
-            displayResultsTable(filteredResults);
-        }
-        
-        // Display results in table
-        function displayResultsTable(results) {
-            if (results.length === 0) {
-                document.getElementById('resultsTable').innerHTML = '<p>કોઈ પરિણામ નથી મળ્યું.</p>';
-                return;
-            }
-            
-            let tableHTML = `
-                <table>
-                    <tr>
-                        <th>GR નંબર</th>
-                        <th>નામ</th>
-                        <th>વર્ગ</th>
-                        <th>પરીક્ષા</th>
-                        <th>કુલ</th>
-                        <th>ટકા</th>
-                        <th>ગ્રેડ</th>
-                        <th>ક્રિયા</th>
-                    </tr>
-            `;
-            
-            results.forEach(result => {
-                tableHTML += `
-                    <tr>
-                        <td>${result.grNumber}</td>
-                        <td>${result.name}</td>
-                        <td>${result.class}</td>
-                        <td>${result.examType === 'unit1' ? 'યુનિટ 1' : 'યુનિટ 2'}</td>
-                        <td>${result.total}/${result.maxTotal}</td>
-                        <td>${result.percentage}%</td>
-                        <td>${result.grade}</td>
-                        <td>
-                            <button onclick="editResult('${result.grNumber}', '${result.examType}')" style="background: #3498db; color: white; border: none; padding: 5px 10px; border-radius: 3px; margin-right: 5px;">✏️</button>
-                            <button onclick="deleteResult('${result.grNumber}', '${result.examType}')" style="background: #e74c3c; color: white; border: none; padding: 5px 10px; border-radius: 3px;">🗑️</button>
-                        </td>
-                    </tr>
-                `;
-            });
-            
-            tableHTML += '</table>';
-            document.getElementById('resultsTable').innerHTML = tableHTML;
-        }
-        
-        // Edit result
-        function editResult(grNumber, examType) {
-            const allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
-            const result = allResults.find(r => r.grNumber === grNumber && r.examType === examType);
-            
-            if (result) {
-                // Populate form
-                document.getElementById('grNumber').value = result.grNumber;
-                document.getElementById('studentName').value = result.name;
-                document.getElementById('studentClass').value = result.class;
-                document.getElementById('rollNo').value = result.rollNo;
-                document.getElementById('dob').value = result.dob;
-                document.getElementById('examType').value = result.examType;
-                
-                // Update subjects
-                subjects = result.subjects.map(s => ({
-                    name: s.name,
-                    maxMarks: s.maxMarks
-                }));
-                
-                renderSubjects();
-                
-                // Set marks
-                result.subjects.forEach((subject, index) => {
-                    document.getElementById(`marks_${index}`).value = subject.obtained;
-                });
-                
-                // Switch to single tab
-                showTab('single');
-                
-                alert('એડિટ મોડમાં છો. ફેરફાર કરી સેવ બટન દબાવો.');
-            }
-        }
-        
-        // Delete result
-        function deleteResult(grNumber, examType) {
-            if (confirm('ખરેખર ડિલીટ કરવું છે?')) {
-                let allResults = JSON.parse(localStorage.getItem('schoolResults') || '[]');
-                allResults = allResults.filter(r => 
-                    !(r.grNumber === grNumber && r.examType === examType)
-                );
-                localStorage.setItem('schoolResults', JSON.stringify(allResults));
-                filterResults();
-                alert('પરિણામ ડિલીટ થયું.');
-            }
-        }
-        
-        // Print form
-        function printForm() {
-            window.print();
-        }
-        
-        // Initialize
-        renderSubjects();
-        filterResults();
-        
-        // Set today's date
-        document.getElementById('dob').valueAsDate = new Date();
-    </script>
-</body>
-</html>
+            <button onclick="copyToClipboard(${JSON.stringify(data)})" 
+                    style="background:#9C27B0; color:white; padding:10px; margin:5px; border:none; border-radius:5px; cursor:pointer;">
+                📋 ક્લિપબોર્ડ પર કોપી કરો
+            </button>
+        </div>
+    `;
+}
+
+function downloadAsJSON(data) {
+    const jsonString = JSON.stringify(data, null, 2);
+    const blob = new Blob([jsonString], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'results.json';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    
+    alert('JSON ફાઇલ ડાઉનલોડ શરૂ થઈ છે!');
+}
+
+function saveToLocalStorage(data) {
+    localStorage.setItem('studentResults', JSON.stringify(data));
+    alert('ડેટા લોકલ સંગ્રહમાં સેવ થયો!');
+}
+
+function copyToClipboard(data) {
+    const jsonString = JSON.stringify(data, null, 2);
+    navigator.clipboard.writeText(jsonString)
+        .then(() => alert('JSON ડેટા ક્લિપબોર્ડ પર કોપી થયો!'))
+        .catch(err => alert('કોપી કરવામાં ભૂલ: ' + err));
+}
+</script>
