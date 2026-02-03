@@ -6,21 +6,67 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-body{font-family:"Noto Sans Gujarati",Arial;background:#eef2f5;margin:0}
-.sheet{max-width:900px;margin:30px auto;background:#fff;padding:25px;border:2px solid #000}
-.school{text-align:center;font-weight:bold;font-size:20px}
-.sub{text-align:center;font-size:16px;margin-bottom:10px}
-.search{text-align:center;margin:20px}
-input,button{padding:8px 12px;font-size:16px}
-button{background:#003366;color:#fff;border:none;border-radius:4px}
-.info{display:flex;justify-content:space-between;margin:15px 0}
-table{width:100%;border-collapse:collapse;font-size:14px}
-th,td{border:1px solid #000;padding:6px;text-align:center}
+body{
+  font-family:"Noto Sans Gujarati",Arial;
+  background:#eef2f5;
+  margin:0
+}
+.search{
+  text-align:center;
+  padding:20px
+}
+input,button{
+  padding:10px;
+  font-size:16px
+}
+button{
+  background:#0b3c5d;
+  color:#fff;
+  border:none;
+  border-radius:4px
+}
+.sheet{
+  max-width:900px;
+  margin:20px auto;
+  background:#fff;
+  padding:25px;
+  border:2px solid #000
+}
+.school{
+  text-align:center;
+  font-size:20px;
+  font-weight:bold
+}
+.sub{
+  text-align:center;
+  font-size:16px;
+  margin-bottom:10px
+}
+.info{
+  display:flex;
+  justify-content:space-between;
+  margin:15px 0
+}
+table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:14px
+}
+th,td{
+  border:1px solid #000;
+  padding:6px;
+  text-align:center
+}
 th{background:#f0f0f0}
 .pass{color:green;font-weight:bold}
 .fail{color:red;font-weight:bold}
-.footer{margin-top:15px;font-size:13px}
-@media print{.search,button{display:none}}
+.footer{
+  font-size:13px;
+  margin-top:15px
+}
+@media print{
+  .search,button{display:none}
+}
 </style>
 </head>
 
@@ -28,20 +74,20 @@ th{background:#f0f0f0}
 
 <div class="search">
   <input id="gr" placeholder="GR નંબર લખો">
-  <button onclick="load()">પરિણામ જુઓ</button>
+  <button onclick="find()">પરિણામ જુઓ</button>
   <div id="msg" style="color:red"></div>
 </div>
 
 <div id="out" class="sheet" style="display:none">
 
   <div class="school">ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા – નારોલી</div>
-  <div class="sub">પરિણામ પત્ર (MARKSHEET)</div>
+  <div class="sub">વાર્ષિક પરીક્ષાનું પરિણામ પત્ર</div>
 
   <div class="info">
     <div>
       વિદ્યાર્થીનું નામ : <b id="name"></b><br>
       GR નંબર : <b id="grno"></b><br>
-      ધોરણ : <b id="std"></b>
+      ધોરણ : <b id="std"></b> - <b id="div"></b>
     </div>
     <div>
       પરીક્ષા નંબર : <b id="exam"></b><br>
@@ -50,7 +96,11 @@ th{background:#f0f0f0}
   </div>
 
   <table>
-    <tr><th>વિષય</th><th>મેળવેલ ગુણ</th><th>ગ્રેડ</th></tr>
+    <tr>
+      <th>વિષય</th>
+      <th>મેળવેલ ગુણ</th>
+      <th>ગ્રેડ</th>
+    </tr>
     <tr><td>ગુજરાતી</td><td id="g"></td><td id="gg"></td></tr>
     <tr><td>હિન્દી</td><td id="h"></td><td id="hg"></td></tr>
     <tr><td>અંગ્રેજી</td><td id="e"></td><td id="eg"></td></tr>
@@ -58,7 +108,11 @@ th{background:#f0f0f0}
     <tr><td>સામાજિક વિજ્ઞાન</td><td id="ss"></td><td id="ssg"></td></tr>
     <tr><td>ગણિત</td><td id="m"></td><td id="mg"></td></tr>
     <tr><td>વિજ્ઞાન</td><td id="sc"></td><td id="scg"></td></tr>
-    <tr><th>કુલ ગુણ</th><th id="total"></th><th></th></tr>
+    <tr>
+      <th>કુલ ગુણ</th>
+      <th id="total"></th>
+      <th></th>
+    </tr>
   </table>
 
   <div class="info">
@@ -75,59 +129,60 @@ th{background:#f0f0f0}
     નોંધ : આ કમ્પ્યુટર જનરેટેડ પરિણામ છે. સહી જરૂરી નથી.
   </div>
 
-  <button onclick="print()">PRINT</button>
+  <button onclick="window.print()">PRINT</button>
 </div>
 
 <script>
-const URL="https://docs.google.com/spreadsheets/d/1ZTgo_1Li-l4FtSsyJvLJC6gs5rYpS7r2/export?format=csv&gid=1023437449";
+const URL =
+"https://docs.google.com/spreadsheets/d/1ZTgo_1Li-l4FtSsyJvLJC6gs5rYpS7r2/export?format=csv&gid=0";
 
-async function load(){
+async function find(){
   let gr=document.getElementById("gr").value.trim();
-  if(!gr){msg("GR નંબર નાખો");return;}
+  if(!gr){msg("GR નંબર લખો");return;}
 
   let csv=await fetch(URL).then(r=>r.text());
   let rows=csv.split("\n").map(r=>r.split(","));
 
-  let head=rows[0];
-  let col=n=>head.indexOf(n);
-
   for(let i=1;i<rows.length;i++){
     let r=rows[i];
-    if(r[col("જી.આર નંબર")]===gr){
-      show(r,col);
+    if(r[3]===gr){
+      show(r);
       return;
     }
   }
   msg("પરિણામ મળ્યું નથી");
 }
 
-function show(r,c){
+function show(r){
   document.getElementById("out").style.display="block";
   msg("");
 
-  id("name",r[c("વિદ્યાર્થીનું નામ")]);
-  id("grno",r[c("જી.આર નંબર")]);
-  id("std",r[c("ધોરણ")]);
-  id("exam",r[c("પરીક્ષા નંબર")]);
-  id("dob",r[c("જન્મતારીખ")]);
+  set("exam",r[0]);
+  set("std",r[1]);
+  set("div",r[2]);
+  set("grno",r[3]);
+  set("name",r[4]);
+  set("dob",r[5]);
 
-  id("g",r[c("ગુજરાતી મેળેવલ ગુણ")]); id("gg",r[c("ગુજરાતી ગ્રેડ")]);
-  id("h",r[c("હિન્દી મેળેવલ ગુણ")]); id("hg",r[c("હિન્દી ગ્રેડ")]);
-  id("e",r[c("અંગ્રેજી મેળેવલ ગુણ")]); id("eg",r[c("અંગ્રેજી ગ્રેડ")]);
-  id("s",r[c("સંસ્કૃત મેળેવલ ગુણ")]); id("sg",r[c("સંસ્કૃત ગ્રેડ")]);
-  id("ss",r[c("સામાજિક વિજ્ઞાન મેળેવલ ગુણ")]); id("ssg",r[c("સામાજિક વિજ્ઞાન ગ્રેડ")]);
-  id("m",r[c("ગણિત મેળેવલ ગુણ")]); id("mg",r[c("ગણિત ગ્રેડ")]);
-  id("sc",r[c("વિજ્ઞાન મેળેવલ ગુણ")]); id("scg",r[c("વિજ્ઞાન ગ્રેડ")]);
+  set("g",r[6]); set("gg",r[17]);
+  set("h",r[7]); set("hg",r[18]);
+  set("e",r[8]); set("eg",r[19]);
+  set("s",r[9]); set("sg",r[20]);
+  set("ss",r[10]); set("ssg",r[21]);
+  set("m",r[11]); set("mg",r[22]);
+  set("sc",r[12]); set("scg",r[23]);
 
-  id("total",r[c("કુલ ગુણ")]);
-  id("per",r[c("ટકા")]);
-  id("rank",r[c("રેન્ક")]);
+  set("total",r[13]);
+  set("per",r[14]);
+  set("rank",r[15]);
 
   document.getElementById("res").innerHTML =
-    r[c("પરિણામ")].includes("પાસ")?"<span class=pass>પાસ</span>":"<span class=fail>નાપાસ</span>";
+    r[16].includes("પાસ")
+    ? "<span class='pass'>પાસ</span>"
+    : "<span class='fail'>નાપાસ</span>";
 }
 
-function id(a,b){document.getElementById(a).innerText=b||""}
+function set(id,v){document.getElementById(id).innerText=v||""}
 function msg(t){document.getElementById("msg").innerText=t}
 </script>
 
