@@ -2,11 +2,11 @@
 <html lang="gu">
 <head>
 <meta charset="UTF-8">
-<title>Result Portal | UBV Naroli</title>
+<title>પરિણામ | UBV Naroli</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 body{margin:0;font-family:Arial;background:#f4f6f8}
-header{background:#0b3c5d;color:#fff;padding:15px;text-align:center}
+header{background:#0b3c5d;color:#fff;text-align:center;padding:15px}
 .container{max-width:900px;margin:20px auto;background:#fff;padding:20px}
 input,button{padding:8px;font-size:15px}
 button{background:#0b3c5d;color:#fff;border:none;border-radius:4px}
@@ -15,7 +15,7 @@ table{width:100%;border-collapse:collapse;margin-top:15px}
 th,td{border:1px solid #000;padding:6px;text-align:center}
 .pass{color:green;font-weight:bold}
 .fail{color:red;font-weight:bold}
-footer{text-align:center;font-size:13px;padding:10px;color:#555}
+footer{text-align:center;font-size:13px;color:#555;padding:10px}
 </style>
 </head>
 
@@ -84,10 +84,10 @@ footer{text-align:center;font-size:13px;padding:10px;color:#555}
 <script>
 let data=[];
 
-// already registered?
-if(localStorage.getItem("student_registered")){
-  document.getElementById("regBox").style.display="none";
-  document.getElementById("searchBox").classList.remove("hidden");
+// registration check
+if(localStorage.getItem("reg_done")){
+  regBox.style.display="none";
+  searchBox.classList.remove("hidden");
 }
 
 // registration
@@ -105,24 +105,21 @@ function register(){
     return;
   }
 
-  localStorage.setItem("student_registered","yes");
-  localStorage.setItem("student_mobile",m);
-
+  localStorage.setItem("reg_done","yes");
   regBox.style.display="none";
   searchBox.classList.remove("hidden");
 }
 
-// load CSV automatically (offline uploaded by admin earlier)
-fetch("data/marks_2023_24.csv")
+// load CSV (static)
+fetch("data/marks_current.csv")
 .then(r=>r.text())
 .then(t=>data=t.split("\n").map(x=>x.split(",")));
 
 function findResult(){
-  let gr=grno.value=gr.value.trim();
+  let grv=gr.value.trim();
   for(let i=1;i<data.length;i++){
-    if(data[i][3]===gr){
-      let r=data[i];
-      show(r);
+    if(data[i][3]===grv){
+      show(data[i]);
       return;
     }
   }
@@ -138,11 +135,11 @@ function show(r){
   set("m",r[11]); set("sc",r[12]);
   set("total",r[13]); set("per",r[14]);
   set("rank",r[16]);
-  res.innerHTML=r[15].includes("પાસ")
-    ?"<span class='pass'>પાસ</span>"
-    :"<span class='fail'>નાપાસ</span>";
+  res.innerHTML = r[15].includes("પાસ")
+    ? "<span class='pass'>પાસ</span>"
+    : "<span class='fail'>નાપાસ</span>";
 }
-function set(i,v){document.getElementById(i).innerText=v||""}
+function set(id,v){document.getElementById(id).innerText=v||""}
 </script>
 
 </body>
