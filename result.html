@@ -1,146 +1,409 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
-<meta charset="UTF-8">
-<title>પરિણામ | UBV Naroli</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body{margin:0;font-family:Arial;background:#f4f6f8}
-header{background:#0b3c5d;color:#fff;text-align:center;padding:15px}
-.container{max-width:900px;margin:20px auto;background:#fff;padding:20px}
-input,button{padding:8px;font-size:15px}
-button{background:#0b3c5d;color:#fff;border:none;border-radius:4px}
-.hidden{display:none}
-table{width:100%;border-collapse:collapse;margin-top:15px}
-th,td{border:1px solid #000;padding:6px;text-align:center}
-.pass{color:green;font-weight:bold}
-.fail{color:red;font-weight:bold}
-footer{text-align:center;font-size:13px;color:#555;padding:10px}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>પરિણામ પત્રક 2022-2023</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', 'Nirmala UI', 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f9ff;
+            padding: 20px;
+            color: #333;
+        }
+        
+        .result-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 25px rgba(0, 0, 100, 0.1);
+            overflow: hidden;
+            border: 1px solid #d1e3ff;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1a73e8, #0d47a1);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+        
+        .school-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+            letter-spacing: 0.5px;
+        }
+        
+        .result-title {
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .academic-year {
+            font-size: 18px;
+            opacity: 0.9;
+        }
+        
+        .student-info {
+            padding: 25px 30px;
+            background-color: #f8fbff;
+            border-bottom: 2px solid #e3f2fd;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-color: white;
+            border-radius: 8px;
+            border: 1px solid #d1e3ff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: #0d47a1;
+        }
+        
+        .info-value {
+            font-weight: 500;
+            color: #333;
+        }
+        
+        .result-table-container {
+            padding: 20px 30px;
+            overflow-x: auto;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        thead {
+            background: linear-gradient(135deg, #2e7d32, #1b5e20);
+            color: white;
+        }
+        
+        th {
+            padding: 18px 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 16px;
+            border-right: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        th:last-child {
+            border-right: none;
+        }
+        
+        tbody tr {
+            border-bottom: 1px solid #e0e0e0;
+            transition: background-color 0.2s;
+        }
+        
+        tbody tr:hover {
+            background-color: #f5f9ff;
+        }
+        
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+        
+        td {
+            padding: 16px 15px;
+            text-align: center;
+            border-right: 1px solid #e0e0e0;
+        }
+        
+        td:last-child {
+            border-right: none;
+        }
+        
+        .subject-name {
+            text-align: left;
+            font-weight: 600;
+            color: #1a237e;
+        }
+        
+        .grade-a-plus {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .grade-b {
+            background-color: #fff3e0;
+            color: #ef6c00;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .grade-e {
+            background-color: #ffebee;
+            color: #c62828;
+            font-weight: 700;
+            padding: 5px 10px;
+            border-radius: 20px;
+            display: inline-block;
+        }
+        
+        .pass-status {
+            color: #2e7d32;
+            font-weight: 700;
+        }
+        
+        .summary {
+            padding: 20px 30px;
+            background-color: #f1f8e9;
+            border-radius: 10px;
+            margin: 20px 30px;
+            border: 2px solid #c5e1a5;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+        
+        .summary-item {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid #d1e3ff;
+        }
+        
+        .summary-value {
+            font-size: 32px;
+            font-weight: 800;
+            color: #1a73e8;
+            margin: 10px 0;
+        }
+        
+        .summary-label {
+            font-size: 16px;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        .final-result {
+            background-color: #e8f5e9;
+            color: #1b5e20;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 20px;
+            font-weight: 700;
+            text-align: center;
+            border: 2px solid #81c784;
+        }
+        
+        .note {
+            padding: 15px 30px;
+            background-color: #fff3e0;
+            margin: 20px 30px;
+            border-radius: 8px;
+            border-left: 5px solid #ff9800;
+            font-style: italic;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #666;
+            font-size: 14px;
+            background-color: #f8fbff;
+            border-top: 1px solid #e3f2fd;
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid, .summary-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header, .student-info, .result-table-container {
+                padding: 15px;
+            }
+            
+            .school-name {
+                font-size: 22px;
+            }
+            
+            th, td {
+                padding: 12px 8px;
+                font-size: 14px;
+            }
+        }
+    </style>
 </head>
-
 <body>
-
-<header>
-  <h2>ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા – નારોલી</h2>
-  <div>Result Portal</div>
-</header>
-
-<div class="container">
-
-<!-- REGISTRATION -->
-<div id="regBox">
-  <h3>📋 વિદ્યાર્થી નોંધણી</h3>
-  <input id="rname" placeholder="વિદ્યાર્થીનું નામ"><br><br>
-  <input id="rvillage" placeholder="ગામ"><br><br>
-  <input id="rmobile" placeholder="મોબાઈલ નંબર"><br><br>
-  <button onclick="register()">Register</button>
-  <div id="regMsg" style="color:red"></div>
-</div>
-
-<!-- SEARCH -->
-<div id="searchBox" class="hidden">
-  <h3>🔍 પરિણામ શોધો</h3>
-  <input id="gr" placeholder="GR નંબર લખો">
-  <button onclick="findResult()">Search</button>
-  <div id="msg" style="color:red"></div>
-</div>
-
-<!-- RESULT -->
-<div id="resultBox" class="hidden">
-  <h3 style="text-align:center">પરિણામ પત્ર</h3>
-
-  <p>
-    નામ: <b id="name"></b><br>
-    GR: <b id="grno"></b><br>
-    ધોરણ: <b id="std"></b> - <b id="div"></b>
-  </p>
-
-  <table>
-    <tr><th>વિષય</th><th>ગુણ</th></tr>
-    <tr><td>ગુજરાતી</td><td id="g"></td></tr>
-    <tr><td>હિન્દી</td><td id="h"></td></tr>
-    <tr><td>અંગ્રેજી</td><td id="e"></td></tr>
-    <tr><td>સંસ્કૃત</td><td id="s"></td></tr>
-    <tr><td>સામાજિક વિજ્ઞાન</td><td id="ss"></td></tr>
-    <tr><td>ગણિત</td><td id="m"></td></tr>
-    <tr><td>વિજ્ઞાન</td><td id="sc"></td></tr>
-    <tr><th>કુલ ગુણ</th><th id="total"></th></tr>
-  </table>
-
-  <p>
-    ટકા: <b id="per"></b>%<br>
-    રેન્ક: <b id="rank"></b><br>
-    પરિણામ: <span id="res"></span>
-  </p>
-
-  <button onclick="window.print()">PRINT</button>
-</div>
-
-</div>
-
-<footer>© UBV Naroli School</footer>
-
-<script>
-let data=[];
-
-// registration check
-if(localStorage.getItem("reg_done")){
-  regBox.style.display="none";
-  searchBox.classList.remove("hidden");
-}
-
-// registration
-function register(){
-  let n=rname.value.trim(),
-      v=rvillage.value.trim(),
-      m=rmobile.value.trim();
-
-  if(!n||!v||!m){
-    regMsg.innerText="બધી માહિતી ભરો";
-    return;
-  }
-  if(m.length!==10 || isNaN(m)){
-    regMsg.innerText="માન્ય મોબાઈલ નંબર નાખો";
-    return;
-  }
-
-  localStorage.setItem("reg_done","yes");
-  regBox.style.display="none";
-  searchBox.classList.remove("hidden");
-}
-
-// load CSV (static)
-fetch("data/marks_current.csv")
-.then(r=>r.text())
-.then(t=>data=t.split("\n").map(x=>x.split(",")));
-
-function findResult(){
-  let grv=gr.value.trim();
-  for(let i=1;i<data.length;i++){
-    if(data[i][3]===grv){
-      show(data[i]);
-      return;
-    }
-  }
-  msg.innerText="પરિણામ મળ્યું નથી";
-}
-
-function show(r){
-  resultBox.classList.remove("hidden");
-  set("name",r[4]); set("grno",r[3]);
-  set("std",r[1]); set("div",r[2]);
-  set("g",r[6]); set("h",r[7]); set("e",r[8]);
-  set("s",r[9]); set("ss",r[10]);
-  set("m",r[11]); set("sc",r[12]);
-  set("total",r[13]); set("per",r[14]);
-  set("rank",r[16]);
-  res.innerHTML = r[15].includes("પાસ")
-    ? "<span class='pass'>પાસ</span>"
-    : "<span class='fail'>નાપાસ</span>";
-}
-function set(id,v){document.getElementById(id).innerText=v||""}
-</script>
-
+    <div class="result-container">
+        <div class="header">
+            <div class="school-name"> ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક  શાળા, નારોલી</div>
+            <div class="result-title">પરિણામ પત્રક</div>
+            <div class="academic-year">વર્ષ : 2022-2023</div>
+        </div>
+        
+        
+                <div class="info-item">
+                    <span class="info-label">જન્મ તારીખ:</span>
+                    <span class="info-value">23/01/2011</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">વિધાનસભા નામ:</span>
+                    <span class="info-value">રબારી સુરીબેન લાખમણભાઈ</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">પરીક્ષા નંબર:</span>
+                    <span class="info-value">242 9 E</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">પ્ર.આ. નંબર:</span>
+                    <span class="info-value">14225</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="result-table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>વિષય</th>
+                        <th>કુલ ગુણ</th>
+                        <th>મેળવેલ ગુણ</th>
+                        <th>ગ્રેડ</th>
+                        <th>પરિણામ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="subject-name">ગુજરાતી</td>
+                        <td>100</td>
+                        <td>140</td>
+                        <td><span class="grade-a-plus">A+</span></td>
+                        <td class="pass-status">પાસ</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">હિન્દી</td>
+                        <td>100</td>
+                        <td>105</td>
+                        <td><span class="grade-a-plus">A+</span></td>
+                        <td class="pass-status">પાસ</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">અંગ્રેજી</td>
+                        <td>100</td>
+                        <td>109</td>
+                        <td><span class="grade-a-plus">A+</span></td>
+                        <td class="pass-status">પાસ</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">સંસ્કૃત</td>
+                        <td>100</td>
+                        <td>113</td>
+                        <td><span class="grade-a-plus">A+</span></td>
+                        <td class="pass-status">પાસ</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">સામાજિક વિજ્ઞાન</td>
+                        <td>100</td>
+                        <td>102</td>
+                        <td><span class="grade-a-plus">A+</span></td>
+                        <td class="pass-status">પાસ</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">ગણિત</td>
+                        <td>100</td>
+                        <td>100</td>
+                        <td><span class="grade-a-plus">A+</span></td>
+                        <td class="pass-status">પાસ</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">વિજ્ઞાન</td>
+                        <td>100</td>
+                        <td>69</td>
+                        <td><span class="grade-b">B</span></td>
+                        <td class="pass-status">પાસ</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">શા. શિ.</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class="grade-e">E</span></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">કૃષિ</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class="grade-e">E</span></td>
+                        <td>-</td>
+                    </tr>
+                    <tr>
+                        <td class="subject-name">કમ્પ્યુટર</td>
+                        <td>-</td>
+                        <td>-</td>
+                        <td><span class="grade-e">E</span></td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="summary">
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <div class="summary-label">કુલ ગુણ (મુખ્ય વિષયો)</div>
+                    <div class="summary-value">700</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">મેળવેલ કુલ ગુણ</div>
+                    <div class="summary-value">738</div>
+                </div>
+                <div class="summary-item">
+                    <div class="summary-label">ટકાવારી</div>
+                    <div class="summary-value">105.43%</div>
+                </div>
+            </div>
+            
+            <div class="final-result" style="margin-top: 25px;">
+                પરિણામ: પાસ ✅
+            </div>
+        </div>
+        
+        <div class="note">
+            <strong>નોંધ:</strong> 
+        </div>
+        
+        <div class="footer">
+            આ પરિણામ પત્રક ઓનલાઈન પ્રદર્શન માટે છે 
+        </div>
+    </div>
 </body>
 </html>
