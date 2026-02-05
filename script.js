@@ -1,4 +1,5 @@
 let rows=[];
+fet
 fetch('data/results.csv')
 .then(r=>r.text())
 .then(t=>{rows=t.trim().split('
