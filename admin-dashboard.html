@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>એડમિન ડેશબોર્ડ | શાળા મેનેજમેન્ટ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* હેડર */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 60px;
+            margin-bottom: 30px;
+            border: 3px solid #ffd700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            color: #1a237e;
+            font-size: 28px;
+        }
+
+        .header h1 i {
+            color: #ffd700;
+            margin-right: 10px;
+        }
+
+        .user-info {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 10px 25px;
+            border-radius: 40px;
+            border: 2px solid #ffd700;
+        }
+
+        .user-info i {
+            color: #ffd700;
+            margin-right: 5px;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #ffd700;
+        }
+
+        /* મેનુ ગ્રીડ */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            border: 3px solid #ffd700;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255,215,0,0.3);
+        }
+
+        .menu-card.admin-only::after {
+            content: "🔑 એડમિન";
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #1a237e;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 10px;
+            font-weight: bold;
+            border: 1px solid #ffd700;
+        }
+
+        .menu-icon {
+            font-size: 60px;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            color: #1a237e;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .menu-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .menu-btn {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #ffd700;
+        }
+
+        .menu-btn:hover {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+        }
+
+        /* સ્ટેટિસ્ટિક્સ */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 30px;
+            padding: 25px;
+            border: 3px solid #ffd700;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+            color: #1a237e;
+        }
+
+        .stat-label {
+            color: #666;
+            margin-top: 5px;
+        }
+
+        /* ફૂટર */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 60px;
+            padding: 20px;
+            text-align: center;
+            border: 3px solid #ffd700;
+            color: #1a237e;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- હેડર -->
+        <div class="header">
+            <h1><i class="fas fa-crown"></i> એડમિન ડેશબોર્ડ</h1>
+            <div class="user-info">
+                <i class="fas fa-user-shield"></i> એડમિન (સંપૂર્ણ સત્તા)
+            </div>
+            <a href="admin-login.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> લોગઆઉટ
+            </a>
+        </div>
+
+        <!-- સ્ટેટિસ્ટિક્સ -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-number">24</div>
+                <div class="stat-label">કુલ સૂચનાઓ</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">156</div>
+                <div class="stat-label">ફોટા</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">12</div>
+                <div class="stat-label">વિડીયો</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">89</div>
+                <div class="stat-label">પ્રવેશ અરજીઓ</div>
+            </div>
+        </div>
+
+        <!-- મેનુ કાર્ડ્સ - એડમિન માટે -->
+        <div class="menu-grid">
+            <!-- સૂચના મેનેજમેન્ટ -->
+            <div class="menu-card admin-only" onclick="location.href='admin-notice.html'">
+                <div class="menu-icon"><i class="fas fa-bullhorn"></i></div>
+                <h3 class="menu-title">સૂચના મેનેજમેન્ટ</h3>
+                <p class="menu-desc">નવી સૂચના ઉમેરો, એડિટ કરો, ડિલીટ કરો</p>
+                <button class="menu-btn">મેનેજ કરો <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- ફોટો ગેલેરી -->
+            <div class="menu-card admin-only" onclick="location.href='admin-gallery.html'">
+                <div class="menu-icon"><i class="fas fa-images"></i></div>
+                <h3 class="menu-title">ફોટો ગેલેરી</h3>
+                <p class="menu-desc">ફોટા અપલોડ કરો, ડિલીટ કરો, ગોઠવો</p>
+                <button class="menu-btn">મેનેજ કરો <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- પરિણામ મેનેજમેન્ટ -->
+            <div class="menu-card admin-only" onclick="location.href='admin-result.html'">
+                <div class="menu-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="menu-title">પરિણામ મેનેજમેન્ટ</h3>
+                <p class="menu-desc">પરિણામ અપલોડ કરો, અપડેટ કરો</p>
+                <button class="menu-btn">મેનેજ કરો <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- વિડીયો મેનેજમેન્ટ -->
+            <div class="menu-card admin-only" onclick="location.href='admin-videos.html'">
+                <div class="menu-icon"><i class="fas fa-video"></i></div>
+                <h3 class="menu-title">વિડીયો મેનેજમેન્ટ</h3>
+                <p class="menu-desc">વિડીયો અપલોડ કરો, ડિલીટ કરો</p>
+                <button class="menu-btn">મેનેજ કરો <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- પ્રવેશ ફોર્મ ડેટા -->
+            <div class="menu-card admin-only" onclick="location.href='admin-admissions.html'">
+                <div class="menu-icon"><i class="fas fa-edit"></i></div>
+                <h3 class="menu-title">પ્રવેશ અરજીઓ</h3>
+                <p class="menu-desc">વિદ્યાર્થીઓની અરજીઓ જુઓ</p>
+                <button class="menu-btn">જુઓ <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- સ્ટાફ મેનેજમેન્ટ -->
+            <div class="menu-card admin-only" onclick="location.href='admin-staff.html'">
+                <div class="menu-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h3 class="menu-title">સ્ટાફ મેનેજમેન્ટ</h3>
+                <p class="menu-desc">શિક્ષકોની માહિતી અપડેટ કરો</p>
+                <button class="menu-btn">મેનેજ કરો <i class="fas fa-arrow-right"></i></button>
+            </div>
+        </div>
+
+        <!-- ફૂટર -->
+        <div class="footer">
+            <p><i class="fas fa-shield-alt"></i> ફક્ત એડમિન જ ફેરફાર કરી શકે છે | © 2026 ઉ.બુ.ઉ.મા. શાળા, નારોલી</p>
+        </div>
+    </div>
+
+    <script>
+        // ચેક કરો કે યુઝર એડમિન છે કે નહીં
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role');
+        
+        if (role !== 'admin') {
+            window.location.href = 'admin-login.html';
+        }
+
+        // સ્ટેટિસ્ટિક્સ લોડ કરો
+        function loadStats() {
+            // અહીં તમે real data લાવી શકો છો
+            const notices = JSON.parse(localStorage.getItem('notices')) || [];
+            document.querySelector('.stat-card:nth-child(1) .stat-number').textContent = notices.length;
+        }
+
+        loadStats();
+    </script>
+</body>
+</html>
