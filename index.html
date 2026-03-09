@@ -13,63 +13,133 @@
         }
 
         body {
-            font-family: 'Segoe UI', 'Nirmala UI', 'Gujarati Sangam MN', sans-serif;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
-            background-size: cover;
-            background-attachment: fixed;
+            font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
+            overflow-x: hidden;
             color: #333;
-            line-height: 1.6;
         }
 
-        /* Top Banner */
+        /* ========== આકર્ષક એનિમેટેડ બેકગ્રાઉન્ડ ========== */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(125deg, #0a192f 0%, #112240 50%, #1a2f4f 100%);
+            overflow: hidden;
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: bgMove 30s linear infinite;
+            opacity: 0.3;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(100, 181, 246, 0.1) 0%, transparent 30%),
+                        radial-gradient(circle at 70% 60%, rgba(255, 215, 0, 0.08) 0%, transparent 35%);
+            animation: glowPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes bgMove {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(10%, 10%) rotate(5deg); }
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
+        }
+
+        /* ========== ટોપ બેનર ========== */
         .top-banner {
-            background: linear-gradient(135deg, #1a237e 0%, #283593 100%);
-            color: white;
+            background: linear-gradient(90deg, #ffd700, #ffb347, #ff8c00);
+            color: #1a237e;
             text-align: center;
             padding: 12px 0;
             font-size: 18px;
-            font-weight: 600;
+            font-weight: 700;
             letter-spacing: 1px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
             position: relative;
             z-index: 100;
+            border-bottom: 2px solid white;
+            animation: slideDown 1s ease;
         }
 
-        /* Main Header */
+        @keyframes slideDown {
+            from { transform: translateY(-100%); }
+            to { transform: translateY(0); }
+        }
+
+        /* ========== મુખ્ય હેડર ========== */
         .main-header {
             background: rgba(255, 255, 255, 0.95);
-            padding: 25px 20px;
-            border-bottom: 5px solid #1a237e;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px 20px;
+            border-bottom: 5px solid #ffd700;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 90;
+            animation: fadeIn 1.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .header-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            max-width: 1200px;
+            max-width: 1300px;
             margin: 0 auto;
             flex-wrap: wrap;
+            gap: 30px;
         }
 
         .logo-container {
-            flex: 0 0 150px;
-            margin-right: 30px;
+            flex: 0 0 160px;
+            animation: rotateIn 1.2s ease;
+        }
+
+        @keyframes rotateIn {
+            from { transform: rotate(-10deg) scale(0.8); opacity: 0; }
+            to { transform: rotate(0) scale(1); opacity: 1; }
         }
 
         .logo {
-            width: 150px;
-            height: 150px;
+            width: 160px;
+            height: 160px;
             border-radius: 50%;
-            background: linear-gradient(135deg, #1a237e, #4a148c);
+            background: linear-gradient(145deg, #1a237e, #4a148c);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 60px;
-            box-shadow: 0 8px 20px rgba(26, 35, 126, 0.3);
-            border: 5px solid white;
+            font-size: 70px;
+            box-shadow: 0 15px 35px rgba(26, 35, 126, 0.4);
+            border: 5px solid #ffd700;
+            transition: transform 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05) rotate(5deg);
         }
 
         .school-info {
@@ -80,106 +150,298 @@
 
         .school-name {
             color: #1a237e;
-            font-size: 32px;
+            font-size: 36px;
             margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
             font-weight: 700;
+            animation: slideInRight 1s ease;
         }
 
         .school-address {
-            color: #546e7a;
+            color: #2c3e50;
             font-size: 18px;
             margin-bottom: 5px;
+            font-weight: 500;
         }
 
-        /* Colorful Info Cards */
+        .school-address i {
+            color: #ff8c00;
+            margin: 0 5px;
+        }
+
+        @keyframes slideInRight {
+            from { transform: translateX(-30px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* ========== નેવિગેશન મેનૂ ========== */
+        .nav-menu {
+            background: rgba(26, 35, 62, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 99;
+            border-bottom: 3px solid #ffd700;
+            animation: slideDown 1s ease;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            max-width: 1300px;
+            margin: 0 auto;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .menu-item {
+            color: white;
+            text-decoration: none;
+            padding: 12px 25px;
+            margin: 0 5px;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .menu-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .menu-item:hover::before {
+            left: 100%;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+            transform: scale(1.1) translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.4);
+        }
+
+        .menu-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        /* ========== મુખ્ય ફોટો સેક્શન - ફુલ સાઈઝ ========== */
+        .main-photo-section {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .photo-container {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border-bottom: 5px solid #ffd700;
+        }
+
+        .main-photo {
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            max-height: 700px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0.3), transparent);
+            color: white;
+            padding: 60px 30px 30px;
+            text-align: center;
+        }
+
+        .photo-overlay h2 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: #ffd700;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            font-weight: 700;
+        }
+
+        .photo-overlay p {
+            font-size: 24px;
+            opacity: 0.95;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        .photo-badge {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(255,215,0,0.95);
+            color: #1a237e;
+            padding: 15px 30px;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            animation: pulse 2s infinite;
+            border: 3px solid white;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .photo-badge i {
+            margin-right: 10px;
+        }
+
+        /* ========== શૈક્ષણિક માહિતી કાર્ડ્સ ========== */
         .info-section {
-            max-width: 1200px;
-            margin: 40px auto;
+            max-width: 1300px;
+            margin: 60px auto;
             padding: 0 20px;
         }
 
-        .info-title {
+        .section-title {
             text-align: center;
             color: white;
-            font-size: 28px;
-            margin-bottom: 30px;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-            font-weight: 600;
+            font-size: 36px;
+            margin-bottom: 50px;
+            font-weight: 700;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #ffd700, #ffb347);
+            border-radius: 2px;
         }
 
         .cards-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 30px;
-            margin-top: 20px;
-        }
-
-        /* Different colors for each card */
-        .card-1 {
-            background: linear-gradient(145deg, #ff6f00, #ff9800);
-            color: white;
-        }
-
-        .card-2 {
-            background: linear-gradient(145deg, #00796b, #009688);
-            color: white;
-        }
-
-        .card-3 {
-            background: linear-gradient(145deg, #283593, #3949ab);
-            color: white;
         }
 
         .info-card {
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             text-align: center;
             height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            position: relative;
+            overflow: hidden;
+            border: 3px solid transparent;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        .info-card:hover::before {
+            left: 100%;
         }
 
         .info-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border-color: #ffd700;
+        }
+
+        .card-1 {
+            background: linear-gradient(145deg, #ff6f00, #ff9800);
+        }
+
+        .card-2 {
+            background: linear-gradient(145deg, #00796b, #009688);
+        }
+
+        .card-3 {
+            background: linear-gradient(145deg, #283593, #3949ab);
         }
 
         .card-icon {
-            font-size: 50px;
-            margin-bottom: 20px;
+            font-size: 70px;
+            margin-bottom: 25px;
             opacity: 0.9;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         .card-title {
-            font-size: 26px;
-            margin-bottom: 15px;
+            font-size: 32px;
+            margin-bottom: 20px;
             font-weight: 700;
+            color: white;
         }
 
         .card-content {
             font-size: 18px;
             line-height: 1.8;
+            color: rgba(255,255,255,0.9);
         }
 
-        /* Contact Bar */
+        /* ========== કોન્ટેક્ટ બાર ========== */
         .contact-bar {
-            background: rgba(26, 35, 126, 0.9);
+            background: linear-gradient(135deg, rgba(26,35,126,0.95), rgba(42,82,152,0.95));
+            backdrop-filter: blur(10px);
             color: white;
             display: flex;
             justify-content: space-around;
-            padding: 20px;
+            padding: 25px;
             flex-wrap: wrap;
-            margin: 30px 0;
-            border-radius: 10px;
-            max-width: 1200px;
-            margin-left: auto;
-            margin-right: auto;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            margin: 50px auto;
+            border-radius: 60px;
+            max-width: 1100px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            border: 2px solid #ffd700;
+            animation: glow 3s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 30px 60px rgba(255,215,0,0.3); }
         }
 
         .contact-item {
@@ -189,244 +451,376 @@
         }
 
         .contact-icon {
-            font-size: 24px;
+            font-size: 28px;
             margin-right: 15px;
-            color: #bbdefb;
+            color: #ffd700;
         }
 
-        /* Navigation Menu */
-        .nav-menu {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 15px 0;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 99;
-            border-bottom: 3px solid #ff6f00;
-        }
-
-        .menu-container {
-            display: flex;
-            justify-content: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            flex-wrap: wrap;
-        }
-
-        .menu-item {
-            color: #1a237e;
-            text-decoration: none;
-            padding: 12px 25px;
-            margin: 0 5px;
-            border-radius: 30px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-        }
-
-        .menu-item:hover {
-            background: linear-gradient(135deg, #1a237e, #283593);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        .menu-icon {
-            margin-right: 8px;
-            font-size: 18px;
-        }
-
-        /* Welcome Section */
+        /* ========== વેલકમ સેક્શન ========== */
         .welcome-section {
             background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 50px;
-            max-width: 1000px;
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 60px;
+            max-width: 1100px;
             margin: 50px auto;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.2);
             text-align: center;
-            border-top: 8px solid #ff6f00;
+            border: 3px solid #ffd700;
+            animation: slideInLeft 1.5s ease;
+        }
+
+        @keyframes slideInLeft {
+            from { transform: translateX(-50px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        .welcome-icon {
+            font-size: 80px;
+            color: #ffd700;
+            margin-bottom: 20px;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         .welcome-title {
             color: #1a237e;
-            font-size: 36px;
+            font-size: 42px;
             margin-bottom: 25px;
             font-weight: 700;
         }
 
         .welcome-text {
-            color: #455a64;
+            color: #2c3e50;
             font-size: 20px;
             line-height: 1.8;
             margin-bottom: 30px;
         }
 
-        .welcome-icon {
-            font-size: 60px;
-            color: #ff6f00;
-            margin-bottom: 20px;
+        .admission-btn {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 18px 50px;
+            text-decoration: none;
+            border-radius: 60px;
+            font-size: 22px;
+            font-weight: bold;
+            display: inline-block;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            border: 3px solid #ffd700;
+            animation: btnGlow 2s infinite;
         }
 
-        /* Features Section */
-        .features-section {
-            max-width: 1200px;
-            margin: 50px auto;
+        @keyframes btnGlow {
+            0%, 100% { box-shadow: 0 15px 30px rgba(0,0,0,0.3); }
+            50% { box-shadow: 0 25px 50px rgba(255,215,0,0.5); }
+        }
+
+        .admission-btn:hover {
+            transform: scale(1.1) translateY(-5px);
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+            border-color: white;
+        }
+
+        .admission-btn i {
+            margin-right: 10px;
+        }
+
+        /* ========== સાયન્સ લેબોરેટરી સેક્શન ========== */
+        .lab-section {
+            max-width: 1300px;
+            margin: 80px auto;
             padding: 0 20px;
         }
 
-        .features-title {
+        .lab-container {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 40px;
+            padding: 50px;
+            border: 2px solid rgba(255,215,0,0.3);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.2);
             text-align: center;
+        }
+
+        .lab-content {
             color: white;
-            font-size: 32px;
-            margin-bottom: 40px;
-            font-weight: 700;
-            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .lab-content h2 {
+            font-size: 42px;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .lab-content p {
+            font-size: 18px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .lab-features {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .lab-feature {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 20px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .lab-feature:hover {
+            transform: translateY(-10px);
+            background: rgba(255,215,0,0.1);
+        }
+
+        .lab-feature i {
+            font-size: 40px;
+            color: #ffd700;
+        }
+
+        .lab-feature span {
+            font-size: 16px;
+            font-weight: 500;
+        }
+
+        /* ========== ફીચર્સ સેક્શન ========== */
+        .features-section {
+            max-width: 1300px;
+            margin: 60px auto;
+            padding: 0 20px;
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
         }
 
-        /* Different background colors for feature boxes */
-        .feature-box-1 {
-            background: rgba(255, 245, 157, 0.9);
-            border-left: 8px solid #ffd600;
-        }
-
-        .feature-box-2 {
-            background: rgba(197, 225, 165, 0.9);
-            border-left: 8px solid #7cb342;
-        }
-
-        .feature-box-3 {
-            background: rgba(179, 229, 252, 0.9);
-            border-left: 8px solid #03a9f4;
-        }
-
-        .feature-box-4 {
-            background: rgba(225, 190, 231, 0.9);
-            border-left: 8px solid #9c27b0;
-        }
-
         .feature-box {
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
-            transition: all 0.3s ease;
+            border-radius: 20px;
+            padding: 35px 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+            transition: all 0.5s ease;
             height: 100%;
+            border: 2px solid transparent;
+            animation: fadeInUp 1s ease;
         }
 
         .feature-box:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            transform: translateY(-15px) rotate(1deg);
+            border-color: #ffd700;
+            box-shadow: 0 25px 50px rgba(255,215,0,0.2);
+        }
+
+        .feature-box-1 {
+            background: linear-gradient(145deg, #fff9c4, #fff176);
+        }
+
+        .feature-box-2 {
+            background: linear-gradient(145deg, #c8e6c9, #a5d6a7);
+        }
+
+        .feature-box-3 {
+            background: linear-gradient(145deg, #b3e5fc, #81d4fa);
+        }
+
+        .feature-box-4 {
+            background: linear-gradient(145deg, #e1bee7, #ce93d8);
         }
 
         .feature-icon {
-            font-size: 40px;
+            font-size: 50px;
             margin-bottom: 20px;
             color: #1a237e;
         }
 
         .feature-title {
-            font-size: 24px;
+            font-size: 26px;
             margin-bottom: 15px;
             color: #1a237e;
-            font-weight: 600;
+            font-weight: 700;
         }
 
         .feature-text {
-            color: #546e7a;
+            color: #2c3e50;
             font-size: 16px;
             line-height: 1.7;
         }
 
-        /* Footer */
+        /* ========== ફૂટર ========== */
         .footer {
-            background: rgba(26, 35, 126, 0.95);
+            background: linear-gradient(145deg, #0a192f, #1a237e);
             color: white;
-            padding: 40px 20px;
-            margin-top: 60px;
+            padding: 60px 20px 30px;
+            margin-top: 80px;
             text-align: center;
-            border-top: 8px solid #ff6f00;
+            border-top: 8px solid #ffd700;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 20% 30%, rgba(255,215,0,0.1) 0%, transparent 30%);
+            animation: footerGlow 8s infinite;
+        }
+
+        @keyframes footerGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 0.6; }
         }
 
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .footer-logo {
-            font-size: 50px;
-            color: #bbdefb;
+            font-size: 70px;
+            color: #ffd700;
             margin-bottom: 20px;
+            animation: bounce 2s infinite;
         }
 
         .footer-title {
-            font-size: 28px;
+            font-size: 32px;
             margin-bottom: 15px;
             font-weight: 600;
         }
 
         .footer-text {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 25px;
             opacity: 0.9;
         }
 
+        .footer-contact {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+
+        .footer-contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-contact-item i {
+            color: #ffd700;
+            font-size: 20px;
+        }
+
         .copyright {
-            margin-top: 30px;
+            margin-top: 40px;
             padding-top: 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-top: 1px solid rgba(255,255,255,0.2);
             font-size: 16px;
             opacity: 0.8;
         }
 
-        /* Responsive Design */
+        /* ========== રિસ્પોન્સિવ ========== */
+        @media (max-width: 1100px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .lab-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                text-align: center;
+            .cards-container {
+                grid-template-columns: 1fr;
             }
             
-            .logo-container {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-            
-            .school-name {
-                font-size: 26px;
+            .lab-features {
+                grid-template-columns: 1fr;
             }
             
             .menu-container {
                 flex-direction: column;
                 align-items: center;
+                gap: 10px;
             }
             
             .menu-item {
-                margin: 5px 0;
                 width: 90%;
                 justify-content: center;
             }
             
-            .contact-bar {
-                flex-direction: column;
-                align-items: center;
+            .photo-overlay h2 {
+                font-size: 28px;
+            }
+            
+            .photo-overlay p {
+                font-size: 18px;
+            }
+            
+            .photo-badge {
+                top: 15px;
+                right: 15px;
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .lab-container {
+                padding: 30px;
+            }
+            
+            .welcome-section {
+                padding: 30px;
+            }
+            
+            .welcome-title {
+                font-size: 32px;
+            }
+            
+            .school-name {
+                font-size: 28px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- એનિમેટેડ બેકગ્રાઉન્ડ -->
+    <div class="animated-bg"></div>
 
-    <!-- Top Banner -->
+    <!-- ટોપ બેનર -->
     <div class="top-banner">
-        સર્વ સેવા ટ્રસ્ટ, રાધનપુર (જિ. પાટણ) સંચાલિત
+        <i class="fas fa-star"></i> સર્વ સેવા ટ્રસ્ટ, રાધનપુર (જિ. પાટણ) સંચાલિત <i class="fas fa-star"></i>
     </div>
 
-    <!-- Main Header -->
+    <!-- મુખ્ય હેડર -->
     <header class="main-header">
         <div class="header-container">
             <div class="logo-container">
@@ -436,20 +830,48 @@
             </div>
             <div class="school-info">
                 <h1 class="school-name">ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા</h1>
-                <p class="school-address">મુ. પો. નારોલી , તા. થરાદ, જિ. વાવ થરાદ , પિન - 385565</p>
+                <p class="school-address"><i class="fas fa-map-marker-alt"></i> મુ. પો. નારોલી, તા. થરાદ, જિ. વાવ થરાદ, પિન - 385565</p>
                 <p class="school-address"><i class="fas fa-star"></i> શિક્ષણની ગુણવત્તાનું પ્રતીક <i class="fas fa-star"></i></p>
             </div>
         </div>
     </header>
 
-    <!-- Colorful Info Cards -->
+    <!-- નેવિગેશન મેનૂ -->
+    <nav class="nav-menu">
+        <div class="menu-container">
+            <a href="index.html" class="menu-item"><i class="fas fa-home menu-icon"></i> હોમ</a>
+            <a href="result.html" class="menu-item"><i class="fas fa-chart-line menu-icon"></i> પરિણામ</a>
+            <a href="notice.html" class="menu-item"><i class="fas fa-bullhorn menu-icon"></i> સૂચના</a>
+            <a href="gallery.html" class="menu-item"><i class="fas fa-images menu-icon"></i> ગેલેરી</a>
+            <a href="videos.html" class="menu-item"><i class="fas fa-video menu-icon"></i> વિડીયો</a>
+            <a href="contact.html" class="menu-item"><i class="fas fa-address-book menu-icon"></i> સંપર્ક</a>
+            <a href="admission.html" class="menu-item"><i class="fas fa-edit menu-icon"></i> પ્રવેશ ફોર્મ</a>
+        </div>
+    </nav>
+
+    <!-- ========== મુખ્ય ફોટો - ફુલ સાઈઝમાં ========== -->
+    <section class="main-photo-section">
+        <div class="photo-container">
+            <!-- તમારો ફોટો અહીં ફુલ સાઈઝમાં દેખાશે -->
+            <img src="292892034_739106700625160_7943583204553971485_n.webp" alt="શાળાનો મુખ્ય ફોટો" class="main-photo">
+            
+            <div class="photo-overlay">
+                <h2>ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી</h2>
+                <p>શિક્ષણની ગુણવત્તાનું પ્રતીક | સ્થાપના: 1979</p>
+            </div>
+            
+            <div class="photo-badge">
+                <i class="fas fa-camera"></i> અમારી શાળા
+            </div>
+        </div>
+    </section>
+
+    <!-- શૈક્ષણિક માહિતી કાર્ડ્સ (SSC/HSC) -->
     <section class="info-section">
-        <h2 class="info-title">શૈક્ષણિક માહિતી</h2>
+        <h2 class="section-title">શૈક્ષણિક માહિતી</h2>
         <div class="cards-container">
             <div class="info-card card-1">
-                <div class="card-icon">
-                    <i class="fas fa-school"></i>
-                </div>
+                <div class="card-icon"><i class="fas fa-school"></i></div>
                 <h3 class="card-title">SSC</h3>
                 <div class="card-content">
                     <p>સ્થાપના વર્ષ : 1979</p>
@@ -459,10 +881,8 @@
             </div>
             
             <div class="info-card card-2">
-                <div class="card-icon">
-                    <i class="fas fa-flask"></i>
-                </div>
-                <h3 class="card-title">HSC (વિજ્ઞાન પ્રવાહ)</h3>
+                <div class="card-icon"><i class="fas fa-flask"></i></div>
+                <h3 class="card-title">HSC (વિજ્ઞાન)</h3>
                 <div class="card-content">
                     <p>સ્થાપના વર્ષ : 2007</p>
                     <p>ઇન્ડેક્સ નં : 10.0120</p>
@@ -471,10 +891,8 @@
             </div>
             
             <div class="info-card card-3">
-                <div class="card-icon">
-                    <i class="fas fa-book-open"></i>
-                </div>
-                <h3 class="card-title">HSC (સામાન્ય પ્રવાહ)</h3>
+                <div class="card-icon"><i class="fas fa-book-open"></i></div>
+                <h3 class="card-title">HSC (સામાન્ય)</h3>
                 <div class="card-content">
                     <p>સ્થાપના વર્ષ : 1999</p>
                     <p>ઇન્ડેક્સ નં : 10.0061</p>
@@ -484,7 +902,7 @@
         </div>
     </section>
 
-    <!-- Contact Bar -->
+    <!-- કોન્ટેક્ટ બાર -->
     <div class="contact-bar">
         <div class="contact-item">
             <i class="fas fa-id-card contact-icon"></i>
@@ -500,115 +918,97 @@
         </div>
     </div>
 
-    <!-- Navigation Menu with ADMISSION FORM LINK ADDED -->
-    <nav class="nav-menu">
-        <div class="menu-container">
-            <a href="index.html" class="menu-item">
-                <i class="fas fa-home menu-icon"></i> હોમ
-            </a>
-            <a href="result.html" class="menu-item">
-                <i class="fas fa-chart-line menu-icon"></i> પરિણામ
-            </a>
-            <a href="notice.html" class="menu-item">
-                <i class="fas fa-bullhorn menu-icon"></i> સૂચના
-            </a>
-            <a href="gallery.html" class="menu-item">
-                <i class="fas fa-images menu-icon"></i> ગેલેરી
-            </a>
-            <a href="videos.html" class="menu-item">
-                <i class="fas fa-video menu-icon"></i> વિડીયો
-            </a>
-            <a href="contact.html" class="menu-item">
-                <i class="fas fa-address-book menu-icon"></i> સંપર્ક
-            </a>
-            <!-- નવી ઉમેરેલી લિંક - પ્રવેશ ફોર્મ -->
-            <a href="admission.html" class="menu-item">
-                <i class="fas fa-edit menu-icon"></i> પ્રવેશ ફોર્મ
-            </a>
-        </div>
-    </nav>
-
-    <!-- Welcome Section -->
+    <!-- વેલકમ સેક્શન -->
     <section class="welcome-section">
-        <div class="welcome-icon">
-            <i class="fas fa-door-open"></i>
-        </div>
+        <div class="welcome-icon"><i class="fas fa-door-open"></i></div>
         <h2 class="welcome-title">શાળામાં આપનું હાર્દિક સ્વાગત છે</h2>
         <p class="welcome-text">
             ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી એ શિક્ષણના ક્ષેત્રે ચાર દશકથી સેવા આપી રહી એક પ્રતિષ્ઠિત શૈક્ષણિક સંસ્થા છે. 
             અમે વિદ્યાર્થીઓના સર્વાંગી વિકાસ પર ભાર મૂકતા આધુનિક શિક્ષણ પદ્ધતિઓ અને સુવિધાઓ પૂરી પાડીએ છીએ.
         </p>
-        <p class="welcome-text">
-            અહીં તમે ઓનલાઈન પરિણામ, સૂચનાઓ, ફોટો અને વિડીયો માહિતી જોઈ શકો છો. 
-            <strong style="color: #1a237e;">હવે તમે ઓનલાઈન પ્રવેશ ફોર્મ પણ ભરી શકો છો.</strong>
-        </p>
-        <!-- વધારાનું આકર્ષક બટન વેલકમ સેક્શનમાં -->
-        <div style="margin-top: 30px;">
-            <a href="admission.html" style="background: linear-gradient(135deg, #1a237e, #283593); color: white; padding: 15px 40px; text-decoration: none; border-radius: 50px; font-size: 20px; font-weight: bold; display: inline-block; box-shadow: 0 8px 20px rgba(0,0,0,0.3); transition: all 0.3s; border: 2px solid #ffd700;">
-                <i class="fas fa-edit" style="margin-right: 10px;"></i>અત્રે ક્લિક કરો પ્રવેશ ફોર્મ ભરવા
-            </a>
+        <a href="admission.html" class="admission-btn">
+            <i class="fas fa-edit"></i> ઓનલાઈન પ્રવેશ ફોર્મ ભરો
+        </a>
+    </section>
+
+    <!-- સાયન્સ લેબોરેટરી સેક્શન -->
+    <section class="lab-section">
+        <div class="lab-container">
+            <div class="lab-content">
+                <h2><i class="fas fa-flask"></i> સાયન્સ લેબોરેટરી</h2>
+                <p>અમારી આધુનિક સાયન્સ લેબોરેટરીમાં વિદ્યાર્થીઓ પ્રાયોગિક શિક્ષણ મેળવે છે. ફિઝિક્સ, કેમિસ્ટ્રી અને બાયોલોજી માટે અલગ વિભાગો.</p>
+                
+                <div class="lab-features">
+                    <div class="lab-feature">
+                        <i class="fas fa-microscope"></i>
+                        <span>આધુનિક માઇક્રોસ્કોપ</span>
+                    </div>
+                    <div class="lab-feature">
+                        <i class="fas fa-flask"></i>
+                        <span>રાસાયણિક પદાર્થો</span>
+                    </div>
+                    <div class="lab-feature">
+                        <i class="fas fa-atom"></i>
+                        <span>ફિઝિક્સ મોડેલ્સ</span>
+                    </div>
+                    <div class="lab-feature">
+                        <i class="fas fa-dna"></i>
+                        <span>બાયોલોજી મોડેલ્સ</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Features Section -->
+    <!-- ફીચર્સ સેક્શન -->
     <section class="features-section">
-        <h2 class="features-title">અમારી વિશેષતાઓ</h2>
+        <h2 class="section-title">અમારી વિશેષતાઓ</h2>
         <div class="features-grid">
             <div class="feature-box feature-box-1">
-                <div class="feature-icon">
-                    <i class="fas fa-chalkboard-teacher"></i>
-                </div>
+                <div class="feature-icon"><i class="fas fa-chalkboard-teacher"></i></div>
                 <h3 class="feature-title">અનુભવી શિક્ષકો</h3>
-                <p class="feature-text">
-                    ઉચ્ચ લાયકાત ધરાવતા અને અનુભવી શિક્ષકો દ્વારા શિક્ષણ આપવામાં આવે છે. નિયમિત શિક્ષક તાલીમ અને વર્કશોપનું આયોજન.
-                </p>
+                <p class="feature-text">ઉચ્ચ લાયકાત ધરાવતા અને અનુભવી શિક્ષકો દ્વારા શિક્ષણ.</p>
             </div>
             
             <div class="feature-box feature-box-2">
-                <div class="feature-icon">
-                    <i class="fas fa-laptop-code"></i>
-                </div>
+                <div class="feature-icon"><i class="fas fa-laptop-code"></i></div>
                 <h3 class="feature-title">આધુનિક સુવિધાઓ</h3>
-                <p class="feature-text">
-                    કમ્પ્યુટર લેબ, સાયન્સ લેબોરેટરી, સ્માર્ટ ક્લાસરૂમ, લાઈબ્રેરી અને ખેલ મેદાન સહિતની સંપૂર્ણ સુવિધાઓ.
-                </p>
+                <p class="feature-text">કમ્પ્યુટર લેબ, સાયન્સ લેબ, સ્માર્ટ ક્લાસરૂમ.</p>
             </div>
             
             <div class="feature-box feature-box-3">
-                <div class="feature-icon">
-                    <i class="fas fa-medal"></i>
-                </div>
+                <div class="feature-icon"><i class="fas fa-medal"></i></div>
                 <h3 class="feature-title">ઉત્તમ પરિણામ</h3>
-                <p class="feature-text">
-                    SSC અને HSC બોર્ડ પરીક્ષાઓમાં સતત ઉત્તમ પરિણામ. ઘણા વિદ્યાર્થીઓ રાજ્ય સ્તરે ટોચના સ્થાન પર.
-                </p>
+                <p class="feature-text">SSC અને HSCમાં સતત ઉત્તમ પરિણામ.</p>
             </div>
             
             <div class="feature-box feature-box-4">
-                <div class="feature-icon">
-                    <i class="fas fa-palette"></i>
-                </div>
+                <div class="feature-icon"><i class="fas fa-palette"></i></div>
                 <h3 class="feature-title">સહ-શૈક્ષણિક પ્રવૃત્તિઓ</h3>
-                <p class="feature-text">
-                    રમત-ગમત, સાંસ્કૃતિક કાર્યક્રમો, ભાષા ક્લબ, વિજ્ઞાન પ્રદર્શન અને સામાજિક કાર્યક્રમોનું નિયમિત આયોજન.
-                </p>
+                <p class="feature-text">રમત-ગમત, સાંસ્કૃતિક કાર્યક્રમો, વિજ્ઞાન પ્રદર્શન.</p>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- ફૂટર -->
     <footer class="footer">
         <div class="footer-content">
-            <div class="footer-logo">
-                <i class="fas fa-graduation-cap"></i>
-            </div>
+            <div class="footer-logo"><i class="fas fa-graduation-cap"></i></div>
             <h3 class="footer-title">ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી</h3>
             <p class="footer-text">શિક્ષા, સંસ્કાર અને સેવાનો સંગમ</p>
             
-            <div class="contact-bar" style="background: rgba(255, 255, 255, 0.1); margin: 20px auto; max-width: 800px;">
-                <div class="contact-item">
-                    <i class="fas fa-map-marker-alt contact-icon"></i>
-                    <span>નારોલી, થરાદ, બનાસકાંઠા, ગુજરાત - 385565</span>
+            <div class="footer-contact">
+                <div class="footer-contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>નારોલી, થરાદ, બનાસકાંઠા - 385565</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-phone"></i>
+                    <span>6353644164</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <span>140ubvnaroli@gmail.com</span>
                 </div>
             </div>
             
@@ -617,6 +1017,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>
