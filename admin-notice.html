@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>એડમિન - સૂચના મેનેજમેન્ટ | ઉ.બુ.ઉ.મા. શાળા, નારોલી</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* લોગિન બોક્સ */
+        .login-box {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            max-width: 400px;
+            margin: 50px auto;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border: 3px solid #ffd700;
+            text-align: center;
+        }
+
+        .login-box h2 {
+            color: #1a237e;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        .login-box input {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+        }
+
+        .login-box input:focus {
+            border-color: #ffd700;
+            outline: none;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+            border: 2px solid #ffd700;
+        }
+
+        .login-btn:hover {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+        }
+
+        /* એડમિન પેનલ */
+        .admin-panel {
+            background: white;
+            border-radius: 40px;
+            padding: 40px;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+            border: 3px solid #ffd700;
+            display: none;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .admin-header h1 {
+            color: #1a237e;
+            font-size: 32px;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #ffd700;
+        }
+
+        /* ફોર્મ */
+        .add-notice {
+            background: #f5f5f5;
+            border-radius: 30px;
+            padding: 30px;
+            margin-bottom: 40px;
+            border: 2px solid #ffd700;
+        }
+
+        .add-notice h3 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus {
+            border-color: #ffd700;
+            outline: none;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .save-btn {
+            background: linear-gradient(135deg, #4caf50, #45a049);
+            color: white;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #ffd700;
+        }
+
+        .save-btn:hover {
+            background: linear-gradient(135deg, #45a049, #4caf50);
+            transform: scale(1.02);
+        }
+
+        /* નોટિસ લિસ્ટ */
+        .notice-list {
+            background: #f5f5f5;
+            border-radius: 30px;
+            padding: 30px;
+            border: 2px solid #ffd700;
+        }
+
+        .notice-list h3 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .notice-item {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 8px solid #ffd700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .notice-info h4 {
+            color: #1a237e;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .notice-info p {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .notice-date {
+            color: #ff8c00;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .delete-btn {
+            background: #ff4444;
+            color: white;
+            padding: 8px 20px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: bold;
+            border: 2px solid #ffd700;
+        }
+
+        .delete-btn:hover {
+            background: #cc0000;
+        }
+
+        .empty-msg {
+            text-align: center;
+            color: #666;
+            padding: 40px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .notice-item {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .admin-header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- લોગિન બોક્સ -->
+        <div class="login-box" id="loginBox">
+            <h2><i class="fas fa-lock"></i> એડમિન લોગિન</h2>
+            <input type="text" id="username" placeholder="યુઝરનેમ" value="admin">
+            <input type="password" id="password" placeholder="પાસવર્ડ" value="naroli@123">
+            <button class="login-btn" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> લોગિન કરો
+            </button>
+        </div>
+
+        <!-- એડમિન પેનલ -->
+        <div class="admin-panel" id="adminPanel">
+            <div class="admin-header">
+                <h1><i class="fas fa-bullhorn"></i> સૂચના મેનેજમેન્ટ</h1>
+                <button class="logout-btn" onclick="logout()">
+                    <i class="fas fa-sign-out-alt"></i> લોગઆઉટ
+                </button>
+            </div>
+
+            <!-- નવી સૂચના ઉમેરો -->
+            <div class="add-notice">
+                <h3><i class="fas fa-plus-circle"></i> નવી સૂચના ઉમેરો</h3>
+                <div class="form-group">
+                    <label>સૂચનાનું શીર્ષક <span style="color: red;">*</span></label>
+                    <input type="text" id="noticeTitle" placeholder="દા.ત. બોર્ડ પરીક્ષા દરમિયાન શાળા ચાલુ">
+                </div>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>તારીખ <span style="color: red;">*</span></label>
+                        <input type="date" id="noticeDate">
+                    </div>
+                    <div class="form-group">
+                        <label>જારી કરનાર <span style="color: red;">*</span></label>
+                        <input type="text" id="noticeAuthor" placeholder="આચાર્યશ્રી" value="આચાર્યશ્રી">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>સૂચનાની વિગત <span style="color: red;">*</span></label>
+                    <textarea id="noticeContent" rows="5" placeholder="સંપૂર્ણ માહિતી અહીં લખો..."></textarea>
+                </div>
+
+                <button class="save-btn" onclick="saveNotice()">
+                    <i class="fas fa-save"></i> સૂચના સેવ કરો
+                </button>
+            </div>
+
+            <!-- હાલની સૂચનાઓ -->
+            <div class="notice-list">
+                <h3><i class="fas fa-list"></i> હાલની સૂચનાઓ</h3>
+                <div id="noticesContainer">
+                    <!-- સૂચનાઓ અહીં JavaScript દ્વારા ઉમેરાશે -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // લોગિન ફંક્શન
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // સિમ્પલ લોગિન - તમે પાસવર્ડ બદલી શકો છો
+            if (username === 'admin' && password === 'naroli@123') {
+                document.getElementById('loginBox').style.display = 'none';
+                document.getElementById('adminPanel').style.display = 'block';
+                loadNotices();
+            } else {
+                alert('❌ ખોટું યુઝરનેમ અથવા પાસવર્ડ!');
+            }
+        }
+
+        // લોગઆઉટ ફંક્શન
+        function logout() {
+            document.getElementById('loginBox').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+            document.getElementById('username').value = 'admin';
+            document.getElementById('password').value = 'naroli@123';
+        }
+
+        // localStorage માંથી સૂચનાઓ લોડ કરો
+        function loadNotices() {
+            const notices = JSON.parse(localStorage.getItem('notices')) || [];
+            const container = document.getElementById('noticesContainer');
+            
+            if (notices.length === 0) {
+                container.innerHTML = '<div class="empty-msg"><i class="fas fa-info-circle"></i> હજી સુધી કોઈ સૂચના ઉમેરાઈ નથી.</div>';
+                return;
+            }
+
+            let html = '';
+            notices.reverse().forEach((notice, index) => {
+                html += `
+                    <div class="notice-item">
+                        <div class="notice-info">
+                            <h4>${notice.title}</h4>
+                            <p>${notice.content.substring(0, 100)}${notice.content.length > 100 ? '...' : ''}</p>
+                            <div class="notice-date">
+                                <i class="far fa-calendar-alt"></i> ${notice.date} | 
+                                <i class="fas fa-user-tie"></i> ${notice.author}
+                            </div>
+                        </div>
+                        <button class="delete-btn" onclick="deleteNotice(${index})">
+                            <i class="fas fa-trash"></i> ડિલીટ
+                        </button>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        // નવી સૂચના સેવ કરો
+        function saveNotice() {
+            const title = document.getElementById('noticeTitle').value.trim();
+            const date = document.getElementById('noticeDate').value;
+            const author = document.getElementById('noticeAuthor').value.trim();
+            const content = document.getElementById('noticeContent').value.trim();
+
+            if (!title || !date || !author || !content) {
+                alert('❌ બધા ફીલ્ડ ભરવા ફરજિયાત છે!');
+                return;
+            }
+
+            // નવી સૂચના ઑબ્જેક્ટ
+            const notice = {
+                title: title,
+                date: formatDate(date),
+                author: author,
+                content: content,
+                timestamp: new Date().toISOString()
+            };
+
+            // localStorage માં સેવ કરો
+            const notices = JSON.parse(localStorage.getItem('notices')) || [];
+            notices.push(notice);
+            localStorage.setItem('notices', JSON.stringify(notices));
+
+            // ફોર્મ ખાલી કરો
+            document.getElementById('noticeTitle').value = '';
+            document.getElementById('noticeDate').value = '';
+            document.getElementById('noticeAuthor').value = 'આચાર્યશ્રી';
+            document.getElementById('noticeContent').value = '';
+
+            alert('✅ સૂચના સફળતાપૂર્વક સેવ થઈ!');
+            loadNotices();
+        }
+
+        // સૂચના ડિલીટ કરો
+        function deleteNotice(index) {
+            if (confirm('શું તમે ખરેખર આ સૂચના ડિલીટ કરવા માંગો છો?')) {
+                const notices = JSON.parse(localStorage.getItem('notices')) || [];
+                const realIndex = notices.length - 1 - index; // reverse order માટે
+                notices.splice(realIndex, 1);
+                localStorage.setItem('notices', JSON.stringify(notices));
+                loadNotices();
+                alert('✅ સૂચના ડિલીટ થઈ ગઈ!');
+            }
+        }
+
+        // તારીખ ફોર્મેટ કરો (YYYY-MM-DD to DD MMMM YYYY)
+        function formatDate(dateString) {
+            const months = ['જાન્યુઆરી', 'ફેબ્રુઆરી', 'માર્ચ', 'એપ્રિલ', 'મે', 'જૂન', 
+                          'જુલાઈ', 'ઓગસ્ટ', 'સપ્ટેમ્બર', 'ઓક્ટોબર', 'નવેમ્બર', 'ડિસેમ્બર'];
+            const d = new Date(dateString);
+            return d.getDate() + ' ' + months[d.getMonth()] + ' ' + d.getFullYear();
+        }
+
+        // પેજ લોડ થાય ત્યારે લોગિન બોક્સ બતાવો
+        window.onload = function() {
+            document.getElementById('loginBox').style.display = 'block';
+            document.getElementById('adminPanel').style.display = 'none';
+        };
+    </script>
+</body>
+</html>
