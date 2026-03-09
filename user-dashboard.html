@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>યુઝર ડેશબોર્ડ | શાળા મેનેજમેન્ટ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* હેડર */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 60px;
+            margin-bottom: 30px;
+            border: 3px solid #ffd700;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .header h1 {
+            color: #1a237e;
+            font-size: 28px;
+        }
+
+        .header h1 i {
+            color: #ffd700;
+            margin-right: 10px;
+        }
+
+        .user-info {
+            background: #28a745;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 40px;
+            border: 2px solid #ffd700;
+        }
+
+        .user-info i {
+            color: #ffd700;
+            margin-right: 5px;
+        }
+
+        .logout-btn {
+            background: #ff4444;
+            color: white;
+            padding: 10px 25px;
+            border-radius: 40px;
+            text-decoration: none;
+            font-weight: bold;
+            border: 2px solid #ffd700;
+        }
+
+        /* મેનુ ગ્રીડ */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            border: 3px solid #ffd700;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            opacity: 0.9;
+        }
+
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(255,215,0,0.2);
+        }
+
+        .menu-icon {
+            font-size: 60px;
+            color: #1a237e;
+            margin-bottom: 20px;
+        }
+
+        .menu-title {
+            color: #1a237e;
+            font-size: 22px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .menu-desc {
+            color: #666;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .view-btn {
+            background: linear-gradient(135deg, #28a745, #218838);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 40px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border: 2px solid #ffd700;
+        }
+
+        .view-btn i {
+            margin-right: 5px;
+        }
+
+        .view-btn:hover {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+        }
+
+        /* નોટિસ બોક્સ */
+        .notice-box {
+            background: white;
+            border-radius: 30px;
+            padding: 30px;
+            border: 3px solid #ffd700;
+            margin-bottom: 30px;
+        }
+
+        .notice-box h3 {
+            color: #1a237e;
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .notice-item {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            border-left: 5px solid #ffd700;
+        }
+
+        .notice-item h4 {
+            color: #1a237e;
+            margin-bottom: 5px;
+        }
+
+        .notice-item p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        /* ફૂટર */
+        .footer {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 60px;
+            padding: 20px;
+            text-align: center;
+            border: 3px solid #ffd700;
+            color: #1a237e;
+        }
+
+        .view-only {
+            background: #f5f5f5;
+            color: #666;
+            padding: 5px 10px;
+            border-radius: 30px;
+            font-size: 12px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- હેડર -->
+        <div class="header">
+            <h1><i class="fas fa-user"></i> યુઝર ડેશબોર્ડ</h1>
+            <div class="user-info">
+                <i class="fas fa-eye"></i> યુઝર (ફક્ત જોવાની પરવાનગી)
+            </div>
+            <a href="admin-login.html" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> લોગઆઉટ
+            </a>
+        </div>
+
+        <!-- તાજી સૂચનાઓ -->
+        <div class="notice-box">
+            <h3><i class="fas fa-bullhorn"></i> તાજી સૂચનાઓ</h3>
+            <div id="userNotices">
+                <!-- સૂચનાઓ JavaScript દ્વારા ઉમેરાશે -->
+            </div>
+            <div class="view-only">
+                <i class="fas fa-info-circle"></i> ફક્ત જોવા માટે - ફેરફાર કરી શકતા નથી
+            </div>
+        </div>
+
+        <!-- મેનુ કાર્ડ્સ - યુઝર માટે (ફક્ત જોવા) -->
+        <div class="menu-grid">
+            <!-- ગેલેરી જુઓ -->
+            <div class="menu-card" onclick="location.href='gallery.html'">
+                <div class="menu-icon"><i class="fas fa-images"></i></div>
+                <h3 class="menu-title">ફોટો ગેલેરી</h3>
+                <p class="menu-desc">શાળાના તમામ ફોટા જુઓ</p>
+                <button class="view-btn"><i class="fas fa-eye"></i> જુઓ</button>
+            </div>
+
+            <!-- પરિણામ જુઓ -->
+            <div class="menu-card" onclick="location.href='result.html'">
+                <div class="menu-icon"><i class="fas fa-chart-line"></i></div>
+                <h3 class="menu-title">પરિણામ</h3>
+                <p class="menu-desc">વિદ્યાર્થીઓના પરિણામ જુઓ</p>
+                <button class="view-btn"><i class="fas fa-eye"></i> જુઓ</button>
+            </div>
+
+            <!-- વિડીયો જુઓ -->
+            <div class="menu-card" onclick="location.href='videos.html'">
+                <div class="menu-icon"><i class="fas fa-video"></i></div>
+                <h3 class="menu-title">વિડીયો</h3>
+                <p class="menu-desc">શાળાના વિડીયો જુઓ</p>
+                <button class="view-btn"><i class="fas fa-eye"></i> જુઓ</button>
+            </div>
+
+            <!-- સ્ટાફ માહિતી -->
+            <div class="menu-card" onclick="location.href='staff.html'">
+                <div class="menu-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                <h3 class="menu-title">સ્ટાફ</h3>
+                <p class="menu-desc">શિક્ષકોની માહિતી જુઓ</p>
+                <button class="view-btn"><i class="fas fa-eye"></i> જુઓ</button>
+            </div>
+        </div>
+
+        <!-- ફૂટર -->
+        <div class="footer">
+            <p><i class="fas fa-eye"></i> તમે ફક્ત જોઈ શકો છો, ફેરફાર કરી શકતા નથી | © 2026 ઉ.બુ.ઉ.મા. શાળા, નારોલી</p>
+        </div>
+    </div>
+
+    <script>
+        // ચેક કરો કે યુઝર લોગિન છે કે નહીં
+        const urlParams = new URLSearchParams(window.location.search);
+        const role = urlParams.get('role');
+        
+        if (role !== 'user') {
+            window.location.href = 'admin-login.html';
+        }
+
+        // યુઝર માટે સૂચનાઓ લોડ કરો
+        function loadUserNotices() {
+            const notices = JSON.parse(localStorage.getItem('notices')) || [];
+            const container = document.getElementById('userNotices');
+            
+            if (notices.length === 0) {
+                container.innerHTML = '<p>હાલમાં કોઈ નવી સૂચના નથી.</p>';
+                return;
+            }
+
+            let html = '';
+            notices.slice(-5).reverse().forEach(notice => {
+                html += `
+                    <div class="notice-item">
+                        <h4>${notice.title}</h4>
+                        <p>${notice.content.substring(0, 100)}${notice.content.length > 100 ? '...' : ''}</p>
+                        <small><i class="far fa-calendar-alt"></i> ${notice.date}</small>
+                    </div>
+                `;
+            });
+            container.innerHTML = html;
+        }
+
+        loadUserNotices();
+    </script>
+</body>
+</html>
