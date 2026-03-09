@@ -3,110 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>એડમિન લોગિન | શાળા વેબસાઇટ</title>
+    <title>લોગિન - એડમિન/યુઝર | ઉ.બુ.ઉ.મા. શાળા, નારોલી</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         body {
-            font-family: 'Poppins', 'Nirmala UI', sans-serif;
+            font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
+
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+        }
+
         .login-box {
             background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            width: 400px;
-            max-width: 90%;
-        }
-        .login-box h2 {
-            color: #1a237e;
+            border-radius: 40px;
+            padding: 50px 40px;
+            box-shadow: 0 30px 70px rgba(0,0,0,0.3);
+            border: 4px solid #ffd700;
             text-align: center;
-            margin-bottom: 30px;
         }
-        .form-group {
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: #666;
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            font-size: 16px;
-        }
-        .form-group input:focus {
-            border-color: #ffd700;
-            outline: none;
-        }
-        .btn-login {
+
+        .school-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
             background: linear-gradient(135deg, #1a237e, #283593);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 4px solid #ffd700;
+        }
+
+        .school-logo i {
+            font-size: 50px;
             color: white;
+        }
+
+        h2 {
+            color: #1a237e;
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+
+        .role-selector {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            background: #f5f5f5;
+            padding: 10px;
+            border-radius: 60px;
+        }
+
+        .role-btn {
+            flex: 1;
             padding: 12px;
             border: none;
-            border-radius: 8px;
-            width: 100%;
+            border-radius: 40px;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 600;
             cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: #666;
         }
-        .btn-login:hover {
-            transform: translateY(-2px);
+
+        .role-btn.active {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
-        .error {
-            background: #f44336;
-            color: white;
-            padding: 10px;
-            border-radius: 5px;
+
+        .input-group {
             margin-bottom: 20px;
-            text-align: center;
+            text-align: left;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 15px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .input-group input:focus {
+            border-color: #ffd700;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255,215,0,0.2);
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 40px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+            border: 3px solid #ffd700;
+            transition: all 0.4s ease;
+        }
+
+        .login-btn:hover {
+            transform: scale(1.02);
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+        }
+
+        .forgot-password {
+            color: #666;
+            font-size: 14px;
+            text-decoration: none;
+        }
+
+        .forgot-password:hover {
+            color: #1a237e;
+            text-decoration: underline;
+        }
+
+        .error-message {
+            background: #ff4444;
+            color: white;
+            padding: 12px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             display: none;
+        }
+
+        .info-box {
+            background: #f5f5f5;
+            border-radius: 15px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 13px;
+            color: #666;
+            border-left: 4px solid #ffd700;
+        }
+
+        .info-box i {
+            color: #1a237e;
+            margin-right: 5px;
         }
     </style>
 </head>
 <body>
-    <div class="login-box">
-        <h2><i class="fas fa-user-shield"></i> એડમિન લોગિન</h2>
-        <div class="error" id="error">યુઝરનેમ અથવા પાસવર્ડ ખોટો છે</div>
-        <form onsubmit="return login()">
-            <div class="form-group">
-                <label>યુઝરનેમ</label>
-                <input type="text" id="username" required>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="school-logo">
+                <i class="fas fa-graduation-cap"></i>
             </div>
-            <div class="form-group">
-                <label>પાસવર્ડ</label>
-                <input type="password" id="password" required>
+            
+            <h2>શાળા મેનેજમેન્ટ સિસ્ટમ</h2>
+            <p class="subtitle">ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી</p>
+
+            <div class="role-selector">
+                <button class="role-btn active" onclick="setRole('admin')" id="adminBtn">
+                    <i class="fas fa-user-shield"></i> એડમિન
+                </button>
+                <button class="role-btn" onclick="setRole('user')" id="userBtn">
+                    <i class="fas fa-user"></i> યુઝર
+                </button>
             </div>
-            <button type="submit" class="btn-login">લોગિન કરો</button>
-        </form>
+
+            <div class="error-message" id="errorMsg"></div>
+
+            <div class="input-group">
+                <label><i class="fas fa-user"></i> યુઝરનેમ</label>
+                <input type="text" id="username" placeholder="તમારું યુઝરનેમ લખો">
+            </div>
+
+            <div class="input-group">
+                <label><i class="fas fa-lock"></i> પાસવર્ડ</label>
+                <input type="password" id="password" placeholder="તમારો પાસવર્ડ લખો">
+            </div>
+
+            <button class="login-btn" onclick="login()">
+                <i class="fas fa-sign-in-alt"></i> લોગિન કરો
+            </button>
+
+            <a href="#" class="forgot-password">પાસવર્ડ ભૂલી ગયા?</a>
+
+            <div class="info-box">
+                <p><i class="fas fa-info-circle"></i> <strong>ડિફોલ્ટ લોગિન માહિતી:</strong></p>
+                <p>📌 એડમિન: admin / admin@123</p>
+                <p>📌 યુઝર: user / user@123</p>
+                <p style="margin-top: 8px;"><i class="fas fa-shield-alt"></i> એડમિન જ ફેરફાર કરી શકે છે, યુઝર ફક્ત જોઈ શકે છે.</p>
+            </div>
+        </div>
     </div>
-    
+
     <script>
+        let currentRole = 'admin';
+
+        function setRole(role) {
+            currentRole = role;
+            
+            // બટન અપડેટ કરો
+            document.getElementById('adminBtn').classList.remove('active');
+            document.getElementById('userBtn').classList.remove('active');
+            
+            if (role === 'admin') {
+                document.getElementById('adminBtn').classList.add('active');
+            } else {
+                document.getElementById('userBtn').classList.add('active');
+            }
+        }
+
         function login() {
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('errorMsg');
+
+            // એડમિન લોગિન
+            if (currentRole === 'admin') {
+                if (username === 'admin' && password === 'admin@123') {
+                    // એડમિન સત્તા સાથે ડેશબોર્ડ પર જાઓ
+                    window.location.href = 'admin-dashboard.html?role=admin';
+                } else {
+                    errorMsg.style.display = 'block';
+                    errorMsg.innerHTML = '❌ ખોટું યુઝરનેમ અથવા પાસવર્ડ (એડમિન)';
+                }
+            }
             
-            // સિમ્પલ લોગિન (તમે તમારા પાસવર્ડ બદલી શકો છો)
-            if (username === 'admin' && password === 'naroli@123') {
-                window.location.href = 'admin-panel.php';
-                return false;
-            } else {
-                document.getElementById('error').style.display = 'block';
-                return false;
+            // યુઝર લોગિન
+            else if (currentRole === 'user') {
+                if (username === 'user' && password === 'user@123') {
+                    // યુઝર સત્તા સાથે ડેશબોર્ડ પર જાઓ
+                    window.location.href = 'user-dashboard.html?role=user';
+                } else {
+                    errorMsg.style.display = 'block';
+                    errorMsg.innerHTML = '❌ ખોટું યુઝરનેમ અથવા પાસવર્ડ (યુઝર)';
+                }
             }
         }
+
+        // Enter કી દબાવો તો લોગિન થાય
+        document.getElementById('password').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
     </script>
 </body>
 </html>
