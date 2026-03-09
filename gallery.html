@@ -1,15 +1,400 @@
 <!DOCTYPE html>
 <html lang="gu">
 <head>
-<meta charset="UTF-8">
-<title>Gallery</title>
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ફોટો ગેલેરી | ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        /* હેડર */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 60px;
+            margin-bottom: 40px;
+            text-align: center;
+            border: 3px solid #ffd700;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            color: #1a237e;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #2c3e50;
+            font-size: 18px;
+        }
+
+        /* ગેલેરી ગ્રીડ */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        /* ગેલેરી કાર્ડ */
+        .gallery-card {
+            background: white;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            transition: all 0.4s ease;
+            border: 3px solid transparent;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            border-color: #ffd700;
+            box-shadow: 0 30px 60px rgba(255,215,0,0.3);
+        }
+
+        .image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-card:hover .image-container img {
+            transform: scale(1.1);
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            padding: 20px;
+            transform: translateY(100%);
+            transition: transform 0.4s ease;
+        }
+
+        .gallery-card:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        .image-overlay h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #ffd700;
+        }
+
+        .image-overlay p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-title {
+            color: #1a237e;
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card-date {
+            color: #ff8c00;
+            font-size: 14px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .card-description {
+            color: #2c3e50;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* કેટેગરી ફિલ્ટર */
+        .filter-container {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: white;
+            color: #1a237e;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid #ffd700;
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* નેવિગેશન */
+        .nav-menu {
+            background: rgba(26, 35, 62, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-radius: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #ffd700;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .menu-item {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+        }
+
+        .menu-icon {
+            margin-right: 6px;
+        }
+
+        /* ફૂટર */
+        .footer {
+            background: rgba(26, 35, 62, 0.95);
+            color: white;
+            padding: 30px;
+            border-radius: 60px;
+            margin-top: 60px;
+            text-align: center;
+            border: 2px solid #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+            
+            .filter-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 90%;
+            }
+        }
+    </style>
 </head>
 <body>
-<h2>ફોટો ગેલેરી</h2>
-<div class="gallery">
-<img src="https://via.placeholder.com/200">
-<img src="https://via.placeholder.com/200">
-</div>
+    <div class="container">
+        <!-- નેવિગેશન મેનૂ -->
+        <nav class="nav-menu">
+            <div class="menu-container">
+                <a href="index.html" class="menu-item"><i class="fas fa-home menu-icon"></i> હોમ</a>
+                <a href="result.html" class="menu-item"><i class="fas fa-chart-line menu-icon"></i> પરિણામ</a>
+                <a href="notice.html" class="menu-item"><i class="fas fa-bullhorn menu-icon"></i> સૂચના</a>
+                <a href="gallery.html" class="menu-item"><i class="fas fa-images menu-icon"></i> ગેલેરી</a>
+                <a href="videos.html" class="menu-item"><i class="fas fa-video menu-icon"></i> વિડીયો</a>
+                <a href="contact.html" class="menu-item"><i class="fas fa-address-book menu-icon"></i> સંપર્ક</a>
+                <a href="admission.html" class="menu-item"><i class="fas fa-edit menu-icon"></i> પ્રવેશ ફોર્મ</a>
+            </div>
+        </nav>
+
+        <!-- હેડર -->
+        <div class="header">
+            <h1><i class="fas fa-images"></i> ફોટો ગેલેરી</h1>
+            <p>અમારી શાળાની યાદગાર ક્ષણો</p>
+        </div>
+
+        <!-- કેટેગરી ફિલ્ટર -->
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterGallery('all')">બધા</button>
+            <button class="filter-btn" onclick="filterGallery('function')">કાર્યક્રમો</button>
+            <button class="filter-btn" onclick="filterGallery('sports')">રમત-ગમત</button>
+            <button class="filter-btn" onclick="filterGallery('lab')">લેબોરેટરી</button>
+            <button class="filter-btn" onclick="filterGallery('class')">વર્ગખંડ</button>
+        </div>
+
+        <!-- ગેલેરી ગ્રીડ -->
+        <div class="gallery-grid" id="galleryGrid">
+            <!-- ફોટો 1: શાળા કાર્યક્રમ -->
+            <div class="gallery-card" data-category="function">
+                <div class="image-container">
+                    <img src="function1.jpg" alt="શાળા કાર્યક્રમ">
+                    <div class="image-overlay">
+                        <h3>વાર્ષિકોત્સવ 2026</h3>
+                        <p>સાંસ્કૃતિક કાર્યક્રમ</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">વાર્ષિકોત્સવ 2026</h3>
+                    <p class="card-date"><i class="far fa-calendar-alt"></i> 15 ફેબ્રુઆરી 2026</p>
+                    <p class="card-description">વિદ્યાર્થીઓ દ્વારા ભવ્ય સાંસ્કૃતિક કાર્યક્રમનું આયોજન.</p>
+                </div>
+            </div>
+
+            <!-- ફોટો 2: સાયન્સ લેબ -->
+            <div class="gallery-card" data-category="lab">
+                <div class="image-container">
+                    <img src="lab1.jpg" alt="સાયન્સ લેબોરેટરી">
+                    <div class="image-overlay">
+                        <h3>સાયન્સ લેબ</h3>
+                        <p>પ્રાયોગિક શિક્ષણ</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">વિજ્ઞાન પ્રયોગશાળા</h3>
+                    <p class="card-date"><i class="far fa-calendar-alt"></i> નિયમિત</p>
+                    <p class="card-description">વિદ્યાર્થીઓ પ્રયોગો દ્વારા શીખે છે.</p>
+                </div>
+            </div>
+
+            <!-- ફોટો 3: રમત-ગમત -->
+            <div class="gallery-card" data-category="sports">
+                <div class="image-container">
+                    <img src="sports1.jpg" alt="રમત-ગમત">
+                    <div class="image-overlay">
+                        <h3>વાર્ષિક રમતોત્સવ</h3>
+                        <p>ખેલ મેદાન</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">રમતોત્સવ 2026</h3>
+                    <p class="card-date"><i class="far fa-calendar-alt"></i> 10 જાન્યુઆરી 2026</p>
+                    <p class="card-description">વિદ્યાર્થીઓએ વિવિધ રમતોમાં ભાગ લીધો.</p>
+                </div>
+            </div>
+
+            <!-- ફોટો 4: વર્ગખંડ -->
+            <div class="gallery-card" data-category="class">
+                <div class="image-container">
+                    <img src="class1.jpg" alt="વર્ગખંડ">
+                    <div class="image-overlay">
+                        <h3>સ્માર્ટ ક્લાસ</h3>
+                        <p>આધુનિક શિક્ષણ</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">ડિજિટલ ક્લાસરૂમ</h3>
+                    <p class="card-date"><i class="far fa-calendar-alt"></i> નિયમિત</p>
+                    <p class="card-description">સ્માર્ટ બોર્ડ દ્વારા શિક્ષણ.</p>
+                </div>
+            </div>
+
+            <!-- ફોટો 5: પ્રદર્શન -->
+            <div class="gallery-card" data-category="function">
+                <div class="image-container">
+                    <img src="exhibition1.jpg" alt="પ્રદર્શન">
+                    <div class="image-overlay">
+                        <h3>વિજ્ઞાન પ્રદર્શન</h3>
+                        <p>નવીનતમ શોધ</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">વિજ્ઞાન પ્રદર્શન 2026</h3>
+                    <p class="card-date"><i class="far fa-calendar-alt"></i> 5 માર્ચ 2026</p>
+                    <p class="card-description">વિદ્યાર્થીઓએ મોડેલ્સ રજૂ કર્યા.</p>
+                </div>
+            </div>
+
+            <!-- ફોટો 6: પ્રાર્થના -->
+            <div class="gallery-card" data-category="function">
+                <div class="image-container">
+                    <img src="prayer1.jpg" alt="પ્રાર્થના">
+                    <div class="image-overlay">
+                        <h3>પ્રાર્થના સભા</h3>
+                        <p>સવારની શરૂઆત</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <h3 class="card-title">પ્રાર્થના સભા</h3>
+                    <p class="card-date"><i class="far fa-calendar-alt"></i> દૈનિક</p>
+                    <p class="card-description">સવારની પ્રાર્થના અને પ્રેરણાદાયી વિચારો.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ફૂટર -->
+        <div class="footer">
+            <p>© 2026 ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી | શિક્ષણની ગુણવત્તાનું પ્રતીક</p>
+        </div>
+    </div>
+
+    <!-- ફિલ્ટર માટે જાવાસ્ક્રિપ્ટ -->
+    <script>
+        function filterGallery(category) {
+            // બધા બટનમાંથી active ક્લાસ દૂર કરો
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // ક્લિક કરેલા બટનમાં active ક્લાસ ઉમેરો
+            event.target.classList.add('active');
+            
+            // બધા કાર્ડ મેળવો
+            const cards = document.querySelectorAll('.gallery-card');
+            
+            cards.forEach(card => {
+                if (category === 'all' || card.dataset.category === category) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 </html>
