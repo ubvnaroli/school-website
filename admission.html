@@ -6,26 +6,38 @@
     <title>પ્રવેશ ફોર્મ | ઉ.બુ.ઉ.મા. શાળા, નારોલી</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
             display: flex;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
+
         .container {
-            max-width: 900px;
+            max-width: 1000px;
             width: 100%;
             background: white;
-            border-radius: 30px;
+            border-radius: 40px;
+            padding: 40px;
             box-shadow: 0 30px 70px rgba(0,0,0,0.3);
-            overflow: hidden;
-            text-align: center;
-            padding: 50px 30px;
+            border: 4px solid #ffd700;
         }
+
+        /* હેડર */
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
         .logo {
             width: 120px;
             height: 120px;
@@ -34,182 +46,293 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 60px;
-            margin: 0 auto 30px;
-            border: 5px solid #ffd700;
-            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            margin: 0 auto 20px;
+            border: 4px solid #ffd700;
         }
+
+        .logo i {
+            font-size: 60px;
+            color: white;
+        }
+
         h1 {
             color: #1a237e;
             font-size: 32px;
             margin-bottom: 10px;
         }
-        h2 {
-            color: #283593;
-            font-size: 20px;
-            margin-bottom: 20px;
-            font-weight: normal;
-        }
+
         .school-name {
             color: #ff8c00;
-            font-size: 24px;
-            margin-bottom: 30px;
+            font-size: 20px;
+            margin-bottom: 5px;
             font-weight: 600;
         }
-        .info-box {
-            background: #f5f5f5;
-            border-radius: 20px;
-            padding: 30px;
+
+        .address {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        /* મુખ્ય ગ્રીડ */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 30px;
             margin: 30px 0;
-            text-align: left;
-            border-left: 8px solid #ffd700;
         }
-        .info-box h3 {
+
+        /* ડાબી બાજુ - દસ્તાવેજ યાદી */
+        .docs-section {
+            background: #f8fafc;
+            border-radius: 30px;
+            padding: 25px;
+            border: 3px solid #ffd700;
+        }
+
+        .docs-section h3 {
             color: #1a237e;
-            margin-bottom: 15px;
             font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-bottom: 2px solid #ffd700;
+            padding-bottom: 10px;
         }
-        .info-box ul {
+
+        .docs-list {
             list-style: none;
         }
-        .info-box li {
-            padding: 8px 0 8px 30px;
+
+        .docs-list li {
+            padding: 10px 0 10px 35px;
             position: relative;
             font-size: 16px;
+            border-bottom: 1px dashed #e0e0e0;
         }
-        .info-box li::before {
+
+        .docs-list li::before {
             content: "📄";
             position: absolute;
             left: 0;
-            top: 5px;
-            font-size: 18px;
+            top: 8px;
+            font-size: 20px;
         }
-        .btn {
+
+        .docs-list li.optional {
+            opacity: 0.8;
+        }
+
+        .docs-list li.optional::before {
+            content: "📋";
+        }
+
+        .contact-info {
+            background: #e9ecef;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .contact-info p {
+            margin: 8px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        /* જમણી બાજુ - માહિતી */
+        .info-section {
+            background: linear-gradient(135deg, #f5f5f5, #ffffff);
+            border-radius: 30px;
+            padding: 30px;
+            border: 3px solid #ffd700;
+        }
+
+        .info-section h3 {
+            color: #1a237e;
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-left: 8px solid #ffd700;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .info-card h4 {
+            color: #1a237e;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            color: #666;
+            margin: 5px 0;
+            font-size: 15px;
+        }
+
+        .info-card i {
+            color: #ff8c00;
+            width: 25px;
+        }
+
+        /* બટન */
+        .btn-container {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .google-form-btn {
             background: linear-gradient(135deg, #1a237e, #283593);
             color: white;
-            padding: 20px 50px;
+            padding: 20px 60px;
             text-decoration: none;
             border-radius: 60px;
             font-size: 24px;
             font-weight: bold;
             display: inline-block;
-            margin: 30px 0;
-            border: 3px solid #ffd700;
+            border: 4px solid #ffd700;
             transition: all 0.4s ease;
             box-shadow: 0 15px 30px rgba(0,0,0,0.2);
         }
-        .btn:hover {
+
+        .google-form-btn:hover {
             transform: scale(1.05) translateY(-5px);
             background: linear-gradient(135deg, #ffd700, #ffb347);
             color: #1a237e;
             box-shadow: 0 25px 50px rgba(255,215,0,0.3);
         }
-        .btn i {
+
+        .google-form-btn i {
             margin-right: 10px;
         }
+
         .note {
-            color: #666;
+            background: #fff3cd;
+            border-left: 8px solid #ffc107;
+            padding: 15px;
+            border-radius: 10px;
             margin: 20px 0;
             font-size: 14px;
         }
-        .contact {
-            background: #f0f2f5;
-            border-radius: 60px;
-            padding: 20px;
-            margin-top: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            flex-wrap: wrap;
-        }
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            color: #1a237e;
-        }
-        .contact-item i {
-            color: #ff8c00;
-            font-size: 20px;
-        }
+
         .footer {
+            text-align: center;
             margin-top: 30px;
             padding-top: 20px;
-            border-top: 1px solid #e0e0e0;
+            border-top: 2px solid #e0e0e0;
             color: #666;
-            font-size: 14px;
         }
+
         @media (max-width: 768px) {
-            .container { padding: 30px 20px; }
-            h1 { font-size: 26px; }
-            .btn { font-size: 20px; padding: 15px 30px; }
-            .contact { flex-direction: column; align-items: center; gap: 15px; }
+            .main-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 26px;
+            }
+            
+            .google-form-btn {
+                font-size: 20px;
+                padding: 15px 30px;
+            }
+            
+            .container {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- લોગો -->
-        <div class="logo">
-            <i class="fas fa-graduation-cap"></i>
+        <!-- હેડર -->
+        <div class="header">
+            <div class="logo">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1>ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા</h1>
+            <div class="school-name">🎓 શિક્ષણની ગુણવત્તાનું પ્રતીક</div>
+            <div class="address">
+                <i class="fas fa-map-marker-alt"></i> મુ. પો. નારોલી, તા. થરાદ, જિ. વાવ થરાદ - 385565
+            </div>
         </div>
 
-        <!-- શાળાનું નામ -->
-        <h1>ઉત્તર બુનિયાદી વિદ્યાલય અને ઉચ્ચતર માધ્યમિક શાળા</h1>
-        <h2>નારોલી, તા. થરાદ, જિ. વાવ થરાદ</h2>
-        <div class="school-name">
-            <i class="fas fa-star"></i> શિક્ષણની ગુણવત્તાનું પ્રતીક <i class="fas fa-star"></i>
+        <!-- મુખ્ય ગ્રીડ -->
+        <div class="main-grid">
+            <!-- ડાબી બાજુ: દસ્તાવેજ યાદી -->
+            <div class="docs-section">
+                <h3><i class="fas fa-list"></i> જરૂરી દસ્તાવેજો</h3>
+                <ul class="docs-list">
+                    <li><strong>એલ.સી.</strong> (તબદિલી પ્રમાણપત્ર)</li>
+                    <li><strong>માર્કશીટ</strong> (છેલ્લા વર્ગની)</li>
+                    <li><strong>આધાર કાર્ડ</strong> (વિદ્યાર્થી)</li>
+                    <li><strong>જન્મ તારીખ</strong> પ્રમાણપત્ર</li>
+                    <li><strong>બેંક પાસબુક</strong> (વિદ્યાર્થી/વાલી)</li>
+                    <li><strong>પિતાનો આધાર</strong> કાર્ડ</li>
+                    <li><strong>માતાનો આધાર</strong> કાર્ડ</li>
+                    <li><strong>પાસપોર્ટ ફોટો</strong> (4 નકલ)</li>
+                    <li class="optional">📋 જ્ઞાતિ પ્રમાણપત્ર (SC/ST/OBC)</li>
+                    <li class="optional">🪪 રેશન કાર્ડ (વૈકલ્પિક)</li>
+                </ul>
+                <div class="contact-info">
+                    <p><i class="fas fa-phone-alt"></i> ૮૯૦૧૧ ૪૫૪૧૩ | ૮૮૧૩૦ ૯૮૮૬૦</p>
+                    <p><i class="fas fa-envelope"></i> ubvnaroli@yahoo.com</p>
+                    <p><i class="fas fa-id-card"></i> UDISE: 24021009504</p>
+                </div>
+            </div>
+
+            <!-- જમણી બાજુ: શાળા માહિતી -->
+            <div class="info-section">
+                <h3><i class="fas fa-graduation-cap"></i> શૈક્ષણિક માહિતી</h3>
+                
+                <div class="info-card">
+                    <h4><i class="fas fa-school"></i> SSC</h4>
+                    <p><i class="fas fa-calendar-alt"></i> સ્થાપના: 1979</p>
+                    <p><i class="fas fa-hashtag"></i> ઇન્ડેક્સ: 60.0070</p>
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fas fa-flask"></i> HSC (વિજ્ઞાન)</h4>
+                    <p><i class="fas fa-calendar-alt"></i> સ્થાપના: 2007</p>
+                    <p><i class="fas fa-hashtag"></i> ઇન્ડેક્સ: 10.0120</p>
+                    <p>ફિઝિક્સ, કેમિસ્ટ્રી, બાયોલોજી</p>
+                </div>
+
+                <div class="info-card">
+                    <h4><i class="fas fa-book-open"></i> HSC (સામાન્ય)</h4>
+                    <p><i class="fas fa-calendar-alt"></i> સ્થાપના: 1999</p>
+                    <p><i class="fas fa-hashtag"></i> ઇન્ડેક્સ: 10.0061</p>
+                    <p>કોમર્સ, આર્ટસ, જનરલ</p>
+                </div>
+            </div>
         </div>
 
-        <!-- માહિતી બોક્સ -->
-        <div class="info-box">
-            <h3><i class="fas fa-list"></i> પ્રવેશ માટે જરૂરી દસ્તાવેજો:</h3>
-            <ul>
-                <li><strong>એલ.સી.</strong> (તબદિલી પ્રમાણપત્ર)</li>
-                <li><strong>માર્કશીટ</strong> (છેલ્લા વર્ગની)</li>
-                <li><strong>આધાર કાર્ડ</strong> (વિદ્યાર્થી)</li>
-                <li><strong>જન્મ તારીખ</strong> પ્રમાણપત્ર</li>
-                <li><strong>બેંક પાસબુક</strong> (વિદ્યાર્થી/વાલી)</li>
-                <li><strong>પિતાનો આધાર</strong> કાર્ડ</li>
-                <li><strong>માતાનો આધાર</strong> કાર્ડ</li>
-                <li><strong>પાસપોર્ટ ફોટો</strong> (4 નકલ)</li>
-                <li>📋 જ્ઞાતિ પ્રમાણપત્ર (SC/ST/OBC માટે)</li>
-                <li>🪪 રેશન કાર્ડ (વૈકલ્પિક)</li>
-            </ul>
+        <!-- Google Forms બટન -->
+        <div class="btn-container">
+            <a href="https://forms.gle/u5Mpq4ShfGdMs2it5" target="_blank" class="google-form-btn">
+                <i class="fas fa-edit"></i> ઓનલાઈન પ્રવેશ ફોર્મ ભરો
+            </a>
         </div>
 
-        <!-- Google Forms બટન - અપડેટેડ લિંક -->
-        <a href="https://forms.gle/u5Mpq4ShfGdMs2it5" target="_blank" class="btn">
-            <i class="fas fa-edit"></i> ઓનલાઈન પ્રવેશ ફોર્મ ભરો
-        </a>
-
-        <!-- મહત્વપૂર્ણ સૂચના -->
+        <!-- મહત્વપૂર્ણ નોંધ -->
         <div class="note">
-            <i class="fas fa-info-circle" style="color: #ff8c00;"></i>
-            ફોર્મ ભર્યા પછી તમારા ઇમેઇલ પર એક નકલ મોકલવામાં આવશે.<br>
-            મોબાઇલ અને કમ્પ્યુટર બંને પર કામ કરે છે.
-        </div>
-
-        <!-- સંપર્ક માહિતી -->
-        <div class="contact">
-            <div class="contact-item">
-                <i class="fas fa-id-card"></i>
-                <span>UDISE: 24021009504</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-envelope"></i>
-                <span>140ubvnaroli@gmail.com</span>
-            </div>
-            <div class="contact-item">
-                <i class="fas fa-phone-alt"></i>
-                <span>6353644164</span>
-            </div>
+            <i class="fas fa-info-circle" style="color: #ff8c00; font-size: 18px; margin-right: 8px;"></i>
+            <strong>સૂચના:</strong> ઉપરના બટન પર ક્લિક કરતાં Google Forms ખુલશે. ત્યાં બધી માહિતી ભરો અને દસ્તાવેજો અપલોડ કરો. ફોર્મ ભર્યા પછી તમારા ઇમેઇલ પર એક નકલ મોકલવામાં આવશે.
         </div>
 
         <!-- ફૂટર -->
         <div class="footer">
-            © 2026 ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી. તમામ હક્કો સુરક્ષિત.
+            <p>© 2026 ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી | પ્રવેશ માટે શુભેચ્છાઓ</p>
         </div>
     </div>
 </body>
