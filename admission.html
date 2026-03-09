@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>પ્રવેશ અરજી | ઉ.બુ.ઉ.મા. શાળા, નારોલી</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Nirmala UI', 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            padding: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .a4-container {
+            max-width: 1100px; /* A4 કદ જેટલી પહોળાઈ */
+            width: 100%;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+            overflow: hidden;
+        }
+        /* હેડર */
+        .header {
+            background: linear-gradient(145deg, #1e3c72, #2a5298);
+            color: white;
+            padding: 20px 25px;
+            text-align: center;
+        }
+        .header h1 { font-size: 1.8rem; margin-bottom: 5px; }
+        .header h2 { font-size: 1.2rem; color: #ffd700; font-weight: normal; }
+        /* મુખ્ય ગ્રીડ: ડોક લિસ્ટ (30%) અને ફોર્મ (70%) */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 1fr 2.2fr;
+            gap: 0;
+            background: #fff;
+        }
+        /* ડાબી પેનલ - દસ્તાવેજ લિસ્ટ (નાનું) */
+        .docs-panel {
+            background: #f8fafd;
+            padding: 20px;
+            border-right: 1px solid #dde7f0;
+        }
+        .docs-panel h3 {
+            color: #1e3c72;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .docs-list {
+            list-style: none;
+            font-size: 0.85rem;
+        }
+        .docs-list li {
+            padding: 6px 8px 6px 25px;
+            margin-bottom: 4px;
+            background: white;
+            border-radius: 6px;
+            border-left: 3px solid #2a5298;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+            position: relative;
+        }
+        .docs-list li::before {
+            content: "📄";
+            position: absolute;
+            left: 5px;
+            top: 5px;
+            font-size: 0.8rem;
+        }
+        .docs-list li.optional {
+            border-left-color: #6c757d;
+            opacity: 0.9;
+        }
+        .contact-mini {
+            margin-top: 20px;
+            background: #e9ecef;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            font-size: 0.8rem;
+        }
+        .contact-mini p { margin: 3px 0; }
+        /* જમણી પેનલ - ફોર્મ (કોમ્પેક્ટ) */
+        .form-panel {
+            padding: 20px;
+            background: white;
+        }
+        .form-panel h3 {
+            color: #1e3c72;
+            font-size: 1.2rem;
+            border-bottom: 2px solid #2a5298;
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+        }
+        /* 2 કોલમ ફોર્મ ગ્રીડ */
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px 15px;
+        }
+        .full-width { grid-column: span 2; }
+        .form-group { margin-bottom: 5px; }
+        .form-group label {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #2d3748;
+            margin-bottom: 2px;
+            letter-spacing: 0.3px;
+        }
+        .form-group label .req { color: #e53e3e; margin-left: 2px; }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 6px 8px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            background: #fafbfc;
+        }
+        .form-group input:focus, .form-group select:focus {
+            border-color: #2a5298;
+            outline: none;
+            background: white;
+        }
+        /* સ્ટ્રીમ ડ્રોપડાઉન - અલગ કલર (લીલો) */
+        .stream-select {
+            border-color: #38a169 !important;
+            background: #f0fff4 !important;
+            font-weight: 500;
+            color: #22543d;
+        }
+        /* અપલોડ બોક્સ - કોમ્પેક્ટ */
+        .upload-row {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background: #f1f5f9;
+            border-radius: 6px;
+            padding: 3px 3px 3px 8px;
+            border: 1px solid #dde7f0;
+        }
+        .upload-btn {
+            position: relative;
+            background: #2a5298;
+            color: white;
+            padding: 3px 10px;
+            border-radius: 4px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            cursor: pointer;
+            white-space: nowrap;
+            border: none;
+        }
+        .upload-btn input {
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+        }
+        .file-meta {
+            font-size: 0.65rem;
+            color: #4a5568;
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            flex: 1;
+            min-width: 0;
+        }
+        .file-name {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 100px;
+        }
+        .size-warning {
+            color: #e53e3e;
+            font-size: 0.6rem;
+            display: none;
+        }
+        .progress-mini {
+            margin: 15px 0 8px;
+            height: 6px;
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #48bb78, #2a5298);
+            width: 0%;
+            border-radius: 10px;
+        }
+        .declaration {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 12px 0 8px;
+        }
+        .btn-submit {
+            background: linear-gradient(145deg, #1e3c72, #2a5298);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+            transition: 0.2s;
+        }
+        .btn-submit:disabled {
+            background: #cbd5e0;
+            cursor: not-allowed;
+        }
+        .footer-note {
+            text-align: center;
+            font-size: 0.65rem;
+            color: #718096;
+            padding: 8px 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        /* રિસ્પોન્સિવ: નાની સ્ક્રીનમાં એક કોલમ */
+        @media (max-width: 800px) {
+            .main-grid { grid-template-columns: 1fr; }
+            .docs-panel { border-right: 0; border-bottom: 1px solid #dde7f0; }
+        }
+    </style>
+</head>
+<body>
+<div class="a4-container">
+    <!-- હેડર -->
+    <div class="header">
+        <h1>🏫 ઉત્તર બુનિયાદી અને ઉચ્ચતર માધ્યમિક શાળા, નારોલી</h1>
+        <h2>📋 દસ્તાવેજ અપલોડ ફોર્મ (ધોરણ 9-12) | શૈક્ષણિક વર્ષ 2026-27</h2>
+    </div>
+
+    <!-- મુખ્ય ગ્રીડ: ડોક લિસ્ટ + ફોર્મ -->
+    <div class="main-grid">
+        <!-- ડાબી બાજુ: દસ્તાવેજોનું લિસ્ટ (નાનું) -->
+        <div class="docs-panel">
+            <h3><span>📌</span> જરૂરી દસ્તાવેજ</h3>
+            <ul class="docs-list">
+                <li><strong>એલ.સી.</strong> (તબદિલી પ્રમાણપત્ર)</li>
+                <li><strong>માર્કશીટ</strong> (છેલ્લા વર્ગની)</li>
+                <li><strong>આધાર કાર્ડ</strong> (વિદ્યાર્થી)</li>
+                <li><strong>જન્મ તારીખ</strong> પ્રમાણપત્ર</li>
+                <li><strong>બેંક પાસબુક</strong> (વિદ્યાર્થી/વાલી)</li>
+                <li><strong>પિતાનો આધાર</strong> કાર્ડ</li>
+                <li><strong>માતાનો આધાર</strong> કાર્ડ</li>
+                <li><strong>પાસપોર્ટ ફોટો</strong> (4 નકલ)</li>
+                <li class="optional"><span>📋</span> જ્ઞાતિ પ્રમાણપત્ર (SC/ST/OBC)</li>
+                <li class="optional"><span>🪪</span> રેશન કાર્ડ (વૈકલ્પિક)</li>
+            </ul>
+            <div class="contact-mini">
+                <p>📞 ૮૯૦૧૧ ૪૫૪૧૩ | ૮૮૧૩૦ ૯૮૮૬૦</p>
+                <p>✉️ ubvnaroli@yahoo.com</p>
+                <p style="font-size:0.7rem; color:#dc3545;">⚠️ દરેક ફાઇલ < 100 KB</p>
+            </div>
+        </div>
+
+        <!-- જમણી બાજુ: ફોર્મ -->
+        <div class="form-panel">
+            <h3>📝 વિગતો ભરો & દસ્તાવેજ અપલોડ કરો</h3>
+            <form id="compactForm">
+                <!-- 2 કોલમ ગ્રીડ -->
+                <div class="form-grid">
+                    <!-- નામ -->
+                    <div class="form-group">
+                        <label>વિદ્યાર્થી નામ <span class="req">*</span></label>
+                        <input type="text" id="sname" placeholder="પૂરું નામ" required>
+                    </div>
+                    <!-- જન્મ તારીખ -->
+                    <div class="form-group">
+                        <label>જન્મ તારીખ <span class="req">*</span></label>
+                        <input type="date" id="dob" required>
+                    </div>
+                    <!-- ધોરણ -->
+                    <div class="form-group">
+                        <label>ધોરણ <span class="req">*</span></label>
+                        <select id="classSelect" required>
+                            <option value="">—પસંદ કરો—</option>
+                            <option value="9">ધોરણ 9</option>
+                            <option value="10">ધોરણ 10</option>
+                            <option value="11">ધોરણ 11</option>
+                            <option value="12">ધોરણ 12</option>
+                        </select>
+                    </div>
+                    <!-- સ્ટ્રીમ ડ્રોપડાઉન (અલગ કલરમાં) -->
+                    <div class="form-group">
+                        <label>સ્ટ્રીમ (ધો. 11-12 માટે)</label>
+                        <select id="streamSelect" class="stream-select">
+                            <option value="">—સ્ટ્રીમ પસંદ કરો—</option>
+                            <option value="science">🔬 સાયન્સ</option>
+                            <option value="commerce">📊 કોમર્સ</option>
+                            <option value="arts">🎨 આર્ટ્સ</option>
+                        </select>
+                    </div>
+                    <!-- માતા-પિતા નામ (એક લાઇન) -->
+                    <div class="form-group">
+                        <label>પિતાનું નામ <span class="req">*</span></label>
+                        <input type="text" id="fname" required>
+                    </div>
+                    <div class="form-group">
+                        <label>માતાનું નામ <span class="req">*</span></label>
+                        <input type="text" id="mname" required>
+                    </div>
+                    <!-- મોબાઇલ અને એડ્રેસ (એડ્રેસ ફુલ વિડ્થમાં નીચે) -->
+                    <div class="form-group">
+                        <label>મોબાઇલ <span class="req">*</span></label>
+                        <input type="tel" id="mobile" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="form-group">
+                        <label>જિલ્લો</label>
+                        <input type="text" id="district" value="વલસાડ">
+                    </div>
+                </div> <!-- ગ્રીડ અહીં પૂરી -->
+
+                <!-- એડ્રેસ (પૂરી પહોળાઈ) -->
+                <div class="full-width" style="margin: 8px 0 10px;">
+                    <label>સંપૂર્ણ સરનામું <span class="req">*</span></label>
+                    <input type="text" id="address" placeholder="ઘર નંબર, શેરી, ગામ, તાલુકો" style="width:100%;">
+                </div>
+
+                <!-- અપલોડ વિભાગ (કોમ્પેક્ટ) - માત્ર 4 મહત્વના બતાવ્યા, બાકીના સરળતાથી વિચારી શકાય -->
+                <div style="margin: 8px 0;">
+                    <p style="font-size:0.75rem; font-weight:600; margin-bottom:3px;">📎 મહત્વના દસ્તાવેજ અપલોડ (100 KB)</p>
+                </div>
+                <!-- એલ.સી. -->
+                <div class="upload-row">
+                    <span style="font-size:0.7rem; min-width:45px;">📜 એલ.સી.</span>
+                    <div class="upload-btn">પસંદ કરો<input type="file" id="lc" accept=".jpg,.pdf" onchange="updateFile(this)"></div>
+                    <div class="file-meta"><span class="file-name" id="lc_name"></span><span id="lc_size" class="file-size"></span></div>
+                    <span class="size-warning" id="lc_warn">!</span>
+                </div>
+                <!-- માર્કશીટ -->
+                <div class="upload-row">
+                    <span style="font-size:0.7rem; min-width:45px;">📊 માર્કશીટ</span>
+                    <div class="upload-btn">પસંદ કરો<input type="file" id="marksheet" accept=".jpg,.pdf" onchange="updateFile(this)"></div>
+                    <div class="file-meta"><span class="file-name" id="marksheet_name"></span><span id="marksheet_size"></span></div>
+                    <span class="size-warning" id="marksheet_warn">!</span>
+                </div>
+                <!-- આધાર વિદ્યાર્થી -->
+                <div class="upload-row">
+                    <span style="font-size:0.7rem; min-width:45px;">🆔 વિદ્યાર્થી આધાર</span>
+                    <div class="upload-btn">પસંદ કરો<input type="file" id="aadhar" accept=".jpg,.pdf" onchange="updateFile(this)"></div>
+                    <div class="file-meta"><span class="file-name" id="aadhar_name"></span><span id="aadhar_size"></span></div>
+                    <span class="size-warning" id="aadhar_warn">!</span>
+                </div>
+                <!-- ફોટો -->
+                <div class="upload-row">
+                    <span style="font-size:0.7rem; min-width:45px;">📸 ફોટો</span>
+                    <div class="upload-btn">પસંદ કરો<input type="file" id="photo" accept=".jpg" onchange="updateFile(this)"></div>
+                    <div class="file-meta"><span class="file-name" id="photo_name"></span><span id="photo_size"></span></div>
+                    <span class="size-warning" id="photo_warn">!</span>
+                </div>
+
+                <!-- પ્રગતિ અને ડિક્લેરેશન -->
+                <div class="progress-mini"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+                <div class="declaration">
+                    <input type="checkbox" id="decl" required> <label for="decl">હું પ્રમાણિત કરું છું કે માહિતી સાચી છે.</label>
+                </div>
+                <button type="submit" class="btn-submit" id="submitBtn" disabled>📤 દસ્તાવેજ અપલોડ કરો</button>
+            </form>
+        </div>
+    </div>
+    <!-- ફૂટર -->
+    <div class="footer-note">© 2026 ઉ.બુ.ઉ.મા. શાળા, નારોલી | બધા દસ્તાવેજ 100 KB ની અંદર અપલોડ કરો</div>
+</div>
+
+<script>
+    // સ્ટ્રીમ ડ્રોપડાઉન ફરજિયાત / વૈકલ્પિક ધોરણ પ્રમાણે
+    const classSelect = document.getElementById('classSelect');
+    const streamSelect = document.getElementById('streamSelect');
+    function toggleStream() {
+        let cls = classSelect.value;
+        if(cls === '11' || cls === '12') {
+            streamSelect.disabled = false;
+            streamSelect.required = true;
+            streamSelect.style.opacity = '1';
+        } else {
+            streamSelect.disabled = true;
+            streamSelect.required = false;
+            streamSelect.value = '';
+            streamSelect.style.opacity = '0.6';
+        }
+        checkFormValidity();
+    }
+    classSelect.addEventListener('change', toggleStream);
+    toggleStream();
+
+    // ફાઇલ અપડેટ અને સાઇઝ ચેક
+    function updateFile(input) {
+        const id = input.id;
+        const nameSpan = document.getElementById(id+'_name');
+        const sizeSpan = document.getElementById(id+'_size');
+        const warnSpan = document.getElementById(id+'_warn');
+        if(input.files.length>0) {
+            let f = input.files[0];
+            let name = f.name.length>15 ? f.name.substr(0,12)+'…' : f.name;
+            nameSpan.textContent = name;
+            let sizeKb = (f.size/1024).toFixed(1);
+            sizeSpan.textContent = sizeKb+'KB';
+            if(f.size > 102400) {
+                warnSpan.style.display = 'inline';
+                input.closest('.upload-row').style.border = '1px solid #e53e3e';
+            } else {
+                warnSpan.style.display = 'none';
+                input.closest('.upload-row').style.border = '1px solid #dde7f0';
+            }
+        } else {
+            nameSpan.textContent = ''; sizeSpan.textContent = ''; warnSpan.style.display='none';
+        }
+        updateProgress();
+    }
+
+    // પ્રગતિ અપડેટ અને સબમિટ બટન
+    function updateProgress() {
+        let reqIds = ['lc','marksheet','aadhar','photo']; // 4 મુખ્ય ફરજિયાત
+        let uploaded = 0, allValid = true;
+        reqIds.forEach(id => {
+            let inp = document.getElementById(id);
+            if(inp.files.length>0) {
+                if(inp.files[0].size <= 102400) uploaded++; else allValid=false;
+            }
+        });
+        let totalReq = 4;
+        let percent = (uploaded/totalReq)*100;
+        document.getElementById('progressFill').style.width = percent+'%';
+
+        // અન્ય ફરજિયાત ચેક
+        let name = document.getElementById('sname').value.trim();
+        let fname = document.getElementById('fname').value.trim();
+        let mname = document.getElementById('mname').value.trim();
+        let mobile = document.getElementById('mobile').value.trim();
+        let addr = document.getElementById('address').value.trim();
+        let decl = document.getElementById('decl').checked;
+        let cls = classSelect.value;
+        let streamOK = (cls!='11' && cls!='12') || (cls=='11' || cls=='12') && streamSelect.value!='';
+        let basicOK = name && fname && mname && mobile && addr && decl && cls;
+
+        let enable = (uploaded === totalReq) && allValid && basicOK && streamOK;
+        document.getElementById('submitBtn').disabled = !enable;
+    }
+
+    // ઇવેન્ટ લિસ્ટનર
+    ['sname','fname','mname','mobile','address','decl','classSelect','streamSelect'].forEach(id => {
+        let el = document.getElementById(id);
+        if(el) el.addEventListener('change', updateProgress);
+        if(el && el.type !== 'checkbox' && el.type !== 'select-one') el.addEventListener('input', updateProgress);
+    });
+
+    // ફોર્મ સબમિટ
+    document.getElementById('compactForm').addEventListener('submit', function(e){
+        e.preventDefault();
+        let cls = classSelect.value;
+        let streamTxt = streamSelect.value ? (streamSelect.options[streamSelect.selectedIndex].text) : '';
+        alert(`✅ દસ્તાવેજ અપલોડ સફળ!\nવિદ્યાર્થી: ${document.getElementById('sname').value}\nધોરણ: ${cls} ${(cls=='11'||cls=='12')? '('+streamTxt+')':''}`);
+        this.reset();
+        document.querySelectorAll('.file-name, .file-size').forEach(s=>s.textContent='');
+        document.querySelectorAll('.size-warning').forEach(w=>w.style.display='none');
+        updateProgress();
+    });
+</script>
+</body>
+</html>
