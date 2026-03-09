@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="gu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>સૂચના બોર્ડ | ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', 'Nirmala UI', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* નેવિગેશન મેનૂ */
+        .nav-menu {
+            background: rgba(26, 35, 62, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            border-radius: 60px;
+            margin-bottom: 40px;
+            border: 2px solid #ffd700;
+        }
+
+        .menu-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+
+        .menu-item {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-item:hover {
+            background: linear-gradient(135deg, #ffd700, #ffb347);
+            color: #1a237e;
+        }
+
+        .menu-icon {
+            margin-right: 6px;
+        }
+
+        /* હેડર */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 60px;
+            margin-bottom: 40px;
+            text-align: center;
+            border: 3px solid #ffd700;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+
+        .header h1 {
+            color: #1a237e;
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            color: #2c3e50;
+            font-size: 18px;
+        }
+
+        /* નોટિસ ગ્રીડ */
+        .notice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        /* નોટિસ કાર્ડ */
+        .notice-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            padding: 25px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+            border: 3px solid #ffd700;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .notice-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(255,215,0,0.3);
+        }
+
+        .notice-date {
+            background: #1a237e;
+            color: white;
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            border: 2px solid #ffd700;
+        }
+
+        .notice-date i {
+            margin-right: 5px;
+            color: #ffd700;
+        }
+
+        .notice-title {
+            color: #1a237e;
+            font-size: 22px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .notice-content {
+            color: #2c3e50;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .notice-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 2px dashed #e0e0e0;
+            padding-top: 15px;
+        }
+
+        .notice-author {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+
+        .notice-author i {
+            color: #ffd700;
+        }
+
+        /* ફૂટર */
+        .footer {
+            background: rgba(26, 35, 62, 0.95);
+            color: white;
+            padding: 30px;
+            border-radius: 60px;
+            margin-top: 40px;
+            text-align: center;
+            border: 2px solid #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .notice-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header h1 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- નેવિગેશન મેનૂ -->
+        <nav class="nav-menu">
+            <div class="menu-container">
+                <a href="index.html" class="menu-item"><i class="fas fa-home menu-icon"></i> હોમ</a>
+                <a href="result.html" class="menu-item"><i class="fas fa-chart-line menu-icon"></i> પરિણામ</a>
+                <a href="notice.html" class="menu-item"><i class="fas fa-bullhorn menu-icon"></i> સૂચના</a>
+                <a href="gallery.html" class="menu-item"><i class="fas fa-images menu-icon"></i> ગેલેરી</a>
+                <a href="videos.html" class="menu-item"><i class="fas fa-video menu-icon"></i> વિડીયો</a>
+                <a href="contact.html" class="menu-item"><i class="fas fa-address-book menu-icon"></i> સંપર્ક</a>
+                <a href="admission.html" class="menu-item"><i class="fas fa-edit menu-icon"></i> પ્રવેશ ફોર્મ</a>
+            </div>
+        </nav>
+
+        <!-- હેડર -->
+        <div class="header">
+            <h1><i class="fas fa-bullhorn"></i> સૂચના બોર્ડ</h1>
+            <p>શાળાની તાજી સૂચનાઓ અને મહત્વપૂર્ણ માહિતી</p>
+        </div>
+
+        <!-- નોટિસ ગ્રીડ -->
+        <div class="notice-grid" id="noticeGrid">
+            <!-- સૂચનાઓ JavaScript દ્વારા ઉમેરાશે -->
+        </div>
+
+        <!-- ફૂટર -->
+        <div class="footer">
+            <p>© 2026 ઉત્તર બુનિયાદી વિદ્યાલય, નારોલી | સૂચનાઓ નિયમિત તપાસો</p>
+        </div>
+    </div>
+
+    <script>
+        // સૂચનાઓ લોડ કરો
+        function loadNotices() {
+            const notices = JSON.parse(localStorage.getItem('notices')) || [];
+            const noticeGrid = document.getElementById('noticeGrid');
+            
+            if (notices.length === 0) {
+                noticeGrid.innerHTML = `
+                    <div style="grid-column: 1/-1; text-align: center; padding: 60px; background: rgba(255,255,255,0.9); border-radius: 30px;">
+                        <i class="fas fa-info-circle" style="font-size: 60px; color: #ffd700;"></i>
+                        <p style="margin-top: 20px; font-size: 18px;">હાલમાં કોઈ નવી સૂચના નથી.</p>
+                    </div>
+                `;
+                return;
+            }
+
+            let html = '';
+            notices.reverse().forEach(notice => {
+                html += `
+                    <div class="notice-card">
+                        <div class="notice-date">
+                            <i class="far fa-calendar-alt"></i> ${notice.date}
+                        </div>
+                        <h3 class="notice-title">${notice.title}</h3>
+                        <div class="notice-content">
+                            ${notice.content.replace(/\n/g, '<br>')}
+                        </div>
+                        <div class="notice-footer">
+                            <div class="notice-author">
+                                <i class="fas fa-user-tie"></i> ${notice.author}
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+            noticeGrid.innerHTML = html;
+        }
+
+        // પેજ લોડ થાય ત્યારે સૂચનાઓ લોડ કરો
+        window.onload = loadNotices;
+    </script>
+</body>
+</html>
